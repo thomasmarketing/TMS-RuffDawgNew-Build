@@ -1,0 +1,123 @@
+// Typography
+$base-font-family: "Helvetica Neue";
+$header-font-family:  "mokoko", serif;
+
+// Font Sizes
+$small-font-size: em(14);
+$base-font-size: em(16); 
+$medium-font-size: em(20);
+$large-font-size: em(24);
+$xlarge-font-size: em(32);
+$display-font-size: em(40);
+
+
+
+// Line height
+$baseline:em(8); //Old habits die hard
+$base-line:em(8);
+$base-line-height: 1.5;
+$header-line-height: 1.25;
+
+// Other Sizes
+$base-border-radius: 0;
+$base-spacing: $base-line-height * 1em;
+$base-z-index: 0;
+
+// Colors
+$white:#ffffff;
+$black:#000000;
+$primary: #0A4492;
+$secondary: #ED1B30;
+$accent1: #FBC641;
+$accent2: #051C3B;
+$neutral-light1: #F8F6F2;
+$neutral-light2: #EFF6FF;
+$neutral-light3: #FFF6F6;
+$neutral-medium1: #8A9099;
+$neutral-dark1: #152F53;
+$dark-background: #0A4492;
+
+$blue: $primary;
+$pink: $secondary;
+$light-gray2: $neutral-light1;
+
+$green:#00ad49;
+$gray:#999;
+$dark-gray: #333;
+$medium-gray: #999;
+$light-gray: #eeeeee;
+
+
+$dark-gray2: #8A9099;
+
+
+// Base Colors
+$base-color: $dark-gray;
+$base-accent-color: $blue;
+$base-font-color: $dark-gray;
+$base-background-color: $white;
+
+
+// Link Colors
+$base-link-color: $secondary;
+$hover-link-color: $secondary;
+
+// Border color
+$base-border-color: $light-gray;
+$base-border: 1px solid $base-border-color;
+
+// Forms
+$form-border-color: $base-border-color;
+$form-border-color-hover: darken($base-border-color, 10);
+$form-border-color-focus: $base-accent-color;
+$form-border-radius: $base-border-radius;
+$form-box-shadow: inset 0 1px 3px rgba(black,0.06);
+$form-box-shadow-focus: $form-box-shadow, 0 0 5px rgba(darken($form-border-color-focus, 5), 0.7);
+$form-font-size: $base-font-size;
+$form-font-family: $base-font-family;
+
+
+// Navigation Default/Desktop
+$nav-font-size:em(20);
+$nav-height:em(50);
+$nav-background: transparent;
+$nav-text-color: $accent2;
+$nav-text-color-hover: $secondary;
+$nav-hover: transparent;
+$nav-border: 0;
+$nav-spacing:$baseline;
+$nav-subnav-font-size:em(16);
+$nav-subnav-height:em(50);
+$nav-subnav-background:$nav-hover;
+$nav-subnav-border:1px solid lighten($nav-hover,10%);
+$nav-subnav-hover:darken($nav-subnav-background, 10%);
+
+// Navigation Medium/Tablet
+$nav-font-size-medium:$nav-font-size;
+$nav-height-medium:$nav-height;
+$nav-background-medium:$nav-background;
+$nav-text-color-medium:$nav-text-color;
+$nav-text-color-hover-medium:$nav-text-color-hover;
+$nav-hover-medium:$nav-hover;
+$nav-border-medium:$nav-border;
+$nav-spacing-medium:$nav-spacing;
+$nav-subnav-font-size-medium:$nav-subnav-font-size;
+$nav-subnav-height-medium:$nav-subnav-height;
+$nav-subnav-background-medium:$nav-subnav-background;
+$nav-subnav-border-medium:$nav-subnav-border;
+$nav-subnav-hover-medium:$nav-subnav-hover;
+
+// Navigation Small/Mobile
+$nav-font-size-mobile:$nav-font-size;
+$nav-height-mobile:$nav-height; $nav-width-mobile:100%;
+$nav-background-mobile:$nav-background;
+$nav-text-color-mobile:$nav-text-color;
+$nav-text-color-hover-mobile:$nav-text-color-hover;
+$nav-hover-mobile:$nav-hover;
+$nav-border-mobile:$nav-border;
+$nav-spacing-mobile:$baseline*2;
+$nav-subnav-font-size-mobile:$nav-subnav-font-size;
+$nav-subnav-height-mobile:$nav-subnav-height;
+$nav-subnav-background-mobile:$nav-subnav-background;
+$nav-subnav-border-mobile:$nav-subnav-border;
+$nav-subnav-hover-mobile:$nav-subnav-hover;

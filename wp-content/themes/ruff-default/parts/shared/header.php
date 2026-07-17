@@ -1,0 +1,101 @@
+<!--Site Header-->
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/search-module' ) ); ?>
+<!-- Site header wrap start-->
+<div class="site-header-wrap"> 
+  <header class="site-header" role="banner">
+    <!--Top Nav Header-->
+      <div class="sh-top-nav">
+        <div class="inner-wrap">
+          <a href="<?php bloginfo('url'); ?>" class="site-logo">
+            <?php $logo = get_field('global_company_logo','option');
+            if( !empty($logo) ): ?>
+              <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
+            <?php endif;?>
+          </a>
+
+          <div class="sh-utility-nav">
+              <a href="#menu" class="sh-ico-menu menu-link" aria-label="Menu Icon"><span>Menu</span></a>
+
+              <?php $string = get_field('global_phone_number','option');$string = preg_replace("/[^0-9]/", '', $string);?>
+              <?php if(get_field('global_phone_number','option')):?>
+              <a class="sh-ph" href="tel:<?php echo $string;?>"><span><?php echo get_field('global_phone_number','option'); ?></span></a>
+              <?php endif; ?>
+
+              <?php if(get_field('global_email','option')):?>
+              <a class="sh-email" href="mailto:<?php echo get_field('global_email','option');?>"><span><?php echo get_field('global_email','option');?></span></a>
+              <?php endif; ?> 
+              
+              <a class="sh-ico-search search-link" target="_blank" href="#" aria-label="Search Icon"><span>Search</span></a>
+          </div>     
+        </div>  
+      </div>
+    <!--Top Nav Header-->  
+
+    <!--Sticky Nav-->
+      <div class="sh-sticky-wrap">
+        <div class="inner-wrap">
+          <a href="<?php bloginfo('url'); ?>" class="site-logo">
+            <?php $logo = get_field('global_company_logo','option');
+            if( !empty($logo) ): ?>
+              <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
+            <?php endif;?>
+          </a>
+           <div class="sh-right">
+          <!--Site Nav-->
+          <div class="site-nav-container">
+            <div class="snc-header">
+              <a href="" class="close-menu menu-link">Close</a>
+            </div>
+            <?php wp_nav_menu(array(
+            'menu'            => 'Primary Nav',
+            'container'       => 'nav',
+            'container_class' => 'site-nav',
+            'menu_class'      => 'sn-level-1',
+            'walker'        => new themeslug_walker_nav_menu
+            )); ?>
+          </div>
+          <!--Site Nav END-->
+          <a class="sh-ico-search search-link" target="_blank" href="#" aria-label="Search Icon"></a>
+          
+             <?php 
+            $link = get_field('cta_one','option');
+            if( $link ): 
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <a class="btn-alt" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
+            <?php endif; ?>
+             <?php 
+            $link = get_field('cta_two','option');
+            if( $link ): 
+                $link_url = $link['url'];
+                $link_title = $link['title'];
+                $link_target = $link['target'] ? $link['target'] : '_self';
+                ?>
+                <a class="btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
+            <?php endif; ?>
+
+          </div>
+
+        </div>
+        <a href="" class="site-nav-container-screen menu-link">&nbsp;</a>
+    </div>
+    <!--Sticky Nav-->
+  </header>
+
+  <?php if ( is_front_page() ) : ?>
+
+    <?php Starkers_Utilities::get_template_parts( array( 'parts/site-intro' ) ); ?>
+
+    <?php elseif ( is_author() ) : ?>
+
+        <?php // No intro on author pages ?>
+
+    <?php else : ?>
+
+        <?php Starkers_Utilities::get_template_parts( array( 'parts/page-intro' ) ); ?>
+
+    <?php endif; ?>
+</div>
+<!-- Site header wrap end-->

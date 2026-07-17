@@ -1,0 +1,13 @@
+<svg
+  class="ct-icon"
+  xmlns="http://www.w3.org/2000/svg"
+  width="8"
+  height="8"
+  viewBox="0 0 8 8"
+  aria-hidden="true"
+>
+  <path
+    fill="#4e4e4e"
+    d="M1 2l3 3 3-3 .8.8L4 6.6.2 2.8z"
+  />
+</svg>
