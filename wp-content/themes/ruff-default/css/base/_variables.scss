@@ -1,5 +1,14 @@
 // Typography
-$base-font-family: "Helvetica Neue";
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url("fonts/HelveticaNeueLight.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+// Typography
+$base-font-family: "helvetica-neue-lt-pro";
 $header-font-family:  "mokoko", serif;
 
 // Font Sizes

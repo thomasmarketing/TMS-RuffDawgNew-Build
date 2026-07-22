@@ -459,6 +459,176 @@
 		</div>
 	  </section>
 
+<?php elseif( get_row_layout() == 'play_finder_module' ): ?> 
+<section class="play-finder-module">
+  <div class="inner-wrap">
+    <div class="pfm-heading-section">
+      <h2 class="pfm-heading">What kind of <span>trouble</span> does your dog get into?</h2>
+      <div class="pfm-text">Pick a play style. We'll find their match.</div>
+    </div>
+
+    <div class="pfm-filter-wrap">
+      <div class="pfm-filter-row">
+        <button class="pfm-filter active" type="button">Fetch</button>
+        <button class="pfm-filter" type="button">Tug</button>
+        <button class="pfm-filter" type="button">Water</button>
+        <button class="pfm-filter" type="button">Chew</button>
+      </div>
+
+      <div class="pfm-filter-row">
+        <button class="pfm-filter active blue" type="button">Small</button>
+        <button class="pfm-filter" type="button">Medium</button>
+        <button class="pfm-filter" type="button">Large</button>
+      </div>
+    </div>
+
+    <div class="pfm-slider-wrap">
+      <button class="pfm-arrow pfm-arrow-prev" type="button" aria-label="Previous"></button>
+
+      <div class="pfm-product-wrap">
+        <a href="#" class="pfm-product-card">
+          <div class="pfm-img-wrap">
+            <img src="images/peanut-weenut.png" alt="Peanut / Weenut" class="pfm-img" />
+          </div>
+          <h3>Peanut / Weenut</h3>
+        </a>
+
+        <a href="#" class="pfm-product-card">
+          <div class="pfm-img-wrap">
+            <img src="images/rock.png" alt="Rock" class="pfm-img" />
+          </div>
+          <h3>Rock</h3>
+        </a>
+
+        <a href="#" class="pfm-product-card">
+          <div class="pfm-img-wrap">
+            <img src="images/crinkit.png" alt="Crinkit" class="pfm-img" />
+          </div>
+          <h3>Crinkit</h3>
+        </a>
+
+        <a href="#" class="pfm-product-card">
+          <div class="pfm-img-wrap">
+            <img src="images/big-dawg.png" alt="Big Dawg" class="pfm-img" />
+          </div>
+          <h3>Big Dawg</h3>
+        </a>
+      </div>
+
+      <button class="pfm-arrow pfm-arrow-next" type="button" aria-label="Next"></button>
+    </div>
+  </div>
+</section>
+
+<?php elseif( get_row_layout() == 'retailer_cta_module' ): ?> 
+<section class="retailer-cta-module">
+  <div class="inner-wrap">
+    <div class="rcm-img-wrap">
+		<?php $image = get_sub_field('rcm_image');  if( !empty( $image ) ): ?>
+      <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="<?php echo esc_attr($image['alt']); ?>" class="rcm-img" />
+	  <?php endif; ?>
+    </div>
+
+    <div class="rcm-content">
+      <?php if( get_sub_field('rcm_heading')): ?><h2 class="rcm-heading"><?php echo get_sub_field('rcm_heading'); ?></h2><?php endif; ?>
+
+      <ul class="rcm-list">
+		<?php if( have_rows('rcm_list_item') ): while ( have_rows('rcm_list_item') ) : the_row(); ?>
+        <?php if( get_sub_field('rcm_list_text')): ?><li><?php echo get_sub_field('rcm_list_text'); ?></li><?php endif; ?>
+		<?php endwhile; ?>	
+		<?php endif; ?>	
+      </ul>
+
+      <div class="rcm-actions">
+		 <?php
+			$rcm_cta_1 = get_sub_field('rcm_cta_1');
+			if($rcm_cta_1):
+			$link_url = $rcm_cta_1['url'];
+			$link_title = $rcm_cta_1['title'];
+			$link_target = $rcm_cta_1['target'] ? $rcm_cta_1['target'] : '_self';
+			?>
+        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+		<?php
+			$rcm_cta_2 = get_sub_field('rcm_cta_2');
+			if($rcm_cta_2):
+			$link_url = $rcm_cta_2['url'];
+			$link_title = $rcm_cta_2['title'];
+			$link_target = $rcm_cta_2['target'] ? $rcm_cta_2['target'] : '_self';
+			?>
+        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-alt"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+      </div>
+    </div>
+  </div>
+</section>
+
+<?php elseif( get_row_layout() == 'reviews_module' ): ?> 
+<section class="reviews-module">
+	<div class="inner-wrap">
+		<?php if( get_sub_field('rm_heading')): ?><div class="rm-heading-section">
+			 <h2 class="reviews-heading"><?php echo get_sub_field('rm_heading'); ?></h2>
+		</div><?php endif; ?>
+
+		<div class="slider-shell">
+			<button class="arrow prev" aria-label="Previous review">
+			<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+			</button>
+
+			<!-- STATIC stage: this box never moves. JS only ever swaps what's inside it. -->
+			<div class="review-card" id="siReviewStage">
+			<div class="stage-photo" id="stagePhoto">
+				<div class="polaroid"><img id="photoImg" src="" alt=""></div>
+			</div>
+			<div class="stage-text" id="stageText">
+				<span class="quote-mark">&ldquo;</span>
+				<p class="review-text" id="textQuote"></p>
+				<div class="review-name" id="textName"></div>
+				<div class="review-role" id="textRole"></div>
+			</div>
+			</div>
+
+			<button class="arrow next" aria-label="Next review">
+			<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+			</button>
+
+			<div class="review-dots" id="dots"></div>
+		</div>
+
+		<div class="review-ctas">
+			 <?php
+			$rcm_cta_1 = get_sub_field('rm_cta1');
+			if($rcm_cta_1):
+			$link_url = $rcm_cta_1['url'];
+			$link_title = $rcm_cta_1['title'];
+			$link_target = $rcm_cta_1['target'] ? $rcm_cta_1['target'] : '_self';
+			?>
+			<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-alt"><?php echo esc_html($link_title); ?></a><?php endif; ?>	
+			<?php
+			$rcm_cta_2 = get_sub_field('rm_cta2');
+			if($rcm_cta_2):
+			$link_url = $rcm_cta_2['url'];
+			$link_title = $rcm_cta_2['title'];
+			$link_target = $rcm_cta_2['target'] ? $rcm_cta_2['target'] : '_self';
+			?>
+			<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+		</div>
+
+		<ul class="si-review-data" id="siReviewData" hidden>
+			<?php if( have_rows('rm_items') ): while ( have_rows('rm_items') ) : the_row(); ?>
+			<?php $image = get_sub_field('rmi_image');  if( !empty( $image ) ): ?>
+			<li data-side="<?php echo get_sub_field('rmi_class'); ?>"
+				data-img="<?php echo esc_url($image['url']); ?>"
+				data-alt="<?php echo esc_attr($image['alt']); ?>"
+				data-name="<?php echo get_sub_field('rmi_name'); ?>"
+                data-role="<?php echo get_sub_field('rmi_role'); ?>">
+				>
+			     <?php echo get_sub_field('rmi_text'); ?>
+			</li><?php endif; ?>	
+			<?php endwhile; ?>	
+		<?php endif; ?>	
+		</ul>
+	</div>
+</section>
+
 
 <?php elseif( get_row_layout() == 'shop_by_play_style_module' ): ?>
 	<section class="shop-by-play-module">
@@ -498,7 +668,7 @@
 
     <div class="ydghm-content">
       <div class="ydghm-heading-section">
-        <?php if( get_sub_field('ydghm_heading')): ?><h2 class="ydghm-heading"><span><?php echo get_sub_field('ydghm_heading'); ?></h2><?php endif; ?>
+        <?php if( get_sub_field('ydghm_heading')): ?><h2 class="ydghm-heading"><?php echo get_sub_field('ydghm_heading'); ?></h2><?php endif; ?>
       </div>
 
       <div class="ydghm-list">
@@ -518,12 +688,11 @@
  
       </div>
        <?php
-					$shop_cta = get_sub_field('shop_cta');
-					if($shop_cta):
-					$link_url = $shop_cta['url'];
-					$link_title = $shop_cta['title'];
-					$link_target = $shop_cta['target'] ? $shop_cta['target'] : '_self';
-					?>
+			$shop_cta = get_sub_field('shop_cta');
+			if($shop_cta):
+			$link_url = $shop_cta['url'];
+			$link_title = $shop_cta['title'];
+			$link_target = $shop_cta['target'] ? $shop_cta['target'] : '_self'; ?>
       <div class="ydghm-actions ydghm-actions-mobile">
         <a class="btn btn-outline" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a>
       </div><?php endif; ?>
@@ -538,38 +707,58 @@
             <?php if( get_sub_field('guarantee_text')): ?><p><?php echo get_sub_field('guarantee_text'); ?></p><?php endif; ?>
           </div>
 		   <?php
-					$about_cta = get_sub_field('about_cta');
-					if($about_cta):
-					$link_url = $about_cta['url'];
-					$link_title = $about_cta['title'];
-					$link_target = $about_cta['target'] ? $about_cta['target'] : '_self';
-					?>
+			    $about_cta = get_sub_field('about_cta');
+				if($about_cta):
+				$link_url = $about_cta['url'];
+				$link_title = $about_cta['title'];
+				$link_target = $about_cta['target'] ? $about_cta['target'] : '_self';
+				?>
           <a class="btn btn-yellow ydghm-guarantee-mobile-link" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
         </div>
       </div>
 
       <div class="ydghm-actions ydghm-actions-desktop">
 		<?php
-					$shop_cta = get_sub_field('shop_cta');
-					if($shop_cta):
-					$link_url = $shop_cta['url'];
-					$link_title = $shop_cta['title'];
-					$link_target = $shop_cta['target'] ? $shop_cta['target'] : '_self';
-					?>
-        <a class="btn btn-outline" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+			$shop_cta = get_sub_field('shop_cta');
+		    if($shop_cta):
+			$link_url = $shop_cta['url'];
+			$link_title = $shop_cta['title'];
+			$link_target = $shop_cta['target'] ? $shop_cta['target'] : '_self';?>
+        <a class="btn-alt" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
         <?php
-					$about_cta = get_sub_field('about_cta');
-					if($about_cta):
-					$link_url = $about_cta['url'];
-					$link_title = $about_cta['title'];
-					$link_target = $about_cta['target'] ? $about_cta['target'] : '_self';
-					?>
-		<a class="btn btn-yellow" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+			$about_cta = get_sub_field('about_cta');
+			if($about_cta):
+			$link_url = $about_cta['url'];
+			$link_title = $about_cta['title'];
+			$link_target = $about_cta['target'] ? $about_cta['target'] : '_self';?>
+		<a class="btn-yellow" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
       </div>
     </div>
   </div>
 </section>
 
+<?php elseif( get_row_layout() == 'home_bucket_module' ): ?>
+<section class="home-bucket-module">
+	<div class="inner-wrap">
+       <?php if( have_rows('hbm_item') ): while ( have_rows('hbm_item') ) : the_row(); ?>
+	    <?php
+		$hbm_link = get_sub_field('hbm_link');
+	    if($hbm_link):
+		$link_url = $hbm_link['url'];
+		$link_title = $hbm_link['title'];
+		$link_target = $hbm_link['target'] ? $hbm_link['target'] : '_self';
+		?>
+		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="hbm-item">
+			 <?php $hbm_image = get_sub_field('hbm_image');  if( !empty( $hbm_image ) ): ?>
+          <img src="<?php echo esc_url($hbm_image['url']); ?>" alt="<?php echo esc_attr($hbm_image['alt']); ?>" title="<?php echo esc_attr($hbm_image['alt']); ?>" class="hbm-icon" />
+		   <?php endif; ?>
+			<?php if( get_sub_field('hbm_title')): ?><span class="hbm-title"><?php echo get_sub_field('hbm_title'); ?></span><?php endif; ?>
+			<?php if( get_sub_field('hbm_text')): ?><span class="hbm-text"><?php echo get_sub_field('hbm_text'); ?></span><?php endif; ?>
+		</a><?php endif; ?>	
+        <?php endwhile; ?>	
+	<?php endif; ?>	
+	</div>
+</section>
 
 <?php elseif( get_row_layout() == 'product_favorites_module' ): ?>
 <section class="product-favorites-module">
@@ -598,7 +787,7 @@
         <div class="pfm-card-content">
           <?php if( get_sub_field('pfm_title')): ?><h3><?php echo get_sub_field('pfm_title'); ?></h3><?php endif; ?>
           <?php if( get_sub_field('pfm_desc')): ?><p><?php echo get_sub_field('pfm_desc'); ?></p><?php endif; ?>
-          <a href="#" class="btn btn-blue">Read More</a>
+          <a href="#" class="btn-blue">Read More</a>
         </div>
       </div>
 	  <?php endwhile; ?>	
@@ -613,7 +802,7 @@
 		$link_target = $pfm_main_cta['target'] ? $pfm_main_cta['target'] : '_self';
 		?>
     <div class="pfm-actions">
-      <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn btn-red"><?php echo esc_html($link_title); ?></a>
+      <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-red"><?php echo esc_html($link_title); ?></a>
     </div>
 	 <?php endif; ?>	
   </div>
@@ -625,37 +814,52 @@
   <div class="inner-wrap">
     <div class="dsm-content">
       <div class="dsm-heading-section">
-        <h2 class="dsm-heading"><span>We believe in dogs</span> &mdash; all of them</h2>
+        <?php if( get_sub_field('dsm_heading')): ?><h2 class="dsm-heading"><?php echo get_sub_field('dsm_heading'); ?></h2><?php endif; ?>	
       </div>
 
-      <div class="dsm-text">
-        <p>In August of 2016, Ruff Dawg announced it's sponsorship of local independent nonprofit <strong>Canines for Disabled Kids</strong> &ndash; (CDK). CDK was founded in 1998, and, like RuffDawg, is based in Worcester, Massachusetts. CDK connects families in need with service dogs and training programs. They award scholarships to offset some of the approximately $25,000 it costs to train a service dog and provide ongoing support to the child-canine team.</p>
-      </div>
+      <?php if( get_sub_field('dsm_text')): ?><div class="dsm-text"><?php echo get_sub_field('dsm_text'); ?></div><?php endif; ?>
 
       <div class="dsm-quote">
         <div class="dsm-quote-mark">&ldquo;</div>
         <blockquote>
-          <p>We work with schools, speak at conferences and expositions to educate families on what the options are for these families looking for the support of a dog. We depend entirely on donations and sponsorships.</p>
-          <cite><strong>Kristin Hartness</strong><br />CDK's Executive Director</cite>
+          <?php if( get_sub_field('quote_text')): ?><?php echo get_sub_field('quote_text'); ?><?php endif; ?>
+          <cite><strong><?php echo get_sub_field('quote_author'); ?></strong><br /><?php echo get_sub_field('quote_designation'); ?></cite>
         </blockquote>
       </div>
 
       <div class="dsm-actions">
-        <a href="#" class="btn btn-outline">Learn More</a>
-        <a href="#" class="btn btn-outline-red">See Our Team In Action</a>
+		 <?php
+		$cta_1 = get_sub_field('cta_1');
+	    if($cta_1):
+		$link_url = $cta_1['url'];
+		$link_title = $cta_1['title'];
+		$link_target = $cta_1['target'] ? $cta_1['target'] : '_self';
+		?>
+        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-alt"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+         <?php
+		$cta_2 = get_sub_field('cta_2');
+	    if($cta_2):
+		$link_url = $cta_2['url'];
+		$link_title = $cta_2['title'];
+		$link_target = $cta_2['target'] ? $cta_2['target'] : '_self';
+		?>
+		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn"><?php echo esc_html($link_title); ?></a><?php endif; ?>
       </div>
     </div>
 
     <div class="dsm-media">
       <div class="dsm-photo-card">
-        <img src="images/cdk-dog-team.jpg" alt="Child with service dog" class="dsm-photo" />
-        <img src="images/ruff-dawg-supports-cdk.png" alt="Ruff Dawg supports Canines for Disabled Kids" class="dsm-stamp" />
+		 <?php $dsm_image = get_sub_field('dsm_image');  if( !empty( $dsm_image ) ): ?>
+        <img src="<?php echo esc_url($dsm_image['url']); ?>" alt="<?php echo esc_attr($dsm_image['alt']); ?>" title="<?php echo esc_attr($dsm_image['title']); ?>" class="dsm-photo" />
+		<?php endif; ?>
+		<?php $dsm_stamp_image = get_sub_field('dsm_stamp_image');  if( !empty( $dsm_stamp_image ) ): ?>
+        <img src="<?php echo esc_url($dsm_stamp_image['url']); ?>" alt="<?php echo esc_attr($dsm_stamp_image['alt']); ?>" alt="<?php echo esc_attr($dsm_stamp_image['title']); ?>" class="dsm-stamp" /><?php endif; ?>
+      </div>
       </div>
     </div>
   </div>
 </section>
 
-	
 
 	  <?php elseif( get_row_layout() == 'news_module' ): ?>
 	  <section class="news-module">

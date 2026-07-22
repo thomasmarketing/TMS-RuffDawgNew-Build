@@ -7,19 +7,14 @@
 <form action="<?php bloginfo('url'); ?>/" method="get" class="search-form">
     <div class="search-table">
       <div class="search-row">
-
         <div class="search-cell1">
-          <input type="text" id="search-site" autocomplete="off" value="" placeholder="Start typing to search" name="s" class="search-text" title="Search Website..." tabindex="-1" aria-label="Search Website...">
+          <input type="text" id="search-site" value="" placeholder="Search Website..." name="s" class="search-text" title="Search Website..." tabindex="-1" aria-label="Search Website...">
         </div>
-
         <div class="search-cell2">
           <input class="search-submit" alt="Search" title="Search" value="" type="submit" tabindex="-1" aria-label="Search">
         </div>
-
       </div>
     </div>
-
-    <div id="live-search-results" class="live-search-results"></div>
 </form> 
             
             

@@ -34,7 +34,8 @@
               <a href="mailto:<?php echo get_field('global_email','option');?>"><span><?php echo get_field('global_email','option');?></span></a>
 		    </span>
         <?php endif; ?>
-
+         
+		<a href="#" class="sf-privacy-link">Privacy policy</a>
 
 		</div>
 		<div class="sf-two">

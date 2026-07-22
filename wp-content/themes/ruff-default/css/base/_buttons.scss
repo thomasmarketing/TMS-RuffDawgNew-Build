@@ -26,18 +26,21 @@ $btn-alt-color:transparent;
 
 .btn {
   display: inline-block;
-  background-color: transparent;
+  background-color: $white;
   color: $secondary;
-  font-size: em(20);
-  padding:em(10, 20) em(10, 20);
+  font-size: em(14);
+  padding:em(10, 14) em(14);
   text-decoration: none;
   border-radius: 36px;
   font-family: $header-font-family;
   text-decoration: none;
   font-weight: 900;
-  margin-top: auto;
   border: 2px solid $secondary;
   transition: background-color 0.2s ease;
+  @include mq(large){
+    font-size: em(20);
+    padding:em(10, 20) em(16, 20);
+  }
   &:hover, &:focus{
     background-color: $secondary;
     color: $white;
@@ -47,19 +50,92 @@ $btn-alt-color:transparent;
 
 .btn-alt {
   @extend %button;
-  background-color: transparent;
+  background-color: $white;
   color: $primary;
-  font-size: em(20);
+  font-size: em(14);
   font-family: $header-font-family;
-  padding:em(10, 20) em(10, 20);
+  padding:em(10, 14) em(14);
   border-radius: 36px;
   font-weight: 900;
   border: 2px solid $primary;
   transition: background-color 0.2s ease;
+   @include mq(large){
+     font-size: em(20);
+     padding:em(10, 20) em(16, 20);
+   }
   &:focus,
   &:hover {
     background-color: $primary;
     color: $white;
+    text-decoration: none;
+  }
+}
+.btn-yellow {
+  @extend %button;
+  background-color: $accent1;
+  color: $accent2;
+  font-size: em(14);
+  font-family: $header-font-family;
+  padding:em(10, 14) em(14);
+  border-radius: 36px;
+  font-weight: 900;
+  border: 2px solid $accent1;
+  transition: background-color 0.2s ease;
+   @include mq(large){
+     font-size: em(20);
+     padding:em(10, 20) em(16, 20);
+   }
+  &:focus,
+  &:hover {
+    background-color: transparent;
+    color: $accent2;
+    border: 2px solid $accent2;
+    text-decoration: none;
+  }
+}
+.btn-blue {
+  @extend %button;
+  background-color: $primary;
+  color: $neutral-light1;
+  font-size: em(14);
+  font-family: $header-font-family;
+  padding:em(10, 14) em(14);
+  border-radius: 36px;
+  font-weight: 900;
+  border: 2px solid $primary;
+  transition: background-color 0.2s ease;
+   @include mq(large){
+     font-size: em(20);
+     padding:em(10, 20) em(16, 20);
+   }
+  &:focus,
+  &:hover {
+    background-color: $secondary;
+    color: $neutral-light1;
+    border: 2px solid $secondary;
+    text-decoration: none;
+  }
+}
+.btn-red {
+  @extend %button;
+  background-color:$secondary;
+  color: $neutral-light1;
+  font-size: em(14);
+  font-family: $header-font-family;
+  padding:em(10, 14) em(14);
+  border-radius: 36px;
+  font-weight: 900;
+  border: 2px solid $secondary;
+  transition: background-color 0.2s ease;
+   @include mq(large){
+     font-size: em(20);
+     padding:em(10, 20) em(16, 20);
+   }
+  &:focus,
+  &:hover {
+    background-color: $white;
+    color: $secondary;
+    border: 2px solid $secondary;
     text-decoration: none;
   }
 }

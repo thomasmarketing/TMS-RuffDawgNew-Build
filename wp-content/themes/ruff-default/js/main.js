@@ -4,20 +4,9 @@ $(document).ready(function() {
   var $menu = $('.site-nav-container'),
     $menulink = $('.menu-link'),
     $menuTrigger = $('.menu-item-has-children > a'),
-    $searchLink = $('.search-link'),
     $siteSearch = $('.search-module'),
     $siteWrap = $('.site-wrap');
 
-  $searchLink.click(function(e) {
-    e.preventDefault();
-    $searchLink.toggleClass('active');
-    $siteSearch.toggleClass('active');
-    $('body').toggleClass('active');
-    $('#search-site').focus();
-    $('.search-module input, .search-module .search-exit').attr('tabindex', function(index, attr){
-      return attr == -1 ? null : -1;
-    });
-  });
 
   $menulink.click(function(e) {
     e.preventDefault();
@@ -1087,80 +1076,181 @@ $(document).on('mouseleave', '.gallery-trigger', function() {
 });
 
 
-// Live Search
-$(document).ready(function () {
-const input = document.getElementById('search-site');
-const results = document.getElementById('live-search-results');
 
-let timer;
+// Search
+document.addEventListener('DOMContentLoaded', function () {
+  var siteHeader = document.querySelector('.site-header');
+  var searchLinks = document.querySelectorAll('.search-link');
+  var searchInput = document.querySelector('.sh-search-input');
 
-input.addEventListener('keyup', function () {
+  if (!siteHeader || !searchLinks.length) return;
 
-    const keyword = this.value;
+  searchLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var isActive = siteHeader.classList.toggle('search-active');
+      if (isActive && searchInput) searchInput.focus();
+    });
+  });
 
-    clearTimeout(timer);
+  document.addEventListener('click', function (e) {
+    if (
+      siteHeader.classList.contains('search-active') &&
+      !e.target.closest('.sh-search-form') &&
+      !e.target.closest('.search-link')
+    ) {
+      siteHeader.classList.remove('search-active');
+    }
+  });
 
-    if (keyword.length < 2) {
-        results.classList.remove('active');
-        results.innerHTML = '';
-        return;
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && siteHeader.classList.contains('search-active')) {
+      siteHeader.classList.remove('search-active');
+    }
+  });
+});
+
+
+// Shop by play style
+document.querySelectorAll('.badge').forEach(badge => {
+  const naturalWidth = badge.getBoundingClientRect().width;
+  badge.style.setProperty('--badge-w', naturalWidth + 'px');
+});
+
+
+// Real dogs. Real reviews.
+
+$(function() {
+
+  var $stage      = $('#siReviewStage');
+  var $photo      = $('#stagePhoto');
+  var $text       = $('#stageText');
+  var $img         = $('#photoImg');
+  var $quote       = $('#textQuote');
+  var $name        = $('#textName');
+  var $role        = $('#textRole');
+  var $dots        = $('#dots');
+  var $slides      = $('#siReviewData > li');
+  var moveDur      = 600;   // keep in sync with --move-dur in CSS
+  var swapDur      = 180;
+  var settleDur    = 200;
+
+  var current      = 0;
+  var animating    = false;
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function slideData(i) {
+    var $li = $slides.eq(i);
+    return {
+      side: $li.data('side') || 'left',
+      img:  $li.data('img'),
+      alt:  $li.data('alt') || '',
+      name: $li.data('name') || '',
+      role: $li.data('role') || '',
+      quote: $li.find('p').first().text().trim()
+    };
+  }
+
+  function buildDots() {
+    $slides.each(function(i) {
+      var $b = $('<button></button>').attr('aria-label', 'Go to review ' + (i + 1));
+      $b.on('click', function() { goTo(i); });
+      $dots.append($b);
+    });
+  }
+
+  function updateDots() {
+    $dots.children().each(function(i) {
+      $(this).toggleClass('active', i === current);
+    });
+  }
+
+  function isMobile() {
+    return $(window).width() <= 700;
+  }
+
+  function layoutFor(side, animate) {
+    if (isMobile()) {
+      $photo.css({ left: '' });
+      $text.css({ left: '', width: '' });
+      $photo.toggleClass('side-left', side === 'left').toggleClass('side-right', side === 'right');
+      return;
     }
 
-    timer = setTimeout(() => {
+    var stageWidth = $stage.width();
+    var imgWidth = 190, gap = 40;
+    var textWidth = stageWidth - imgWidth - gap;
+    var photoLeft = side === 'left' ? 0 : (stageWidth - imgWidth);
+    var textLeft  = side === 'left' ? (imgWidth + gap) : 0;
 
-        fetch(
-            '/wp-admin/admin-ajax.php?action=live_search&s=' +
-            encodeURIComponent(keyword)
-        )
-        .then(res => res.json())
-        .then(data => {
+    if (!animate) {
+      $photo.css('transition', 'none');
+      $text.css('transition', 'none');
+    }
 
-            results.innerHTML = data.html;
+    $photo.css('left', photoLeft + 'px');
+    $text.css({ left: textLeft + 'px', width: textWidth + 'px' });
+    $photo.toggleClass('side-left', side === 'left').toggleClass('side-right', side === 'right');
 
-            if (data.html.length) {
-                results.classList.add('active');
-            } else {
-                results.classList.remove('active');
-            }
+    if (!animate) {
+      // force reflow so "none" applies before we hand transitions back to CSS
+      $photo[0].offsetWidth;
+      $photo.css('transition', '');
+      $text.css('transition', '');
+    }
+  }
 
-        });
+  function fillContent(i) {
+    var s = slideData(i);
+    $img.attr({ src: s.img, alt: s.alt });
+    $quote.text(s.quote);
+    $name.text(s.name);
+    $role.text(s.role);
+  }
 
-    }, 250);
+  function goTo(index) {
+    if (animating || index === current) return;
+    var next = ((index % $slides.length) + $slides.length) % $slides.length;
+    var nextSlide = slideData(next);
 
-});
+    if (isMobile() || reduceMotion) {
+      current = next;
+      fillContent(current);
+      layoutFor(nextSlide.side, false);
+      updateDots();
+      return;
+    }
 
+    animating = true;
 
-const closeBtn = document.querySelector('.search-exit');
-const searchModule = document.querySelector('.search-module');
-const searchResults = document.getElementById('live-search-results');
-const searchInput = document.getElementById('search-site');
+    // STEP 1: photo + text glide (still showing the OLD photo/copy) from
+    // their current side to the new side, inside the static card.
+    layoutFor(nextSlide.side, true);
 
-closeBtn.addEventListener('click', function(e) {
-    e.preventDefault();
+    // STEP 2: once the glide has landed, swap in the new photo/copy with
+    // a quick reveal.
+    setTimeout(function() {
+      $stage.addClass('content-fade');
+      setTimeout(function() {
+        current = next;
+        fillContent(current);
+        updateDots();
+        $stage.removeClass('content-fade');
+        setTimeout(function() { animating = false; }, settleDur);
+      }, swapDur);
+    }, moveDur);
+  }
 
-    searchModule.classList.remove('active');
+  $('.arrow.next').on('click', function() { goTo(current + 1); });
+  $('.arrow.prev').on('click', function() { goTo(current - 1); });
 
-    searchResults.classList.remove('active');
-    searchResults.innerHTML = '';
+  $(window).on('resize', function() {
+    layoutFor(slideData(current).side, false);
+  });
 
-    searchInput.value = '';
-});
-
-$(document).on('click', '.search-form', function(e){
-    e.stopPropagation();
-});
-
-$(document).on('click', '.search-module', function(){
-
-    $(this).removeClass('active');
-
-    $('#live-search-results')
-        .removeClass('active')
-        .html('');
-
-    $('#search-site').val('');
-
-});
-
-
+  buildDots();
+  fillContent(current);
+  layoutFor(slideData(current).side, false);
+  updateDots();
 });
