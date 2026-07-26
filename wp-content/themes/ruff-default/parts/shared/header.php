@@ -5,26 +5,14 @@
     <!--Top Nav Header-->
       <div class="sh-top-nav">
         <div class="inner-wrap">
-          <a href="<?php bloginfo('url'); ?>" class="site-logo">
+          <a href="<?php bloginfo('url'); ?>" class="site-logo site-logmobile">
             <?php $logo = get_field('global_company_logo','option');
             if( !empty($logo) ): ?>
               <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
             <?php endif;?>
           </a>
-
           <div class="sh-utility-nav">
-              <a href="#menu" class="sh-ico-menu menu-link" aria-label="Menu Icon"><span>Menu</span></a>
-
-              <?php $string = get_field('global_phone_number','option');$string = preg_replace("/[^0-9]/", '', $string);?>
-              <?php if(get_field('global_phone_number','option')):?>
-              <a class="sh-ph" href="tel:<?php echo $string;?>"><span><?php echo get_field('global_phone_number','option'); ?></span></a>
-              <?php endif; ?>
-
-              <?php if(get_field('global_email','option')):?>
-              <a class="sh-email" href="mailto:<?php echo get_field('global_email','option');?>"><span><?php echo get_field('global_email','option');?></span></a>
-              <?php endif; ?> 
-              
-  <a class="sh-ico-search search-link" href="#" aria-label="Search Icon"><span>Search</span></a>
+              <a href="#menu" class="sh-ico-menu menu-link" aria-label="Menu Icon"></a>
           </div>     
         </div>  
       </div>
@@ -33,7 +21,7 @@
     <!--Sticky Nav-->
       <div class="sh-sticky-wrap">
         <div class="inner-wrap">
-          <a href="<?php bloginfo('url'); ?>" class="site-logo">
+          <a href="<?php bloginfo('url'); ?>" class="site-logo site-logo-desk">
             <?php $logo = get_field('global_company_logo','option');
             if( !empty($logo) ): ?>
               <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
@@ -69,17 +57,14 @@
               </form>
                 <!--Inline Search Form END-->
               </div>
-
-              <?php /* cta_one / cta_two buttons unchanged, still siblings of .sh-nav-search-wrap */ ?>
-            </div>          
-             <?php 
+              <?php 
             $link = get_field('cta_one','option');
             if( $link ): 
                 $link_url = $link['url'];
                 $link_title = $link['title'];
                 $link_target = $link['target'] ? $link['target'] : '_self';
                 ?>
-                <a class="btn-alt" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
+                <a class="btn-alt d-none-link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
             <?php endif; ?>
              <?php 
             $link = get_field('cta_two','option');
@@ -88,12 +73,14 @@
                 $link_title = $link['title'];
                 $link_target = $link['target'] ? $link['target'] : '_self';
                 ?>
-                <a class="btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
+                <a class="btn d-none-link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
             <?php endif; ?>
+              <?php /* cta_one / cta_two buttons unchanged, still siblings of .sh-nav-search-wrap */ ?>
+            </div>          
+             
 
           </div>
 
-        </div>
         <a href="" class="site-nav-container-screen menu-link">&nbsp;</a>
     </div>
     <!--Sticky Nav-->

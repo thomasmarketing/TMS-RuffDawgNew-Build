@@ -460,65 +460,132 @@
 	  </section>
 
 <?php elseif( get_row_layout() == 'play_finder_module' ): ?> 
+<?php
+/**
+ * Single pass through pfm_items: capture the checkbox choices (for the
+ * filter buttons) AND each product's data into plain PHP arrays. Doing
+ * this in one loop sidesteps ACF's context quirks around reading a
+ * repeater sub-field's choices from outside an active row — we already
+ * know have_rows()/the_row()/get_sub_field() work here, since your
+ * products were rendering correctly before.
+ */
+$product_rows      = array();
+$category_choices  = array();
+$size_choices       = array();
+
+if ( have_rows('pfm_items') ) :
+  while ( have_rows('pfm_items') ) : the_row();
+
+    // Grab the choices once, from the first row only.
+    if ( empty( $product_rows ) ) {
+      $cat_obj  = get_sub_field_object('pfm_catgegory');
+      $size_obj = get_sub_field_object('pfm_size');
+      $category_choices = ( $cat_obj && ! empty( $cat_obj['choices'] ) ) ? $cat_obj['choices'] : array();
+      $size_choices       = ( $size_obj && ! empty( $size_obj['choices'] ) ) ? $size_obj['choices'] : array();
+    }
+
+    $pfm_link = get_sub_field('pfm_link');
+
+    $product_rows[] = array(
+      'link_url'    => $pfm_link ? $pfm_link['url'] : '#',
+      'link_target' => ( $pfm_link && ! empty( $pfm_link['target'] ) ) ? $pfm_link['target'] : '_self',
+      'categories'  => get_sub_field('pfm_catgegory'), // array
+      'sizes'       => get_sub_field('pfm_size'),       // array
+      'image_1'     => get_sub_field('pfm_mage_1'),
+      'image_2'     => get_sub_field('pfm_image_2'),
+      'title'       => get_sub_field('pfm_title'),
+    );
+
+  endwhile;
+endif;
+?>
 <section class="play-finder-module">
   <div class="inner-wrap">
     <div class="pfm-heading-section">
-      <h2 class="pfm-heading">What kind of <span>trouble</span> does your dog get into?</h2>
-      <div class="pfm-text">Pick a play style. We'll find their match.</div>
+      <?php if ( get_sub_field('pfm_heading') ): ?>
+        <h2 class="pfm-heading"><?php echo get_sub_field('pfm_heading'); // raw: field is expected to contain the <span> markup ?></h2>
+      <?php endif; ?>
+      <?php if ( get_sub_field('pfm_text') ): ?>
+        <div class="pfm-text"><?php echo esc_html( get_sub_field('pfm_text') ); ?></div>
+      <?php endif; ?>
     </div>
 
     <div class="pfm-filter-wrap">
-      <div class="pfm-filter-row">
-        <button class="pfm-filter active" type="button">Fetch</button>
-        <button class="pfm-filter" type="button">Tug</button>
-        <button class="pfm-filter" type="button">Water</button>
-        <button class="pfm-filter" type="button">Chew</button>
+      <?php if ( ! empty( $category_choices ) ) : ?>
+      <div class="pfm-filter-row pfm-category-row">
+        <?php $i = 0; foreach ( $category_choices as $slug => $label ) : ?>
+          <button
+            class="pfm-filter<?php echo ( $i === 0 ) ? ' active' : ''; ?>"
+            type="button"
+            data-filter="<?php echo esc_attr( $slug ); ?>"
+          ><?php echo esc_html( $label ); ?></button>
+        <?php $i++; endforeach; ?>
       </div>
+      <?php endif; ?>
 
-      <div class="pfm-filter-row">
-        <button class="pfm-filter active blue" type="button">Small</button>
-        <button class="pfm-filter" type="button">Medium</button>
-        <button class="pfm-filter" type="button">Large</button>
+      <?php if ( ! empty( $size_choices ) ) : ?>
+      <div class="pfm-filter-row pfm-size-row">
+        <?php $i = 0; foreach ( $size_choices as $slug => $label ) : ?>
+          <button
+            class="pfm-filter<?php echo ( $i === 0 ) ? ' active blue' : ''; ?>"
+            type="button"
+            data-filter="<?php echo esc_attr( $slug ); ?>"
+          ><?php echo esc_html( $label ); ?></button>
+        <?php $i++; endforeach; ?>
       </div>
+      <?php endif; ?>
     </div>
 
     <div class="pfm-slider-wrap">
       <button class="pfm-arrow pfm-arrow-prev" type="button" aria-label="Previous"></button>
 
       <div class="pfm-product-wrap">
-        <a href="#" class="pfm-product-card">
+        <?php foreach ( $product_rows as $product ) :
+          $category_attr = $product['categories'] ? implode( ',', $product['categories'] ) : '';
+          $size_attr      = $product['sizes'] ? implode( ',', $product['sizes'] ) : '';
+        ?>
+        <a
+          href="<?php echo esc_url( $product['link_url'] ); ?>"
+          target="<?php echo esc_attr( $product['link_target'] ); ?>"
+          class="pfm-product-card"
+          data-category="<?php echo esc_attr( $category_attr ); ?>"
+          data-size="<?php echo esc_attr( $size_attr ); ?>"
+        >
           <div class="pfm-img-wrap">
-            <img src="images/peanut-weenut.png" alt="Peanut / Weenut" class="pfm-img" />
-          </div>
-          <h3>Peanut / Weenut</h3>
-        </a>
+            <?php if ( ! empty( $product['image_1'] ) ) : ?>
+              <img
+                src="<?php echo esc_url( $product['image_1']['url'] ); ?>"
+                alt="<?php echo esc_attr( $product['image_1']['alt'] ); ?>"
+                title="<?php echo esc_attr( $product['image_1']['alt'] ); ?>"
+                class="pfm-img pfm-img-default"
+              />
+            <?php endif; ?>
 
-        <a href="#" class="pfm-product-card">
-          <div class="pfm-img-wrap">
-            <img src="images/rock.png" alt="Rock" class="pfm-img" />
+            <?php if ( ! empty( $product['image_2'] ) ) : ?>
+              <img
+                src="<?php echo esc_url( $product['image_2']['url'] ); ?>"
+                alt="<?php echo esc_attr( $product['image_2']['alt'] ); ?>"
+                title="<?php echo esc_attr( $product['image_2']['alt'] ); ?>"
+                class="pfm-img pfm-img-hover"
+              />
+            <?php endif; ?>
           </div>
-          <h3>Rock</h3>
-        </a>
 
-        <a href="#" class="pfm-product-card">
-          <div class="pfm-img-wrap">
-            <img src="images/crinkit.png" alt="Crinkit" class="pfm-img" />
+          <div class="pfm-card-text">
+            <?php if ( $product['title'] ) : ?>
+              <h3 class="pfm-title"><?php echo esc_html( $product['title'] ); ?></h3>
+            <?php endif; ?>
+            <span class="pfm-cta">Read More <span aria-hidden="true">&rarr;</span></span>
           </div>
-          <h3>Crinkit</h3>
         </a>
-
-        <a href="#" class="pfm-product-card">
-          <div class="pfm-img-wrap">
-            <img src="images/big-dawg.png" alt="Big Dawg" class="pfm-img" />
-          </div>
-          <h3>Big Dawg</h3>
-        </a>
+        <?php endforeach; ?>
       </div>
 
       <button class="pfm-arrow pfm-arrow-next" type="button" aria-label="Next"></button>
     </div>
   </div>
 </section>
+
 
 <?php elseif( get_row_layout() == 'retailer_cta_module' ): ?> 
 <section class="retailer-cta-module">
@@ -561,6 +628,31 @@
   </div>
 </section>
 
+<?php elseif( get_row_layout() == 'home_social_media_module' ): ?> 
+<section class="home-social-media-module">
+	<div class="inner-wrap">
+		<div class="hsmm-heading-section">
+           <?php if( get_sub_field('sbpsm_heading')): ?><h2 class="hsmm-heading"><?php echo get_sub_field('sbpsm_heading'); ?></h2><?php endif; ?>
+			<?php if( get_sub_field('sbpsm_description')): ?><div class="hsmm-text"><?php echo get_sub_field('sbpsm_description'); ?></div><?php endif; ?>
+		</div>
+		<div class="hsmm-cta-wrap">
+			<?php if( have_rows('sbpsm_ctas') ): while ( have_rows('sbpsm_ctas') ) : the_row(); ?>
+			 <?php
+			$sbpsm_link = get_sub_field('sbpsm_link');
+			if($sbpsm_link):
+			$link_url = $sbpsm_link['url'];
+			$link_title = $sbpsm_link['title'];
+			$link_target = $sbpsm_link['target'] ? $sbpsm_link['target'] : '_self';
+			?>
+			<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn <?php echo get_sub_field('sbpsm_class'); ?>"><?php $image = get_sub_field('sbpsm_icon');  if( !empty( $image ) ): ?>
+						<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="<?php echo esc_attr($image['alt']); ?>" class="sbpsm-icon style-svg" /><?php endif; ?><span><?php echo esc_html($link_title); ?></span></a><?php endif; ?>
+			<?php  endwhile; ?><?php endif; ?>
+		</div>
+		<?php if( get_sub_field('sbpsm_title')): ?><h3 class="hsmm-title"><?php echo get_sub_field('sbpsm_title'); ?></h3><?php endif; ?>
+		<?php if( get_sub_field('sbpsm_hash_tags')): ?><span class="hsmm-hashtags"><?php echo get_sub_field('sbpsm_hash_tags'); ?></span><?php endif; ?>
+	</div>
+</section>
+
 <?php elseif( get_row_layout() == 'reviews_module' ): ?> 
 <section class="reviews-module">
 	<div class="inner-wrap">
@@ -570,8 +662,9 @@
 
 		<div class="slider-shell">
 			<button class="arrow prev" aria-label="Previous review">
-			<svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
-			</button>
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="34" viewBox="0 0 20 34" fill="none">
+			<path d="M16.6667 33.3333L19.625 30.375L5.91667 16.6667L19.625 2.95833L16.6667 0L0 16.6667L16.6667 33.3333Z" fill="#0A4492"/>
+			</svg></button>
 
 			<!-- STATIC stage: this box never moves. JS only ever swaps what's inside it. -->
 			<div class="review-card" id="siReviewStage">
@@ -587,7 +680,9 @@
 			</div>
 
 			<button class="arrow next" aria-label="Next review">
-			<svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="34" viewBox="0 0 20 34" fill="none">
+			<path d="M2.95833 33.3333L0 30.375L13.7083 16.6667L0 2.95833L2.95833 0L19.625 16.6667L2.95833 33.3333Z" fill="#0A4492"/>
+			</svg>
 			</button>
 
 			<div class="review-dots" id="dots"></div>

@@ -16,7 +16,6 @@
     background-color: $nav-background;
   }
 }
-
 .sn-level-1,
 #hs_menu_wrapper_primary_nav > ul {
   margin: 0;
@@ -41,12 +40,11 @@
   }
   > a {
     display: block;
-    height: $nav-height;
-    line-height: $nav-height;
+    height: $nav-height-mobile;
+    line-height: $nav-height-mobile;
     color: $nav-text-color-mobile;
     text-decoration: none;
     padding: 0 $nav-spacing-mobile;
-    font-weight: 700;
     &:visited {
       color: $nav-text-color;
     }
@@ -69,7 +67,7 @@
         background-size: em(12);
         display: block;
         width: 40px;
-        height: $nav-height;
+        height: 40px;
         position: absolute;
         background-color: darken($nav-background-mobile, 3%);
         right: 0;
@@ -107,10 +105,13 @@
     text-align:center;
     span {
       font-size: $nav-font-size;
+      font-weight: 700;
     }
     > a {
       padding: 0 $nav-spacing;
       color: $nav-text-color;
+      height: $nav-height;
+      line-height: $nav-height;
       &:hover {
         color: $nav-text-color-hover;
       }
@@ -165,6 +166,13 @@
     z-index:9;
     left: 0;
     top: 100%;
+    background-color: $white;
+    border-radius: 0 0 19px 19px;
+    border-right: 2px solid $primary;
+    border-bottom: 2px solid $primary;
+    border-left: 2px solid $primary;
+    min-width: em(238);
+    padding-bottom: em(20);
     &.active {
       display: none;
     }
@@ -175,7 +183,7 @@
 .hs-menu-depth-2 {
   background-color: $nav-subnav-background-mobile;
   > a {
-    //background-color:red;
+    //background-color:pink;
     padding: 0 $nav-spacing-mobile*2;
     color: $nav-text-color;
     border-top: $nav-subnav-border-mobile;
@@ -201,12 +209,13 @@
     position:relative;
     background-color: $nav-subnav-background;
     > a {
-      padding: 0 $nav-spacing;
+      padding: em(0) em(24);
       line-height: $nav-subnav-height;
-      border-top: $nav-subnav-border;
-      border-right: $nav-subnav-border;
+      border-top: 0;
+      border-right: 0;
+      text-align: left;
       span {
-        font-size: $nav-subnav-font-size;
+        font-size: em(16);
       }
     }
     &.current-page-parent,
@@ -302,7 +311,6 @@
     bottom: auto;
     top: auto;
     position: static;
-    display: inline-block;
   }
 }
 
@@ -373,3 +381,137 @@
 }
 
 .snc-footer {}
+
+// Mega menu override — only applies to the "Shop" item
+.sn-li-l1.mega-menu {
+  @include mq(large) {
+    position: relative;
+
+    .sn-level-2 {
+      display: none !important;
+      padding: em(16);
+      background-color: $white;
+      border-radius: 0 0 19px 19px;
+      border-right: 2px solid $primary;
+      border-bottom: 2px solid $primary;
+      border-left: 2px solid $primary;
+      min-width: em(467);
+      // lay the two column headers out side by side
+      @include display(flex);
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: em(48);
+    }
+
+    &:hover .sn-level-2 {
+      display: flex !important;
+    }
+  }
+}
+
+// each "By Play Style" / "By Line" li becomes a column
+.mega-menu .sn-li-l2 {
+  flex: 1;
+  background: none;
+  border: 0;
+  &:not(:first-child) {
+    position: relative;
+    &:before{
+      content: "";
+      position: absolute;
+      left: em(-24);
+      width: 2px;
+      height: 100%;
+      background-color: $primary;
+      top: 0;
+    }
+  }
+
+  > a {
+    font-family: $header-font-family;
+    font-size: em(20);
+    color: $primary;
+    padding: 0 0 em(10);
+    border-bottom: 2px solid $dark-background;
+    margin-bottom: em(10);
+    > span{
+      font-weight: 900;
+    }
+  }
+
+  &:hover {
+    background: none; // kill the default hover highlight
+  }
+
+  // children are always visible, laid out as a plain stacked list —
+  // not shown on a second hover like your normal sn-level-3
+  .sn-level-3 {
+    display: block !important;
+    position: static !important;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.mega-menu .sn-li-l3 {
+  border: 0 !important;
+  background: none;
+  &:before{
+    content: none !important;
+  }
+  > a {
+    padding: 0 0;
+    font-weight: 700;
+    font-size: em(16);
+    line-height: em(36, 16);
+    color: $accent2;
+    font-family: $base-font-family;
+    border: 0;
+    margin-bottom: 0;
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  &.mega-highlight > a {
+    color: $pink; // "New Arrivals" pink text
+  }
+
+  &.mega-icon > a {
+    // add the little shield icon before "Lifetime Guarantee"
+    &:before {
+      content: '';
+      display: inline-block;
+      width: em(16);
+      height: em(20);
+      margin-right: em(8);
+      background: url(img/Subtract.svg) no-repeat center / contain;
+      vertical-align: middle;
+    }
+  }
+
+  &.mega-cta {
+    margin-top: em(15);
+    text-align: left;
+    > a {
+      display: inline-block;
+      background-color: $white;
+      color: $secondary;
+      font-size: em(14);
+      padding:em(10, 14) em(14);
+      text-align: center;
+      text-decoration: none;
+      border-radius: 36px;
+      font-family: $header-font-family;
+      text-decoration: none;
+      font-weight: 900;
+      border: 2px solid $secondary;
+      transition: background-color 0.2s ease;
+      &:hover, &:focus{
+        background-color: $secondary;
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+}

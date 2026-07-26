@@ -88,7 +88,7 @@ $form-font-family: $base-font-family;
 
 // Navigation Default/Desktop
 $nav-font-size:em(20);
-$nav-height:em(50);
+$nav-height:em(136);
 $nav-background: transparent;
 $nav-text-color: $accent2;
 $nav-text-color-hover: $secondary;
@@ -118,8 +118,9 @@ $nav-subnav-hover-medium:$nav-subnav-hover;
 
 // Navigation Small/Mobile
 $nav-font-size-mobile:$nav-font-size;
-$nav-height-mobile:$nav-height; $nav-width-mobile:100%;
-$nav-background-mobile:$nav-background;
+$nav-height-mobile: em(40); 
+$nav-width-mobile:100%;
+$nav-background-mobile:$white;
 $nav-text-color-mobile:$nav-text-color;
 $nav-text-color-hover-mobile:$nav-text-color-hover;
 $nav-hover-mobile:$nav-hover;

@@ -164,8 +164,10 @@ a[class*="sh-ico-"],
   // background-repeat:no-repeat;
 }
 .site-header {
+  background-color: $primary;
    @include mq(large){
     height: em(136);
+    background-color: $white;
     border-bottom: 2px solid $primary;
    }
 }
@@ -177,6 +179,7 @@ a[class*="sh-ico-"],
     .inner-wrap{
       display: flex;
       justify-content: space-between;
+      padding: initial;
       &:after{
         display:none;
       }
@@ -186,6 +189,7 @@ a[class*="sh-ico-"],
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: em(8) em(16);
   }
 }
 .sh-top-banner{
@@ -252,14 +256,20 @@ a[class*="sh-ico-"],
     }
   }
   > .inner-wrap{
+    padding-top: 0;
+    padding-bottom: 0;
     @include mq(large){
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: em(24);
-    padding-bottom: em(24);
     }
   }
+}
+.d-none-link{
+  display: none;
+   @include mq(large){
+    display: inline-block;
+   }
 }
 .sh-utility-nav {
   background-color: $nav-background;
@@ -300,12 +310,25 @@ a[class*="sh-ico-"],
 }
 
 .site-logo{
-  max-width: em(200);
+  max-width: em(194);
   line-height: 0;
   @include mq(large) {
     display: inline-block;
     margin: 0;
     max-width: em(302);
+  }
+  &.site-logo-mobile{
+    display: inline-block;
+    max-width: em(194);
+    @include mq(large) {
+      display: none;
+    }
+  }
+  &.site-logo-desk{
+    display: none;
+    @include mq(large) {
+      display: inline-block;
+    }
   }
 }
 
@@ -359,7 +382,11 @@ a[class*="sh-ico-"],
   height: em(32);
   background-size: contain;
   vertical-align: middle;
+  display: none;
   @extend %sh-ico;
+  @include mq(large){
+    display: inline-block;
+  }
   &:hover, &:focus{
     background-image: url(img/search-icon-hover.svg);
     width: em(32);
@@ -377,17 +404,14 @@ a[class*="sh-ico-"],
 .sh-ico-menu {
   background-image: url(img/ico-nav.svg);
   background-repeat: no-repeat;
-    background-position: center;
-    background-size: 18px auto;
-    display: inline-block;
-    width: 18px;
-    height: 18px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    background-color: $dark-gray2;
-    padding: 19px;
-    border-radius: 3px;
+  background-position: center;
+  background-size: contain;
+  display: inline-block;
+  width: em(48);
+  height: em(48);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   @include mq(large) {
     display: none;
   }
@@ -402,10 +426,15 @@ a[class*="sh-ico-"],
   text-align: center;
   @include mq(large){
     text-align: left;
+    min-height: em(462);
   }
   .inner-wrap {
-    padding-top: em(100);
+    padding-top: em(170);
     padding-bottom:em(100);
+    @include mq(large){
+    display: flex;
+    align-items: center;
+    }
   }
 }
 .si-heading{
@@ -415,7 +444,7 @@ a[class*="sh-ico-"],
   margin-bottom: em(16, 32);
   @include mq(large){
     font-size: em(40);
-     margin-bottom: em(16, 40);
+    margin-bottom: em(16, 40);
   }
   span{
     color: $pink;
@@ -588,12 +617,14 @@ img[name=pphLoggerImage] {
 }
 
 .sh-nav-search-wrap {
-  position: relative;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  min-width: 0;
+  @include mq(large){
+    display: flex;
+    position: relative;
+    flex: 1 1 auto;
+    align-items: center;
+    gap: 20px;
+    min-width: 0;
+  }
 }
 
 .site-nav-container {
@@ -2595,7 +2626,6 @@ body{
     @include mq(large){
        font-size: em(32);
     }
-
     span {
       color: $pink;
     }
@@ -2845,7 +2875,7 @@ body{
       color: $pink;
       display: block;
       @include mq(large){
-        display: in;
+        display: inline;
       }
     }
   }
@@ -2866,6 +2896,7 @@ body{
   .pfm-filter-row {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: em(12);
   }
 
@@ -2894,14 +2925,49 @@ body{
     }
   }
 
+  // size row always shows its active state in blue, regardless of the
+  // .blue class being present on markup or not
+  .pfm-size-row .pfm-filter.active {
+    border-color: $blue;
+    background: $blue;
+    color: $white;
+  }
+
   .pfm-slider-wrap {
     position: relative;
   }
 
   .pfm-product-wrap {
+    // pre-Slick fallback layout so cards aren't unstyled before JS inits
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: em(24);
+
+    &.slick-initialized {
+      display: block;
+    }
+
+    // Standard Slick gutter pattern: pull the list edges in with a negative
+    // margin, then push the same amount back out per-slide as a real gap.
+    // Do NOT add display:flex to .slick-track — it fights Slick's own
+    // inline pixel widths and collapses this gap.
+    .slick-list {
+      margin: 0 em(-12);
+    }
+
+    .slick-slide {
+      margin: 0 em(12);
+      height: auto;
+      box-sizing: border-box;
+
+      * {
+        box-sizing: border-box;
+      }
+
+      > .pfm-product-card {
+        height: 100%;
+      }
+    }
   }
 
   .pfm-product-card {
@@ -2912,17 +2978,49 @@ body{
     background: $white;
     text-align: center;
     text-decoration: none;
+  }
 
-    h3 {
-      margin: em(18, 16) 0 0;
-      color: $accent2;
-      font-size: em(16);
-      font-weight: 900;
-      line-height: 1.1;
+  .pfm-card-text {
+    position: relative;
+    display: grid;
+    margin: em(18, 16) 0 0;
+    min-height: em(20);
+  }
+
+  .pfm-title,
+  .pfm-cta {
+    display: block;
+    grid-area: 1 / 1;
+    color: $accent2;
+    font-size: em(16);
+    font-weight: 900;
+    line-height: 1.1;
+    transition: opacity .2s ease;
+  }
+
+  .pfm-cta {
+    opacity: 0;
+    color: $pink;
+  }
+
+  .pfm-product-card:hover,
+  .pfm-product-card:focus-visible {
+    .pfm-title {
+      opacity: 0;
+    }
+    .pfm-cta {
+      opacity: 1;
+    }
+    .pfm-img-default {
+      opacity: 0;
+    }
+    .pfm-img-hover {
+      opacity: 1;
     }
   }
 
   .pfm-img-wrap {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2937,6 +3035,13 @@ body{
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: opacity .25s ease;
+  }
+
+  .pfm-img-hover {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
   }
 
   .pfm-arrow {
@@ -2951,6 +3056,11 @@ body{
     border-right: em(4) solid $pink;
     background: transparent;
     cursor: pointer;
+
+    &.slick-disabled {
+      opacity: .3;
+      cursor: default;
+    }
   }
 
   .pfm-arrow-prev {
@@ -2963,7 +3073,14 @@ body{
     transform: translateY(-50%) rotate(45deg);
   }
 
-   @media (max-width: 767px) {
+  .pfm-no-results {
+    text-align: center;
+    color: $accent2;
+    font-size: em(15);
+    padding: em(30) 0;
+  }
+
+  @media (max-width: 767px) {
     .inner-wrap {
       padding-top: em(32);
       padding-bottom: em(34);
@@ -2983,7 +3100,6 @@ body{
     }
   }
 }
-
 /*=============== Retailer CTA Module ===============*/
 .retailer-cta-module {
   background: $white;
@@ -3180,20 +3296,37 @@ body{
   }
   .reviews-module{
     background-color: $neutral-light1;
+    > .inner-wrap{
+      padding-top: em(60);
+      padding-bottom: em(60);
+    }
   }
 
-  .reviews-heading{
-    font-size:2.5rem;
-    font-weight:800;
-    margin:0 0 40px;
-    letter-spacing:-0.5px;
+   .reviews-heading {
+    margin: 0;
+    color: $blue;
+    font-size: em(24);
+    font-weight: 900;
+    line-height: 1.14;
+    text-align: center;
+    @include mq(large){
+       font-size: em(32);
+    }
+    span {
+      color: $pink;
+    }
   }
+
   .reviews-heading .c-blue{ color:var(--blue); }
   .reviews-heading .c-red{ color:var(--red); }
 
   .slider-shell{
     position:relative;
-    padding:0 60px;
+    background-color: $neutral-light2;
+    border-radius: 19px;
+    border: 2px solid #0A4492;
+    padding: em(16);
+    margin: em(56) 0;
   }
 
   .arrow{
@@ -3214,21 +3347,18 @@ body{
   .arrow svg{ width:26px; height:26px; }
   .arrow.prev{ left:0; }
   .arrow.next{ right:0; }
-  .arrow path{
-    fill:none;
-    stroke:var(--blue);
-    stroke-width:2.5;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    transition:stroke .2s ease;
-  }
-  .arrow:hover path{ stroke:var(--blue-deep); }
+  // .arrow path{
+  //   fill:none;
+  //   stroke:$blue;
+  //   stroke-width:2.5;
+  //   stroke-linecap:round;
+  //   stroke-linejoin:round;
+  //   transition:stroke .2s ease;
+  // }
+  // .arrow:hover path{ stroke:$blue; }
 
-  /* ---------- the card frame itself NEVER moves -- it's a static box.
-     only the photo and text inside it change position/content. ---------- */
   .review-card{
     position:relative;
-    background:var(--card-bg);
     border-radius:22px;
     overflow:hidden;
     min-height:270px;
@@ -3284,13 +3414,13 @@ body{
   }
   .review-text{
     font-style:italic;
-    font-size:1.05rem;
-    line-height:1.55;
-    color:var(--text-dark);
-    margin:0 0 18px;
+    color: $black;
+    font-size: em(20);
+    line-height: normal;
+    font-weight: 400;
   }
-  .review-name{ font-weight:800; color:var(--text-dark); font-size:1rem; }
-  .review-role{ color:#4a5a6a; font-size:.95rem; }
+  .review-name{ font-weight:900; color: $black; font-size:em(20); }
+  .review-role{ color:$black; font-size:em(20);font-weight: 400; }
 
   /* content fade applied briefly right as the new testimonial swaps in,
      AFTER the photo/text have finished moving to their new side */
@@ -3358,3 +3488,100 @@ body{
   @media (prefers-reduced-motion: reduce){
     .stage-photo,.stage-text,.stage-photo .polaroid{ transition:none !important; }
   }
+
+
+  /*=============== Home Social Media Module ===============*/
+  .home-social-media-module {
+    text-align: center;
+    .inner-wrap {
+      padding-top: em(60);
+      padding-bottom: em(40);
+    }
+    .hsmm-heading {
+    margin: 0;
+    color: $blue;
+    font-size: em(24);
+    font-weight: 900;
+    line-height: normal;
+    @include mq(large){
+       font-size: em(32);
+       margin-bottom: 0;
+    }
+    span {
+      color: $pink;
+    }
+  }
+
+  .hsmm-text {
+    margin-top: em(16, 16);
+    color: $accent2;
+    font-size: em(16);
+    line-height: normal;
+    font-weight: 400;
+    @include mq(large){
+      margin-top: em(16, 20);
+      font-size: em(20);
+    }
+  }
+  .hsmm-cta-wrap{
+    margin-top: em(40);
+    margin-bottom: em(40);
+    .btn{
+      svg{
+        vertical-align: middle;
+        max-height: em(24, 14);
+        margin-right: em(8,14);
+        @include mq(large){
+          max-height: em(24, 20);
+           margin-right: em(8,20);
+        }
+      }
+      &.facebook{
+        background-color: #E6F1FF;
+        border: 2px solid $dark-background;
+        color: $dark-background;
+        &:hover, &:focus{
+          background-color: $dark-background;
+          color: $white;
+        }
+      }
+      &.instagram{
+        background-color: #FFF6F6;
+        border: 2px solid $secondary;
+        color: $secondary;
+        &:hover, &:focus{
+          background-color: $secondary;
+          color: $white;
+        }
+      }
+      &.tiktok{
+        background-color: #F0F0F0;
+        border: 2px solid $accent2;
+        color: $accent2;
+        &:hover, &:focus{
+          background-color: $accent2;
+          color: $white;
+        }
+      }
+      &:hover, &:focus{
+        svg path{
+          fill: $white;
+        }
+      }
+    }
+  }
+  .hsmm-title{
+    color: $accent2;
+    font-size: em(24);
+    font-weight: 900;
+    margin-bottom: em(16);
+  }
+  .hsmm-hashtags{
+    color: $accent2;
+    font-size: em(16);
+    font-weight: 400;
+    span{
+      margin: 0 em(8, 16);
+    }
+  }
+}

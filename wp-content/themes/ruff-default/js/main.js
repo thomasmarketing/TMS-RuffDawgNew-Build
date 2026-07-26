@@ -8,6 +8,7 @@ $(document).ready(function() {
     $siteWrap = $('.site-wrap');
 
 
+
   $menulink.click(function(e) {
     e.preventDefault();
     $menulink.toggleClass('active');
@@ -15,6 +16,7 @@ $(document).ready(function() {
      $('body').toggleClass('active');
     $siteWrap.toggleClass('nav-active');
   });
+
 
   $(window).on('load', function() {
       $menuTrigger.each(function(){
@@ -27,86 +29,18 @@ $(document).ready(function() {
 
   $("<span class='m-subnav-arrow'></span>").insertAfter(".menu-item-has-children > a");
 
-  // $('.sn-li-l1 > .m-subnav-arrow').click(function() {
-  //   $(this).toggleClass('active');
-  //   var $this = $(this).next(".sn-level-2");
-  //   $(this).parent('.menu-item-has-children').toggleClass('active');
-  //   $this.toggleClass('active').next('ul').toggleClass('active');
-  // });
-
-  
-function toggleLevel1Menu($trigger) {
-
-    var $currentArrow;
-    
-    // detect whether click came from arrow or text
-    if ($trigger.hasClass('m-subnav-arrow')) {
-        $currentArrow = $trigger;
-    } else {
-        $currentArrow = $trigger.siblings('.m-subnav-arrow');
-    }
-
-    var $currentMenu = $currentArrow.siblings('.sn-level-2');
-    var $currentItem = $currentArrow.parent('.menu-item-has-children');
-
-    // close others
-    $('.sn-level-2').not($currentMenu).slideUp().removeClass('active');
-    $('.sn-li-l1 .m-subnav-arrow').not($currentArrow).removeClass('active');
-    $('.sn-li-l1.menu-item-has-children').not($currentItem).removeClass('active');
-
-    // toggle current
-    $currentArrow.toggleClass('active');
-    $currentItem.toggleClass('active');
-
-    $currentMenu.stop(true, true).slideToggle();
-}
-
-// Arrow click
-$('.sn-li-l1 > .m-subnav-arrow').click(function () {
-    toggleLevel1Menu($(this));
-});
-
-// Text click
-$('.sn-li-l1.menu-item-has-children > .sn-main-menu-link').click(function (e) {
-   if ($(window).width() < 1000) {
-    e.preventDefault();
-    toggleLevel1Menu($(this));
-    }
-});
-
-
-function toggleLevel2Menu($trigger) {
-
-    var $currentArrow = $trigger;
-    var $currentMenu = $currentArrow.siblings('.sn-level-3');
-    var $currentItem = $currentArrow.parent('.menu-item-has-children');
-    var $parentLevel2 = $currentItem.closest('.sn-level-2');
-
-    // close siblings only
-    $parentLevel2.find('> li > .sn-level-3')
-        .not($currentMenu)
-        .slideUp();
-
-    $parentLevel2.find('> li > .m-subnav-arrow')
-        .not($currentArrow)
-        .removeClass('active');
-
-    $parentLevel2.find('> li.menu-item-has-children')
-        .not($currentItem)
-        .removeClass('active');
-
-    // toggle current
-    $currentArrow.toggleClass('active');
-    $currentItem.toggleClass('active');
-
-    $currentMenu.stop(true, true).slideToggle();
-}
-
-$('.sn-li-l2 > .m-subnav-arrow').click(function () {
-    toggleLevel2Menu($(this));
-});
-
-
+  $('.sn-li-l1 > .m-subnav-arrow').click(function() {
+    $(this).toggleClass('active');
+    var $this = $(this).next(".sn-level-2");
+    $(this).parent('.menu-item-has-children').toggleClass('active');
+    $this.toggleClass('active').next('ul').toggleClass('active');
+  });
+  $('.sn-li-l2 > .m-subnav-arrow').click(function() {
+    $(this).toggleClass('active');
+    var $this = $(this).next(".sn-level-3");
+    $(this).parent('.menu-item-has-children').toggleClass('active');
+    $this.toggleClass('active').next('ul').toggleClass('active');
+  });
   $('.sn-li-l3 > .m-subnav-arrow').click(function() {
     $(this).toggleClass('active');
     var $this = $(this).next(".sn-level-4");
@@ -158,7 +92,6 @@ $(document).ready(function() {
         $('.sh-ico-search').removeClass('remove-br');
     });
 });
-
 
 //adding tabindex -1 to unwanted a tag in sitemap
 $(document).ready(function() {
@@ -1253,4 +1186,72 @@ $(function() {
   fillContent(current);
   layoutFor(slideData(current).side, false);
   updateDots();
+});
+
+
+// Play finder module
+$(function () {
+  var $wrap = $('.pfm-product-wrap');
+  // keep a permanent, untouched copy of every card so filtering never loses data
+  var $allCards = $wrap.children('.pfm-product-card').clone(true, true);
+
+  var currentCategory = $('.pfm-category-row .pfm-filter.active').data('filter');
+  var currentSize = $('.pfm-size-row .pfm-filter.active').data('filter');
+
+  function initSlider() {
+    $wrap.slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      infinite: false,
+      arrows: true,
+      prevArrow: $('.pfm-arrow-prev'),
+      nextArrow: $('.pfm-arrow-next'),
+      responsive: [
+        { breakpoint: 1024, settings: { slidesToShow: 3 } },
+        { breakpoint: 768, settings: { slidesToShow: 2, arrows: false } }
+      ]
+    });
+  }
+
+  function destroySlider() {
+    if ($wrap.hasClass('slick-initialized')) {
+      $wrap.slick('unslick');
+    }
+  }
+
+  function renderProducts() {
+    var $matched = $allCards.filter(function () {
+      var cats = String($(this).data('category') || '').split(',');
+      var sizes = String($(this).data('size') || '').split(',');
+      return cats.indexOf(currentCategory) > -1 && sizes.indexOf(currentSize) > -1;
+    });
+
+    destroySlider();
+    $wrap.empty();
+
+    if ($matched.length) {
+      $wrap.append($matched.clone(true, true));
+      initSlider();
+    } else {
+      $wrap.append('<p class="pfm-no-results">No toys match that combo yet — try another play style or size.</p>');
+    }
+  }
+
+  // Category buttons (Fetch / Tug / Water / Chew) — one active at a time
+  $('.pfm-category-row').on('click', '.pfm-filter', function () {
+    if ($(this).hasClass('active')) return;
+    $(this).addClass('active').siblings().removeClass('active');
+    currentCategory = $(this).data('filter');
+    renderProducts();
+  });
+
+  // Size buttons (Small / Medium / Large) — one active at a time
+  $('.pfm-size-row').on('click', '.pfm-filter', function () {
+    if ($(this).hasClass('active')) return;
+    $(this).addClass('active').siblings().removeClass('active');
+    currentSize = $(this).data('filter');
+    renderProducts();
+  });
+
+  initSlider();
 });
