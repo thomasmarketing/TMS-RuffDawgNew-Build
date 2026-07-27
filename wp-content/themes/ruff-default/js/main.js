@@ -1093,11 +1093,11 @@ $(function() {
     });
   }
 
-  function updateDots() {
-    $dots.children().each(function(i) {
-      $(this).toggleClass('active', i === current);
-    });
-  }
+  // function updateDots() {
+  //   $dots.children().each(function(i) {
+  //     $(this).toggleClass('active', i === current);
+  //   });
+  // }
 
   function isMobile() {
     return $(window).width() <= 700;
@@ -1112,7 +1112,7 @@ $(function() {
     }
 
     var stageWidth = $stage.width();
-    var imgWidth = 190, gap = 40;
+    var imgWidth = 219, gap = 40;
     var textWidth = stageWidth - imgWidth - gap;
     var photoLeft = side === 'left' ? 0 : (stageWidth - imgWidth);
     var textLeft  = side === 'left' ? (imgWidth + gap) : 0;
@@ -1151,7 +1151,7 @@ $(function() {
       current = next;
       fillContent(current);
       layoutFor(nextSlide.side, false);
-      updateDots();
+      // updateDots();
       return;
     }
 
@@ -1168,7 +1168,7 @@ $(function() {
       setTimeout(function() {
         current = next;
         fillContent(current);
-        updateDots();
+        // updateDots();
         $stage.removeClass('content-fade');
         setTimeout(function() { animating = false; }, settleDur);
       }, swapDur);
@@ -1185,7 +1185,7 @@ $(function() {
   buildDots();
   fillContent(current);
   layoutFor(slideData(current).side, false);
-  updateDots();
+  // updateDots();
 });
 
 

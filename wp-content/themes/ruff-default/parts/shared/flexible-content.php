@@ -527,7 +527,7 @@ endif;
       <div class="pfm-filter-row pfm-size-row">
         <?php $i = 0; foreach ( $size_choices as $slug => $label ) : ?>
           <button
-            class="pfm-filter<?php echo ( $i === 0 ) ? ' active blue' : ''; ?>"
+            class="pfm-filter<?php echo ( $i === 0 ) ? ' active' : ''; ?>"
             type="button"
             data-filter="<?php echo esc_attr( $slug ); ?>"
           ><?php echo esc_html( $label ); ?></button>
@@ -672,7 +672,6 @@ endif;
 				<div class="polaroid"><img id="photoImg" src="" alt=""></div>
 			</div>
 			<div class="stage-text" id="stageText">
-				<span class="quote-mark">&ldquo;</span>
 				<p class="review-text" id="textQuote"></p>
 				<div class="review-name" id="textName"></div>
 				<div class="review-role" id="textRole"></div>
@@ -789,7 +788,7 @@ endif;
 			$link_title = $shop_cta['title'];
 			$link_target = $shop_cta['target'] ? $shop_cta['target'] : '_self'; ?>
       <div class="ydghm-actions ydghm-actions-mobile">
-        <a class="btn btn-outline" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a>
+        <a class="btn-alt" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a>
       </div><?php endif; ?>
 
       <div class="ydghm-guarantee">
@@ -882,7 +881,7 @@ endif;
         <div class="pfm-card-content">
           <?php if( get_sub_field('pfm_title')): ?><h3><?php echo get_sub_field('pfm_title'); ?></h3><?php endif; ?>
           <?php if( get_sub_field('pfm_desc')): ?><p><?php echo get_sub_field('pfm_desc'); ?></p><?php endif; ?>
-          <a href="#" class="btn-blue">Read More</a>
+          <a href="#" class="btn-blue pfm-btn">Read More</a>
         </div>
       </div>
 	  <?php endwhile; ?>	

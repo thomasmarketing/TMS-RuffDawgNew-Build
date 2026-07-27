@@ -32,19 +32,45 @@ $btn-alt-color:transparent;
   padding:em(10, 14) em(14);
   text-decoration: none;
   border-radius: 36px;
+  line-height: normal;
   font-family: $header-font-family;
+  position: relative;
   text-decoration: none;
   font-weight: 900;
   border: 2px solid $secondary;
   transition: background-color 0.2s ease;
   @include mq(large){
     font-size: em(20);
-    padding:em(10, 20) em(16, 20);
+    padding:em(8, 20) em(16, 20);
   }
   &:hover, &:focus{
     background-color: $secondary;
     color: $white;
     text-decoration: none;
+  }
+  &.btn-arrow{
+    &:after{
+      content: "";
+      display: inline-block;
+      width: em(13, 14);
+      height: em(13, 14);
+      background-color: currentColor;
+      -webkit-mask-image: url(img/arrow-insert.svg);
+      mask-image: url(img/arrow-insert.svg);
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      @include mq(large){
+        width: em(13, 20);
+        height: em(13, 20);
+      }
+    }
+    span{
+      padding-right: em(10, 14);
+      @include mq(large){
+        padding-right: em(10, 20);
+      }
+    }
   }
 }
 
@@ -53,6 +79,7 @@ $btn-alt-color:transparent;
   background-color: $white;
   color: $primary;
   font-size: em(14);
+  line-height: normal;
   font-family: $header-font-family;
   padding:em(10, 14) em(14);
   border-radius: 36px;
@@ -61,7 +88,7 @@ $btn-alt-color:transparent;
   transition: background-color 0.2s ease;
    @include mq(large){
      font-size: em(20);
-     padding:em(10, 20) em(16, 20);
+     padding:em(8, 20) em(16, 20);
    }
   &:focus,
   &:hover {
@@ -78,12 +105,13 @@ $btn-alt-color:transparent;
   font-family: $header-font-family;
   padding:em(10, 14) em(14);
   border-radius: 36px;
+  line-height: normal;
   font-weight: 900;
   border: 2px solid $accent1;
   transition: background-color 0.2s ease;
    @include mq(large){
      font-size: em(20);
-     padding:em(10, 20) em(16, 20);
+     padding:em(8) em(16, 20);
    }
   &:focus,
   &:hover {
@@ -98,6 +126,7 @@ $btn-alt-color:transparent;
   background-color: $primary;
   color: $neutral-light1;
   font-size: em(14);
+  line-height: normal;
   font-family: $header-font-family;
   padding:em(10, 14) em(14);
   border-radius: 36px;
@@ -106,7 +135,7 @@ $btn-alt-color:transparent;
   transition: background-color 0.2s ease;
    @include mq(large){
      font-size: em(20);
-     padding:em(10, 20) em(16, 20);
+     padding:em(8, 20) em(16, 20);
    }
   &:focus,
   &:hover {
@@ -124,12 +153,13 @@ $btn-alt-color:transparent;
   font-family: $header-font-family;
   padding:em(10, 14) em(14);
   border-radius: 36px;
+  line-height: normal;
   font-weight: 900;
   border: 2px solid $secondary;
   transition: background-color 0.2s ease;
    @include mq(large){
      font-size: em(20);
-     padding:em(10, 20) em(16, 20);
+     padding: em(8, 20) em(16, 20);
    }
   &:focus,
   &:hover {
@@ -230,13 +260,13 @@ p {
   }
 }
 
-.btn-arrow {
-  @extend %btn-ico;
-  @extend %button;
-  &:after {
-    background-image: url(img/ico-white-arrow-right.svg);
-  }
-}
+// .btn-arrow {
+//   @extend %btn-ico;
+//   @extend %button;
+//   &:after {
+//     background-image: url(img/ico-white-arrow-right.svg);
+//   }
+// }
 
 .btn-alt-arrow {
   @extend %btn-ico;

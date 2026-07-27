@@ -10,7 +10,7 @@
 			$link_title = $si_link['title'];
 			$link_target = $si_link['target'] ? $si_link['target'] : '_self';
 			?>
-		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-alt si-btn"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-alt si-btn"><span><?php echo esc_html($link_title); ?></span></a><?php endif; ?>
 	     <?php
 			$si_cta_2 = get_field('si_cta_2');
 			if($si_cta_2):
@@ -18,7 +18,7 @@
 			$link_title = $si_cta_2['title'];
 			$link_target = $si_cta_2['target'] ? $si_cta_2['target'] : '_self';
 			?>
-		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn si-btn2"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn si-btn2 btn-arrow"><span><?php echo esc_html($link_title); ?></span></a><?php endif; ?>
 		</div>
 		<div class="si-img">
 			<?php $image = get_field('si_image');  if( !empty( $image ) ): ?>

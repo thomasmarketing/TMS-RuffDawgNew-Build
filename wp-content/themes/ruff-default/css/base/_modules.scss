@@ -428,12 +428,17 @@ a[class*="sh-ico-"],
     text-align: left;
     min-height: em(462);
   }
-  .inner-wrap {
-    padding-top: em(170);
-    padding-bottom:em(100);
+
+  > .inner-wrap {
+    padding-top: em(24);
+    padding-bottom:0;
     @include mq(large){
     display: flex;
     align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    gap: 24px;
+    justify-content: space-between;
     }
   }
 }
@@ -448,9 +453,24 @@ a[class*="sh-ico-"],
   }
   span{
     color: $pink;
+    display: block;
+    @include mq(large){
+      display: inline;
+    }
+  }
+}
+.si-btn{
+  @include mq(large){
+    margin-right: em(24, 20);
   }
 }
 .si-text{
+  max-width: em(220);
+  margin: auto;
+  @include mq(large){
+    max-width: 100%;
+    margin: initial;
+  }
   p{
     color: $accent2;
     font-size: em(16);
@@ -463,6 +483,12 @@ a[class*="sh-ico-"],
 }
 .si-content{
   position: relative;
+  @include mq(xlarge){
+    padding-left: em(116);
+  }
+}
+.si-img{
+  line-height: 0
 }
 
 /*=============== Site Content ===============*/
@@ -532,6 +558,7 @@ a[class*="sh-ico-"],
     &:focus{
       color: $white;
       text-decoration: none;
+      opacity: 0.8;
     }
   }
 }
@@ -634,7 +661,7 @@ img[name=pphLoggerImage] {
 .sh-search-form {
   position: absolute;
   top: 50%;
-  left: em(13);
+  left: em(36);
   transform: translateY(-50%);
   width: 100%;
   max-width: em(394);
@@ -1931,12 +1958,15 @@ body{
 
   .play-card {
     position: relative;
-    min-height: em(230);
+    min-height: em(177);
     overflow: hidden;
     border-radius: em(19);
     color: #fff;
     text-decoration: none;
     isolation: isolate;
+    @include mq(large){
+     min-height: em(230);
+     }
     &:hover {
       .sbpm-img {
         transform: scale(1.025);
@@ -2014,8 +2044,18 @@ body{
 
 .badge-blue .badge {
     min-width: em(198, 22);
-    padding-left: em(22, 22);
+    padding-left: em(58, 22);
     background: $primary;
+    &:before{
+      content: "";
+      position: absolute;
+      left: em(24, 22);
+      width: em(25.6, 22);
+      height: em(32, 22);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(img/Subtract-new.svg);
+    }
   }
 
   .badge-mark {
@@ -2117,7 +2157,7 @@ body{
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    min-height: em(679);
+    max-height: em(679);
     border-radius: 0 em(14) em(14) 0;
     background: $blue;
     position: relative;
@@ -2137,9 +2177,15 @@ body{
     display: block;
     width: 100%;
     height: auto;
-    max-height: em(640);
+    // max-height: em(640);
     object-fit: contain;
     object-position: center bottom;
+    @include mq(large){
+      min-height: em(711);
+      position: relative;
+      top: 0;
+      right: em(-35);
+    }
   }
 
   .ydghm-heading-section {
@@ -2161,6 +2207,9 @@ body{
     }
     span {
       color: $blue;
+      display: block;
+      @include mq(large){
+      display: inline;}
     }
   }
 
@@ -2392,9 +2441,10 @@ body{
     color: $blue;
     font-size: em(24);
     font-weight: 900;
-    line-height: 1.12;
+    line-height:normal;
     @include mq(large){
       font-size: em(32);
+      margin-bottom: em(16, 32);
     }
     span {
       color: $pink;
@@ -2405,6 +2455,7 @@ body{
     }
   }
 
+
   .pfm-text {
     margin-top: em(13, 16);
     color: $accent2;
@@ -2412,8 +2463,8 @@ body{
     font-weight: 400;
     line-height: 1.35;
     @include mq(large){
-      margin-top: em(16, 20);
       font-size: em(20);
+      margin-top: 0;
     }
   }
 
@@ -2433,10 +2484,13 @@ body{
     display: flex;
     flex-direction: column;
     min-height: 100%;
-    padding: em(16);
+    padding: em(16) em(7);
     border: em(1) solid $blue;
     border-radius: em(19);
     background: $white;
+    @include mq(large){
+      padding: em(16);
+    }
   }
 
   .pfm-badges {
@@ -2520,7 +2574,11 @@ body{
     justify-content: center;
     margin-top: em(38);
   }
-
+  .pfm-btn{
+    font-size: em(16);
+    padding: em(5.5, 16) em(16, 16);
+    font-weight: 900;
+  }
   // @media (max-width: 767px) {
   //   .inner-wrap {
   //     padding-top: em(18);
@@ -2851,12 +2909,12 @@ body{
 .play-finder-module {
   background: $neutral-light1;
   .inner-wrap {
-    padding-top: em(38);
-    padding-bottom: em(46);
+    padding-top: em(60);
+    padding-bottom: em(60);
   }
 
   .pfm-heading-section {
-    margin-bottom: em(22);
+    // margin-bottom: em(22);
     text-align: center;
   }
 
@@ -2866,9 +2924,11 @@ body{
     font-size: em(24);
     font-weight: 900;
     line-height: em(36, 24);
+    margin-bottom: em(16, 24);
     @include mq(large){
-      font-size: em(28);
-      line-height: em(36, 28);
+      font-size: em(32);
+      line-height: em(36, 32);
+      margin-bottom: em(16, 32);
     }
 
     span {
@@ -2880,17 +2940,23 @@ body{
     }
   }
 
-  .pfm-text {
-    margin-top: em(13, 15);
+   .pfm-text {
+    margin-top: em(13, 16);
     color: $accent2;
-    font-size: em(15);
-    line-height: normal;
+    font-size: em(16);
+    font-weight: 400;
+    line-height: 1.35;
+    @include mq(large){
+      font-size: em(20);
+      margin-top: 0;
+    }
   }
 
   .pfm-filter-wrap {
     display: grid;
-    gap: em(16);
-    margin-bottom: em(34);
+    gap: em(24);
+    margin-bottom: em(40);
+    margin-top: em(40);
   }
 
   .pfm-filter-row {
@@ -2903,16 +2969,15 @@ body{
   .pfm-filter {
     min-width: em(54, 13);
     min-height: em(28, 13);
-    padding: em(5, 13) em(15, 13);
-    border: em(1, 13) solid $black;
-    border-radius: em(18, 13);
-    color: $black;
-    background: transparent;
-    font-size: em(13);
+    padding: em(8, 13) em(13, 13);
+    border: em(2, 13) solid #555;
+    border-radius: em(36, 13);
+    color: #555;
+    background: $white;
+    font-size: em(16);
     font-weight: 900;
     line-height: 1;
     cursor: pointer;
-
     &.active {
       border-color: $pink;
       color: $white;
@@ -2922,6 +2987,7 @@ body{
     &.blue {
       border-color: $blue;
       background: $blue;
+      color: $white;
     }
   }
 
@@ -2972,9 +3038,9 @@ body{
 
   .pfm-product-card {
     display: block;
-    padding: em(12) em(12) em(16);
+    padding: em(12) em(12) 0;
     border: em(1) solid $pink;
-    border-radius: em(10);
+    border-radius: em(19);
     background: $white;
     text-align: center;
     text-decoration: none;
@@ -2992,15 +3058,16 @@ body{
     display: block;
     grid-area: 1 / 1;
     color: $accent2;
-    font-size: em(16);
+    font-size: em(20);
     font-weight: 900;
     line-height: 1.1;
     transition: opacity .2s ease;
+    font-family: $header-font-family;
   }
 
   .pfm-cta {
     opacity: 0;
-    color: $pink;
+    // color: $pink;
   }
 
   .pfm-product-card:hover,
@@ -3027,7 +3094,7 @@ body{
     aspect-ratio: 1 / 0.88;
     overflow: hidden;
     border-radius: em(10);
-    background: $neutral-light2;
+    // background: $neutral-light2;
   }
 
   .pfm-img {
@@ -3186,8 +3253,9 @@ body{
         position: absolute;
         top: 0;
         left: 0;
-        color: $blue;
+        color: $accent2;
         font-weight: 900;
+        font-style: italic;
       }
 
       strong {
@@ -3247,8 +3315,9 @@ body{
     padding-bottom: em(24);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 1.5em;
+    column-gap: 1em;
     @include mq(large){
+      column-gap: 1.5em;
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
@@ -3258,12 +3327,16 @@ body{
     background-color: $white;
     border-radius: 19px;
     border: 1px solid $pink;
-    padding: em(16);
+    padding: em(8);
     text-align: center;
     &:nth-of-type(1), &:nth-of-type(2){
-      margin-bottom: em(24);
+      margin-bottom: em(16);
+       @include mq(large){
+        margin-bottom: em(24);
+       }
       @include mq(large){
         margin-bottom: 0;
+        padding: em(16);
       }
     }
   }
@@ -3326,7 +3399,8 @@ body{
     border-radius: 19px;
     border: 2px solid #0A4492;
     padding: em(16);
-    margin: em(56) 0;
+    max-width: em(1014);
+    margin: em(56) auto 0;
   }
 
   .arrow{
@@ -3344,9 +3418,20 @@ body{
     border:none;
     padding:0;
   }
-  .arrow svg{ width:26px; height:26px; }
-  .arrow.prev{ left:0; }
-  .arrow.next{ right:0; }
+  .arrow svg{ width:40px; height:40px; }
+  .arrow.prev{
+     left:0; 
+     @include mq(large){
+      left: -70px;
+     }
+  }
+  .arrow.next{
+     right:0;
+     @include mq(large){
+      right: -70px;
+     }
+
+    }
   // .arrow path{
   //   fill:none;
   //   stroke:$blue;
@@ -3373,28 +3458,39 @@ body{
                width var(--move-dur) cubic-bezier(.65,0,.35,1);
   }
 
-  .stage-photo{ width:var(--img-w); }
-  .stage-photo .polaroid{
-    background:#fff;
-    padding:10px 10px 26px;
-    border-radius:2px;
-    box-shadow:0 14px 24px -8px rgba(20,30,50,.35);
-    transition:transform var(--move-dur) cubic-bezier(.65,0,.35,1);
-  }
-  .stage-photo.side-right .polaroid{ transform:rotate(8deg); }
-  .stage-photo.side-left  .polaroid{ transform:rotate(-8deg); }
+  // .stage-photo{ width:var(--img-w); }
+  // .stage-photo .polaroid{
+  //   background:#fff;
+  //   padding:10px 10px 26px;
+  //   border-radius:2px;
+  //   box-shadow:0 14px 24px -8px rgba(20,30,50,.35);
+  //   transition:transform var(--move-dur) cubic-bezier(.65,0,.35,1);
+  // }
+  // .stage-photo.side-right .polaroid{ transform:rotate(8deg); }
+  // .stage-photo.side-left  .polaroid{ transform:rotate(-8deg); }
   .stage-photo img{
     display:block;
     width:100%;
-    height:190px;
+    // height:190px;
     object-fit:cover;
-    border-radius:1px;
+    // border-radius:1px;
     transition:opacity .18s ease;
   }
 
   .stage-text{
     text-align:left;
-    padding:0 8px;
+    padding: 0 0 0 em(34);
+    &:before{
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: em(21);
+      height: em(16);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-image: url(img/quote.svg);
+    }
   }
   .stage-text .review-text,
   .stage-text .review-name,
@@ -3418,8 +3514,9 @@ body{
     font-size: em(20);
     line-height: normal;
     font-weight: 400;
+    margin: 0 0 em(24, 20);
   }
-  .review-name{ font-weight:900; color: $black; font-size:em(20); }
+  .review-name{ font-weight:900; color: $black; font-size:em(20);font-family: $header-font-family; }
   .review-role{ color:$black; font-size:em(20);font-weight: 400; }
 
   /* content fade applied briefly right as the new testimonial swaps in,
@@ -3437,6 +3534,7 @@ body{
     justify-content:center;
     gap:10px;
     margin-top:22px;
+    display: none;
   }
   .review-dots button{
     width:9px; height:9px; border-radius:50%;
@@ -3480,14 +3578,14 @@ body{
       transition:none;
     }
     .stage-photo{ display:flex; justify-content:center; margin-bottom:14px; }
-    .stage-photo .polaroid{ width:190px; }
+    // .stage-photo .polaroid{ width:190px; }
     .stage-text{ text-align:center; padding:0 24px; }
     .reviews-heading{ font-size:1.9rem; }
   }
 
-  @media (prefers-reduced-motion: reduce){
-    .stage-photo,.stage-text,.stage-photo .polaroid{ transition:none !important; }
-  }
+  // @media (prefers-reduced-motion: reduce){
+  //   .stage-photo,.stage-text,.stage-photo .polaroid{ transition:none !important; }
+  // }
 
 
   /*=============== Home Social Media Module ===============*/

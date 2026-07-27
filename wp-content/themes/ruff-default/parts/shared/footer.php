@@ -60,6 +60,18 @@
 		      'container'       => 'ul',
 		      'menu_class'      => 'sf-link-list',
 		    )); ?>
+
+		<!-- Thomas Supplier Badge -->
+		<a href="https://www.thomasnet.com/profile/31010381?src=tnbadge" target="_blank" class="tn-badge__link">
+		<img 
+		src="https://img.thomascdn.com/badges/shield-tier-v-md.png?cid=31010381"
+		srcset="https://img.thomascdn.com/badges/shield-tier-v-md-2x.png?cid=31010381 2x" 
+		alt="Thomas Supplier" width="100px"
+		class="tn-badge__img" />
+		</a>
+		<!-- End Thomas Supplier Badge -->
+
+
 		</div>
 	</div>
    </div>

@@ -102,6 +102,9 @@ This is used to separate sections/modules of the website while still keeping a c
       &:focus:not(:hover):not(:active) {
         outline-offset: -2px;
       }
+      img{
+        border-radius: 19px;
+      }
     }
   }
 
@@ -121,6 +124,7 @@ This is used to separate sections/modules of the website while still keeping a c
         overflow: hidden;
         img {
           width: 100%;
+          border-radius: 19px;
         }
 
       }
@@ -128,15 +132,16 @@ This is used to separate sections/modules of the website while still keeping a c
 
     .slick-arrow {
       font-size: em(20);
-      height:em(25,20);
-      width:em(25,20);
+      height:em(32,20);
+      width:em(32,20);
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       overflow: hidden;
       min-width: inherit;
-      background-color: $white;
+      background-color: #0A4492;
       padding: 0;
+      border-radius: 6px;
       opacity: 1;
       &.slick-prev {
         display: none !important;
@@ -147,25 +152,28 @@ This is used to separate sections/modules of the website while still keeping a c
         display: inline-block !important;
         &:before {
           content: '';
-          font-size: em(20,20);        
+          font-size: em(20,20);   
+          width: em(8, 20);
+          height: em(16, 20);     
+          top: 50%;
+          position: absolute;
+          left: 50%;
+          transform: translate(-50%, -50%);
           display: inline-block;
           opacity: 1;
           width:100%;
-          height:em(25,20);
-          background-image:url(img/slider-arrow.png);         
+          background-image:url(img/slider-arrow.svg);         
           background-repeat: no-repeat;
           background-position: center center; 
           background-size: contain;
-          background-size: em(12,20);
+          background-size:contain;
           @include transition(0.25s all linear);          
         }
         &:hover{
           border:0;
           &:before{
-            width:100%;
-            height:em(25,20);
-            background-image:url(img/slider-arrow.png); 
-            background-size: em(12,20);
+            background-image:url(img/slider-arrow.svg); 
+            background-size: contain;
           }
         }
       }
@@ -261,9 +269,6 @@ This is used to separate sections/modules of the website while still keeping a c
   margin-bottom: $base-spacing;
   padding: 0 !important;
   border: 0;
-  @include media(max-width $tab-mode) {
-    border-radius: $base-border-radius;
-  }
   @include mq(medium) {
     border: 0;
   }
@@ -279,19 +284,25 @@ This is used to separate sections/modules of the website while still keeping a c
     }
   }
   .tab-link {
-    background-color: $base-accent-color;
-    color: $white;
+    background-color: #F0F0F0;
+    color: $accent2;
     display: block;    
-    font-size: em(18);
-    line-height: em(27,18);
-    padding: em(13,18) em(25,18) em(14,18);
+    font-size: em(20);
+    line-height: em(27,20);
+    padding: em(20,20) em(20, 20) em(20,20);
     text-decoration: none;
     border-bottom: 0;
+    text-align: center;
     font-family: $header-font-family;
     vertical-align: bottom;
+    border-radius: 19px 19px 0 0;
+    font-weight: 900;
     @include media($tab-mode) {
       display: inline-block;
       border: 0;
+    }
+    @include mq(large){
+      min-width: em(280, 20);
     }
     &:focus {
       outline: none;
@@ -300,16 +311,22 @@ This is used to separate sections/modules of the website while still keeping a c
     &:focus,
     &:hover,
     &.is-active {
-      background-color: $hover-link-color;      
+      background-color: $primary;
+      color: $white;
       @include media($tab-mode) {         
       }
     }
   }
   .tab-content {
-    background: $light-gray;
+    background: $neutral-light2;
     display: none;
-    padding: em(24) em(20) em(30) em(30);
+    padding: em(32);
+    border-radius: 0 19px 19px 19px;
+    border: 2px solid #0A4492;
     width: 100%;
+    color: $accent2;
+    font-size: em(20);
+    font-weight: 400;
     @include margin-fix;
     @include media($tab-mode) {
       border-top-right-radius: $base-border-radius;
@@ -317,6 +334,7 @@ This is used to separate sections/modules of the website while still keeping a c
     }
     @include mq(medium) {
       margin-top: 0;
+      line-height: normal;
     }
   }
 }
@@ -344,7 +362,8 @@ This is used to separate sections/modules of the website while still keeping a c
       }
     }
     .ce-header {
-      background-color: $hover-link-color;      
+      background-color: $dark-background;   
+      border-radius: 19px 19px 0 0;   
       &:after {
         background-image: url(img/ico-minus.svg);
       }
@@ -360,6 +379,7 @@ This is used to separate sections/modules of the website while still keeping a c
       @include margin-fix;
       padding: em(24) em(20) em(30) em(30);
     }
+
   }
   &:hover {
     background-color: $base-border-color;
@@ -373,24 +393,29 @@ This is used to separate sections/modules of the website while still keeping a c
   position: relative;
   cursor: pointer;
   margin: 0;
-  font-size: em(18);
-  padding: em(16,18) em(50,18) em(16,18) em(16,18);
-  background-color: $base-accent-color;
+  font-size: em(20);
+  padding: em(16,20) em(50,20) em(16,20) em(16,20);
+  background-color: $dark-background;
+  font-weight: 900;
+  font-family: $header-font-family;
   color: $white;
-  font-weight: 500;
+  border-radius: 19px;
   text-transform: none;
   &:after {
     content: "";
     background-image: url(img/ico-plus.svg);
     position: absolute;
-    right: em(16,18);
-    width: em(25,18);
-    height: em(25,18);
-    background-size:em(13,18) auto;
+    right: em(16,20);
+    width: em(25,20);
+    height: em(25,20);
+    background-size:em(13,20) auto;
     background-position: center;
     background-repeat: no-repeat;
     top: 50%;
     transform: translateY(-50%);
+    border: 2px solid $white;
+    border-radius: 3px;
+    padding: em(8, 20);
   }
 
   &:hover,
@@ -406,7 +431,15 @@ This is used to separate sections/modules of the website while still keeping a c
 .ce-body {
   display: none;
   opacity: 0;
-  background-color: $light-gray;
+  background-color: $neutral-light2;
+  border-radius: 0 0 19px 19px;
+  border: 2px solid $dark-background;
+  color: $accent2;
+  font-size: em(20);
+  font-weight: 400;
+  p{
+    line-height: normal;
+  }
 }
 
 @include keyframes(click-expand) {
@@ -1051,17 +1084,25 @@ figure {
   background-position: center;
   background-color: $neutral-light1;
   position: relative;
+  min-height: em(300);
   &:before{
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: em(-35);
     right: 0;
     background-image: url(img/dog-img.png);
-    width: em(415);
-    height: em(319);
+    width: em(319);
+    height: em(207);
+    background-repeat: no-repeat;
+    background-size: contain;
+    @include mq(large){
+      bottom: em(-35);
+      width: em(415);
+      height: em(319);
+    }
   }
   .inner-wrap {
-    padding-top: em(100);
+    padding-top: em(120);
     padding-bottom: em(100);
   }
   .pi-wrap{
@@ -1632,7 +1673,18 @@ figure {
 .tablepress{
   white-space: nowrap;
 }
-
+.tablepress thead{
+  th{
+  background-color: $dark-background !important;
+  color: $white;
+  &:first-child{
+    border-radius: 19px 0 0 0;
+  }
+  &:last-child{
+        border-radius: 0 19px 0 0;
+  }
+ } 
+}
 .dbpm-buckets-wrap {
     @include mq(medium) {
       width: 100%;

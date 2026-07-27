@@ -49,8 +49,8 @@
                 <a class="sh-ico-search search-link" href="#" aria-label="Search Icon"></a>
 
                 <!--Inline Search Form (overlays nav + icon)-->
-                <form role="search" method="get" class="sh-search-form" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                <input type="search" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
+                <form role="search" method="get" class="sh-search-form search-form" action="<?php bloginfo('url'); ?>/">
+                <input type="text" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
                 <button type="submit" class="sh-search-submit" aria-label="Submit Search">
                   <span class="sh-search-submit-icon"></span>
                 </button>
@@ -73,7 +73,7 @@
                 $link_title = $link['title'];
                 $link_target = $link['target'] ? $link['target'] : '_self';
                 ?>
-                <a class="btn d-none-link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
+                <a class="btn d-none-link btn-arrow" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
             <?php endif; ?>
               <?php /* cta_one / cta_two buttons unchanged, still siblings of .sh-nav-search-wrap */ ?>
             </div>          

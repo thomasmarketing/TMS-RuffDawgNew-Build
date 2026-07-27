@@ -517,9 +517,10 @@ screen and (max-height: 300px) {
 }
 body .gform_wrapper {
   max-width:100%;
-  padding: rem(12)  rem(20) rem(20);
+  padding: em(32);
   margin: 0 0 rem(20);
-  background: $light-gray;
+  background: $neutral-light1;
+  border-radius: 19px;
 }
 .gform_wrapper form {
   text-align:left;
@@ -535,15 +536,17 @@ body .gform_wrapper {
   background:0 0
 }
 body .gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) {
-  font-size:rem(14);
+  font-size: em(16);
   font-family:inherit;
   padding: 3px 3px 3px 8px;
   letter-spacing:normal;
   /*border: 1px solid #ccc;*/
   line-height: 1.4;
-  border: 1px solid #c1c7c8;
+  border: 1px solid #C1CAD1;
+  border-radius: 3px;
+  background-color: $white;
   margin-bottom: 0px;
-  height: rem(40);
+  height: em(40, 16);
   &:focus {
     border-color: $blue;
   }
@@ -742,17 +745,19 @@ margin-right:.25rem
   width:100%
 }
 body .gform_wrapper label.gfield_label {
-  font-weight:600;
-  font-size:16px;
+  font-size: em(16);
+  font-weight: 400;
+  line-height: normal;
   margin-bottom: 0;
-  color: $dark-gray
+  color:#484848;
 }
 body .gform_wrapper .top_label .gfield_label {
   display:-moz-inline-stack;
   display:inline-block;
-  font-size: em(16) !important;
+  font-size: em(16);
+  color: #484848;
   font-weight: 400;
-  line-height:1.2;
+  line-height: normal;
   clear:both
 }
 .gform_wrapper .ginput_complex .ginput_left input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=image]):not([type=file]), .gform_wrapper .ginput_complex .ginput_right input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=image]):not([type=file]), .gform_wrapper .ginput_complex .ginput_right select, .gform_wrapper .ginput_complex input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=image]):not([type=file]), .gform_wrapper .ginput_complex select {
@@ -1100,16 +1105,17 @@ body .gform_wrapper .gform_footer {
   text-align:center;
 }
 body .gform_wrapper .gform_footer input.button, .gform_wrapper .gform_footer input[type=submit], .gform_wrapper .gform_page_footer input.button, .gform_wrapper .gform_page_footer input[type=submit] {
-  width:auto;
+  width: 100%;
   margin:0;
-  border-radius: rem(3);
+  border-radius: 36px;
   display: inline-block;
-  font-size: em(15);
-  padding:em(12.5, 15) em(20, 15);
-  background-color: $blue;
+  font-size: em(20);
+  padding:em(10, 20) em(16, 20);
+  background-color: $dark-background;
   color: $white;
-  font-weight: 500;
+  font-weight: 900;
   text-transform: capitalize;
+  border: 0;
   &:hover,
   &:focus {
     border-color: $pink;
