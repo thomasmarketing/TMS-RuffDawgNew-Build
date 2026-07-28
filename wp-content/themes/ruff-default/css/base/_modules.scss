@@ -166,7 +166,7 @@ a[class*="sh-ico-"],
 .site-header {
   background-color: $primary;
    @include mq(large){
-    height: em(136);
+    height: em(138);
     background-color: $white;
     border-bottom: 2px solid $primary;
    }
@@ -315,14 +315,10 @@ a[class*="sh-ico-"],
   @include mq(large) {
     display: inline-block;
     margin: 0;
-    max-width: em(302);
+    max-width: em(200);
   }
-  &.site-logo-mobile{
-    display: inline-block;
-    max-width: em(194);
-    @include mq(large) {
-      display: none;
-    }
+  @include mq(xlarge) {
+     max-width: em(302);
   }
   &.site-logo-desk{
     display: none;
@@ -460,8 +456,16 @@ a[class*="sh-ico-"],
   }
 }
 .si-btn{
+  margin-bottom: em(5);
   @include mq(large){
     margin-right: em(24, 20);
+    margin-bottom: 0;
+  }
+}
+.si-btn2{
+  margin-bottom: em(5);
+  @include mq(large){
+    margin-bottom: 0;
   }
 }
 .si-text{
@@ -634,7 +638,30 @@ img[name=pphLoggerImage] {
   display: none;
 }
 
-
+.sf-two, .sf-three, .sf-four{
+  .sf-link-list{
+    li{
+      &:first-child{
+        > a{
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+.amazon-link{
+  a{
+    font-weight: 900 !important;
+    background-image: url(img/arrow_insert.svg);
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    padding-right: 20px;
+  }
+}
+.tn-badge__link{
+  display: inline-block;
+  margin-top: em(10);
+}
 /*=============== Search ===============*/
 
 .sh-right {
@@ -654,9 +681,6 @@ img[name=pphLoggerImage] {
   }
 }
 
-.site-nav-container {
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-}
 
 .sh-search-form {
   position: absolute;
@@ -678,6 +702,9 @@ img[name=pphLoggerImage] {
     margin-bottom: 0;
     padding: em(14.5);
     box-shadow: none;
+    &:hover, &:focus{
+      border: 1px solid #0A4492;
+    }
   }
 }
 
@@ -1704,38 +1731,6 @@ body{
 
 /*=============== Single Post ===============*/
 .single-post{
-  .pi-heading{
-    font-size: em(30);
-    font-weight: 700;
-    line-height: em(45, 30);
-  }
-  h4{
-    color: $blue;
-    font-size: em(25);
-    line-height: em(37.5, 25);
-    &.wp-block-heading{
-       margin-top: em(37.5, 25);
-       margin-bottom: em(17.5, 25);
-    }
-  }
-  h2{
-    color: $blue;
-    font-size: em(35);
-    line-height: em(52.5, 35);
-    &.wp-block-heading{
-       margin-top: em(32, 35);
-       margin-bottom: em(20.5, 35);
-    }
-  }
-  h3{
-    color: $blue;
-    font-size: em(30);
-    line-height: em(45, 30);
-    &.wp-block-heading{
-       margin-top: em(45, 30);
-       margin-bottom: em(19, 30);
-    }
-  }
 
  .center-hr {
     text-align: center;
@@ -1967,7 +1962,7 @@ body{
     @include mq(large){
      min-height: em(230);
      }
-    &:hover {
+    &:hover, &:focus {
       .sbpm-img {
         transform: scale(1.025);
       }
@@ -2146,7 +2141,7 @@ body{
     display: grid;
     grid-template-columns: minmax(0, em(437)) minmax(0, 1fr);
     align-items: center;
-    gap: em(72);
+    column-gap: em(72);
     }
   }
 
@@ -2383,7 +2378,8 @@ body{
 .ydghm-actions-desktop{
   display: none;
   @include mq(large){
-    display: block;
+    display: flex;
+    gap: em(24);
   }
 }
 
@@ -2416,6 +2412,10 @@ body{
     .ydghm-guarantee-mobile-link {
       display: inline-flex;
       font-size: em(13);
+      background-image: url(img/arrow_forward.svg);
+      background-repeat: no-repeat;
+      background-position: 95% 50%;
+      padding-right: 30px;
     }
 
   }
@@ -2756,8 +2756,10 @@ body{
       font-family: $base-font-family;
       font-weight: 500;
       line-height: 1.18;
+      margin-left: em(-35, 16);
        @include mq(large){
          font-size: em(20);
+         margin-left: 0;
        }
       strong {
         font-weight: 900;
@@ -2772,6 +2774,10 @@ body{
     align-items: center;
     gap: em(20);
     order: 5;
+    justify-content: center;
+    @include mq(large){
+      justify-content: initial;
+    }
   }
 
 
@@ -2780,7 +2786,7 @@ body{
   //   justify-content: center;
   // }
   .dsm-media{
-    margin: em(-90) 0 0 em(-83);
+    margin: em(-74) 0 0 em(-51);
     order: 4;
     position: relative;
     @include mq(large){
@@ -2963,7 +2969,10 @@ body{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: em(12);
+    gap: em(1);
+    @include mq(medium){
+      gap: em(12);
+    }
   }
 
   .pfm-filter {
@@ -3133,11 +3142,23 @@ body{
   .pfm-arrow-prev {
     left: em(-25);
     transform: translateY(-50%) rotate(-135deg);
+    @include mq(large){
+       left: em(10);
+    }
+    @include mq(xlarge){
+       left: em(-25);
+    }
   }
 
   .pfm-arrow-next {
     right: em(-25);
     transform: translateY(-50%) rotate(45deg);
+    @include mq(large){
+       right: em(10);
+    }
+    @include mq(xlarge){
+       right: em(-25);
+    }
   }
 
   .pfm-no-results {
@@ -3267,7 +3288,11 @@ body{
   .rcm-actions {
     display: flex;
     flex-wrap: wrap;
-    gap: em(16);
+    gap: em(24);
+    justify-content: center;
+    @include mq(large){
+      justify-content: initial;
+    }
   }
 
 
@@ -3413,7 +3438,7 @@ body{
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    z-index:20;
+    z-index:8;
     background:transparent;
     border:none;
     padding:0;
@@ -3422,15 +3447,26 @@ body{
   .arrow.prev{
      left:0; 
      @include mq(large){
+      left: -10px;
+     }
+     @include mq(xlarge){
       left: -70px;
+     }
+     &:hover, &:focus{
+      opacity: 0.8;
      }
   }
   .arrow.next{
      right:0;
      @include mq(large){
+      right: -10px;
+     }
+     @include mq(xlarge){
       right: -70px;
      }
-
+     &:hover, &:focus{
+      opacity: 0.8;
+     }
     }
   // .arrow path{
   //   fill:none;
@@ -3484,12 +3520,14 @@ body{
       content: "";
       position: absolute;
       left: 0;
-      top: 0;
       width: em(21);
       height: em(16);
       background-size: contain;
       background-repeat: no-repeat;
       background-image: url(img/quote.svg);
+      @include mq(large){
+       top: 0;
+      }
     }
   }
   .stage-text .review-text,
@@ -3624,7 +3662,16 @@ body{
   .hsmm-cta-wrap{
     margin-top: em(40);
     margin-bottom: em(40);
+    @include mq(large){
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
     .btn{
+      margin: em(5);
+      @include mq(large){
+        margin: 0;
+      }
       svg{
         vertical-align: middle;
         max-height: em(24, 14);

@@ -104,7 +104,7 @@
     @include flex-grow(1); //flex-grow: 1;
     text-align:center;
     span {
-      font-size: $nav-font-size;
+      font-size: em(18);
       font-weight: 700;
     }
     > a {
@@ -148,6 +148,12 @@
     }
     &:hover {
       background-color: $nav-hover-medium;
+    }
+  }
+  @include mq(xlarge) {
+   span {
+      font-size: $nav-font-size;
+      font-weight: 700;
     }
   }
 }
@@ -292,7 +298,7 @@
 
 //Site Nav Container
 .site-nav-container {
-    background-color: transparent;
+  background-color: $white;
   width: $nav-width-mobile;
   height: 100%;
   //left:-20em;
@@ -356,7 +362,7 @@
     content: '';
     background-color: transparent;
     background-image: url(img/ico-exit-black.svg);
-    background-size: em(13) em(13);
+    background-size: em(18) em(18);
     background-position: center center;
     background-repeat: no-repeat;
     display: block;
@@ -375,6 +381,8 @@
   background-color: $nav-background-mobile;
   text-align: center;
   padding: 1em;
+  border-bottom: 2px solid $dark-background;
+  margin-bottom: em(10);
   @include mq(large) {
     padding: 0;
     display: none;

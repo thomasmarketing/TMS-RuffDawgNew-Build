@@ -36,10 +36,15 @@ $btn-alt-color:transparent;
   font-family: $header-font-family;
   position: relative;
   text-decoration: none;
+  text-align: center;
   font-weight: 900;
   border: 2px solid $secondary;
   transition: background-color 0.2s ease;
   @include mq(large){
+    font-size: em(18);
+    padding:em(8, 18) em(16, 18);
+  }
+  @include mq(xlarge){
     font-size: em(20);
     padding:em(8, 20) em(16, 20);
   }
@@ -87,6 +92,10 @@ $btn-alt-color:transparent;
   border: 2px solid $primary;
   transition: background-color 0.2s ease;
    @include mq(large){
+     font-size: em(18);
+     padding:em(8, 18) em(16, 18);
+   }
+    @include mq(xlarge){
      font-size: em(20);
      padding:em(8, 20) em(16, 20);
    }
@@ -110,8 +119,12 @@ $btn-alt-color:transparent;
   border: 2px solid $accent1;
   transition: background-color 0.2s ease;
    @include mq(large){
+     font-size: em(18);
+     padding:em(8, 18) em(16, 18);
+   }
+   @include mq(xlarge){
      font-size: em(20);
-     padding:em(8) em(16, 20);
+     padding:em(8, 20) em(16, 20);
    }
   &:focus,
   &:hover {
@@ -134,6 +147,10 @@ $btn-alt-color:transparent;
   border: 2px solid $primary;
   transition: background-color 0.2s ease;
    @include mq(large){
+     font-size: em(18);
+     padding:em(8, 18) em(16, 18);
+   }
+   @include mq(xlarge){
      font-size: em(20);
      padding:em(8, 20) em(16, 20);
    }
@@ -158,6 +175,10 @@ $btn-alt-color:transparent;
   border: 2px solid $secondary;
   transition: background-color 0.2s ease;
    @include mq(large){
+     font-size: em(18);
+     padding: em(8, 18) em(16, 18);
+   }
+   @include mq(xlarge){
      font-size: em(20);
      padding: em(8, 20) em(16, 20);
    }

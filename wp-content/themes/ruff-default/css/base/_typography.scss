@@ -179,7 +179,7 @@ a {
     outline: none;
   }
   &:focus:not(:hover):not(:active) {
-    outline: 2px dashed #006129;
+    outline: 2px dashed red;
     outline-offset: -1px;
   }
 }

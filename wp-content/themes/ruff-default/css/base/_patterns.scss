@@ -1102,8 +1102,12 @@ figure {
     }
   }
   .inner-wrap {
-    padding-top: em(120);
-    padding-bottom: em(100);
+    padding-top: em(50);
+    padding-bottom: em(180);
+    @include mq(large){
+     padding-top: em(120);
+     padding-bottom: em(100);
+    }
   }
   .pi-wrap{
   }
@@ -1112,6 +1116,9 @@ figure {
     font-size: em(40);
     color: $blue;
     font-weight: 900;
+    @include mq(large){
+      padding-right: em(315, 40);
+    }
     span{
       color: $pink;
     }
