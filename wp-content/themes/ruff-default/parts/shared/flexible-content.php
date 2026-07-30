@@ -791,7 +791,7 @@ endif;
         <a class="btn-alt" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a>
       </div><?php endif; ?>
 
-      <div class="ydghm-guarantee">
+      <div class="ydghm-guarantee ydghm-guarantee-desk">
 		<?php $image = get_sub_field('ydghm_image');  if( !empty( $image ) ): ?>
 		<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="<?php echo esc_attr($image['alt']); ?>" class="ydghm-guarantee-img" /><?php endif; ?>
 
@@ -829,6 +829,26 @@ endif;
       </div>
     </div>
   </div>
+    <div class="ydghm-guarantee ydghm-guarantee-mobile">
+		<?php $image = get_sub_field('ydghm_image');  if( !empty( $image ) ): ?>
+		<img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" title="<?php echo esc_attr($image['alt']); ?>" class="ydghm-guarantee-img" /><?php endif; ?>
+
+        <div class="ydghm-guarantee-content">
+         <?php if( get_sub_field('guarantee_title')): ?> <h3><?php echo get_sub_field('guarantee_title'); ?></h3><?php endif; ?>
+          <div class="ydghm-guarantee-text">
+            <?php if( get_sub_field('guarantee_text')): ?><p><?php echo get_sub_field('guarantee_text'); ?></p><?php endif; ?>
+          </div>
+		   <?php
+			    $about_cta = get_sub_field('about_cta');
+				if($about_cta):
+				$link_url = $about_cta['url'];
+				$link_title = $about_cta['title'];
+				$link_target = $about_cta['target'] ? $about_cta['target'] : '_self';
+				?>
+          <a class="btn btn-yellow ydghm-guarantee-mobile-link" href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html($link_title); ?></a><?php endif; ?>
+        </div>
+      </div>
+
 </section>
 
 <?php elseif( get_row_layout() == 'home_bucket_module' ): ?>
@@ -844,7 +864,7 @@ endif;
 		?>
 		<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="hbm-item">
 			 <?php $hbm_image = get_sub_field('hbm_image');  if( !empty( $hbm_image ) ): ?>
-          <img src="<?php echo esc_url($hbm_image['url']); ?>" alt="<?php echo esc_attr($hbm_image['alt']); ?>" title="<?php echo esc_attr($hbm_image['alt']); ?>" class="hbm-icon" />
+          <figure><img src="<?php echo esc_url($hbm_image['url']); ?>" alt="<?php echo esc_attr($hbm_image['alt']); ?>" title="<?php echo esc_attr($hbm_image['alt']); ?>" class="hbm-icon" /></figure>
 		   <?php endif; ?>
 			<?php if( get_sub_field('hbm_title')): ?><span class="hbm-title"><?php echo get_sub_field('hbm_title'); ?></span><?php endif; ?>
 			<?php if( get_sub_field('hbm_text')): ?><span class="hbm-text"><?php echo get_sub_field('hbm_text'); ?></span><?php endif; ?>
@@ -876,12 +896,24 @@ endif;
 		<?php $pfm_featured_image = get_sub_field('pfm_featured_image');  if( !empty( $pfm_featured_image ) ): ?>
         <div class="pfm-img-wrap">
 		  <img src="<?php echo esc_url($pfm_featured_image['url']); ?>" alt="<?php echo esc_attr($pfm_featured_image['alt']); ?>" title="<?php echo esc_attr($pfm_featured_image['alt']); ?>"  class="pfm-img" />
+		   <?php $hover_image = get_sub_field('hover_image');  if( !empty( $hover_image ) ): ?>
+             <img src="<?php echo esc_url($hover_image['url']); ?>" alt="<?php echo esc_attr($hover_image['alt']); ?>" title="<?php echo esc_attr($hover_image['alt']); ?>"  class="pfm-hover-img" />
+            <?php endif; ?>
+
         </div>
 		<?php endif; ?>
+		
         <div class="pfm-card-content">
           <?php if( get_sub_field('pfm_title')): ?><h3><?php echo get_sub_field('pfm_title'); ?></h3><?php endif; ?>
           <?php if( get_sub_field('pfm_desc')): ?><p><?php echo get_sub_field('pfm_desc'); ?></p><?php endif; ?>
-          <a href="#" class="btn-blue pfm-btn">Read More</a>
+           <?php
+		$pfm_cta = get_sub_field('pfm_cta');
+	    if($pfm_cta):
+		$link_url = $pfm_cta['url'];
+		$link_title = $pfm_cta['title'];
+		$link_target = $pfm_cta['target'] ? $pfm_cta['target'] : '_self';
+		?>
+			<a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="btn-blue pfm-btn"><?php echo esc_html($link_title); ?></a> <?php endif; ?>
         </div>
       </div>
 	  <?php endwhile; ?>	

@@ -35,7 +35,7 @@
 		    </span>
         <?php endif; ?>
          
-		<a href="#" class="sf-privacy-link">Privacy policy</a>
+		<a href="/privacy-policy/" class="sf-privacy-link">Privacy Policy</a>
 
 		</div>
 		<div class="sf-two">

@@ -578,7 +578,6 @@ This is used to separate sections/modules of the website while still keeping a c
 
 /*============Side Navigation Test==============*/
 .side-nav {
-  
   width: 100%;
   overflow: hidden;
   h3 {
@@ -590,39 +589,41 @@ This is used to separate sections/modules of the website while still keeping a c
   }
 }
 .sn-nav {
-  //border:solid 1px $dark-blue;
-  //border-radius: 5px;
-    //overflow: hidden;
+  border-radius: 3px 19px 19px 3px;
+  background: #F8F6F2;
+  padding: 12px 24px 24px;
   li {
-    background-color:$base-accent-color;
-    border-bottom: 1px solid rgba($white,0.5);
+    background-color: transparent;
+    border-bottom: 1px solid $secondary;
     position: relative;
-    
+    &:last-child {
+      border-bottom: 0;
+    }
     a {
      // font-family: $header-font-family;
-      color: $white;
+      color: #484848;
       display: block;
-      font-size: em(18);
-      //font-weight: 600;
-      line-height: em(24,18);
+      font-size: em(16);
+      font-weight: 600;
+      line-height: em(24,16);
       text-decoration: none;
-      padding: em(11,18) em(40,18) em(11,18) em(16,18);
+      padding: em(12,16) 0;
       &:focus:not(:hover):not(:active) {
         outline: 2px solid red;
         outline-offset: -2px;
       }
       &:hover,
       &:focus{
-        background-color: $hover-link-color;
-        color: $white;
+        background-color:  transparent;
+        color: $secondary !important;
       }
     }
  
     &.active{
       border-bottom: 0;
-      background-color:$hover-link-color;
+      background-color: transparent;
       > a{
-        color: $white;
+        color: #484848;
       }
       .m-subnav-arrows{
         transform: rotate(180deg);
@@ -631,61 +632,63 @@ This is used to separate sections/modules of the website while still keeping a c
     }
     &:hover{
       > a{
-        background-color: $hover-link-color;
-        color: $white;
+        background-color: transparent;
+        color: #484848;
       }
       &.menu-item-has-children {
         .m-subnav-arrow {
           //transform: rotate(180deg);
-          background-image: url(img/nav-down-arrow.svg);
+          background-image: url(img/arrow_back_next.svg);
         }
       }
     }
   }
   .menu-item-has-children {
+    > a {
+      padding-left: em(28,16);
+    }
     .m-subnav-arrow {
       cursor: pointer;
       padding-right: 0em;
-      background-image: url(img/nav-down-arrow.svg);
+      background-image: url(img/arrow_back_next.svg);
       background-repeat: no-repeat;
       background-position: center;
-      background-size: em(10,18) auto;
+      background-size: 16px 32px;
       display: block;
-      width: em(40,18);
-      height: em(46,18);
-      //height: $nav-height;
+      width: 16px;
+      height: 32px;
       position: absolute;
       background-color: transparent;
-      right: 0;
-      top:2px;
+      left: 0;
+      top: 7px;
       bottom: 0;
       &.active {
-        transform: rotate(180deg);
-        background-image: url(img/nav-down-arrow.svg);
+        transform: rotate(90deg);
+        background-image: url(img/arrow_back_next.svg);
       }
     }
     ul {
       margin-bottom: 0;
       padding:0;
       display: none;
-      border-bottom: 1px solid $blue;
-      border-top: 1px solid $blue;
+      border-bottom: 1px solid $secondary;
+      border-top: 1px solid $secondary;
       li {
         margin-bottom: 0;
-        background-color:$light-gray;
+        background-color: transparent;
         border-bottom: 0;
         a {
           //font-family: $header-font-family;
-          color: $gray;
-          font-size: em(18);
-          padding: em(5,18) em(40,18) em(5,18) em(16,18);     
-          line-height: em(26,18);
+          color: #484848;
+          font-size: em(15);
+          padding: em(4,15) 0 em(4,15) em(28,15);     
+          line-height: em(26,15);
           text-transform: initial;
           position: relative;
           //font-weight: 600;
           &:hover{
-            background-color: $base-accent-color;
-            color: $white;
+            background-color: transparent;
+            color: $secondary;
           }
           &:focus:not(:hover):not(:active) {
             background-color: $base-accent-color;
@@ -712,6 +715,7 @@ This is used to separate sections/modules of the website while still keeping a c
     }
   }
 }
+
 
 
 /*=============== Product Carousel ===============*/
@@ -1691,6 +1695,18 @@ figure {
         border-radius: 0 19px 0 0;
   }
  } 
+}
+.tablepress>:where(tbody.row-striping)>:nth-child(even of :where(:not(.child,.dtrg-group)))>*{
+  background: #F8F6F2;
+  color: #484848 !important;
+  border: 0 !important;
+  padding: 12px !important;
+}
+.tablepress>:where(tbody.row-striping)>:nth-child(odd of :where(:not(.child,.dtrg-group)))>*{
+  background: #fff;
+  color: #484848 !important;
+  border: 0 !important;
+  padding: 12px !important;
 }
 .dbpm-buckets-wrap {
     @include mq(medium) {

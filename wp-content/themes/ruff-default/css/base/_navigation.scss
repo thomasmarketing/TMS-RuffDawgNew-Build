@@ -306,8 +306,9 @@
   top: 0;
   bottom: 0;
   z-index: 1000;
-  position: absolute;
+  position: fixed;
   @include transition(all .25s ease-in-out);
+  overflow-y: scroll;
   &.active {
     right: 0;
   }
@@ -318,6 +319,7 @@
     bottom: auto;
     top: auto;
     position: static;
+    overflow-y: initial;
   }
 }
 
