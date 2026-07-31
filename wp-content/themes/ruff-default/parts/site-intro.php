@@ -1,5 +1,12 @@
-<div class="site-intro" <?php if(get_field('si_background_image')):?>style="background-image: url(<?php echo get_field('si_background_image');?>)"<?php endif;?>>
-	<div class="inner-wrap">
+<?php
+$bg_desktop = get_field('si_background_image');
+$bg_mobile  = get_field('si_background_image_mobile');
+?>
+<div class="site-intro"
+	<?php if ($bg_desktop || $bg_mobile): ?>
+	style="<?php if ($bg_desktop): ?>--si-bg-desktop: url(<?php echo esc_url($bg_desktop); ?>);<?php endif; ?><?php if ($bg_mobile): ?>--si-bg-mobile: url(<?php echo esc_url($bg_mobile); ?>);<?php endif; ?>"
+	<?php endif; ?>
+>	<div class="inner-wrap">
 		<div class="si-content">
         <?php if(get_field('si_heading')):?><h1 class="si-heading"><?php echo get_field('si_heading');?></h1><?php endif;?>
 	   <?php if(get_field('si_text')):?><div class="si-text"><?php echo get_field('si_text');?></div><?php endif;?>

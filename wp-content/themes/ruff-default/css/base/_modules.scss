@@ -427,8 +427,10 @@ a[class*="sh-ico-"],
   position: relative;
   background-color: $neutral-light1;
   text-align: center;
+  background-image: var(--si-bg-mobile);
   @include mq(large){
     text-align: left;
+    background-image: var(--si-bg-desktop);
     // min-height: em(462);
   }
 
@@ -500,7 +502,14 @@ a[class*="sh-ico-"],
   }
 }
 .si-img{
-  line-height: 0
+  line-height: 0;
+  img{
+      position: relative;
+      top: 8px;
+      @include mq(medium){
+        top: 11px;
+      }
+  }
 }
 
 /*=============== Site Content ===============*/
@@ -3406,6 +3415,9 @@ body{
       column-gap: 1.5em;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       row-gap: em(5);
+    }
+    @include mq(large){
+      max-width: em(1090);
     }
   }
   .hbm-item{

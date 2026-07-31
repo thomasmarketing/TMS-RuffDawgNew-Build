@@ -855,7 +855,8 @@ endif;
 <section class="home-bucket-module">
 	<div class="inner-wrap">
        <?php if( have_rows('hbm_item') ): while ( have_rows('hbm_item') ) : the_row(); ?>
-	    <?php
+	    
+		<?php
 		$hbm_link = get_sub_field('hbm_link');
 	    if($hbm_link):
 		$link_url = $hbm_link['url'];
@@ -868,7 +869,19 @@ endif;
 		   <?php endif; ?>
 			<?php if( get_sub_field('hbm_title')): ?><span class="hbm-title"><?php echo get_sub_field('hbm_title'); ?></span><?php endif; ?>
 			<?php if( get_sub_field('hbm_text')): ?><span class="hbm-text"><?php echo get_sub_field('hbm_text'); ?></span><?php endif; ?>
-		</a><?php endif; ?>	
+		</a>
+		  <?php else: ?>
+		<div class="hbm-item">
+			 <?php $hbm_image = get_sub_field('hbm_image');  if( !empty( $hbm_image ) ): ?>
+          <figure><img src="<?php echo esc_url($hbm_image['url']); ?>" alt="<?php echo esc_attr($hbm_image['alt']); ?>" title="<?php echo esc_attr($hbm_image['alt']); ?>" class="hbm-icon" /></figure>
+		   <?php endif; ?>
+			<?php if( get_sub_field('hbm_title')): ?><span class="hbm-title"><?php echo get_sub_field('hbm_title'); ?></span><?php endif; ?>
+			<?php if( get_sub_field('hbm_text')): ?><span class="hbm-text"><?php echo get_sub_field('hbm_text'); ?></span><?php endif; ?>
+			</div>
+
+		<?php endif; ?>	
+
+
         <?php endwhile; ?>	
 	<?php endif; ?>	
 	</div>

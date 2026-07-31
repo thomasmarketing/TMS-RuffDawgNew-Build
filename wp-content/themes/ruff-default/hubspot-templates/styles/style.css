@@ -4755,10 +4755,12 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   position: relative;
   background-color: #F8F6F2;
   text-align: center;
+  background-image: var(--si-bg-mobile);
 }
 @media (min-width: 60em) {
   .site-intro {
     text-align: left;
+    background-image: var(--si-bg-desktop);
   }
 }
 .site-intro > .inner-wrap, .site-intro > .inner-wrap-narrow, .site-intro > .inner-wrap-wide, .site-intro > .inner-wrap-fullwidth {
@@ -4851,6 +4853,15 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
 
 .si-img {
   line-height: 0;
+}
+.si-img img {
+  position: relative;
+  top: 8px;
+}
+@media (min-width: 40em) {
+  .si-img img {
+    top: 11px;
+  }
 }
 
 /*=============== Site Content ===============*/
@@ -7476,6 +7487,11 @@ body.active {
     column-gap: 1.5em;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     row-gap: 0.3125em;
+  }
+}
+@media (min-width: 60em) {
+  .home-bucket-module > .inner-wrap, .home-bucket-module > .inner-wrap-narrow, .home-bucket-module > .inner-wrap-wide, .home-bucket-module > .inner-wrap-fullwidth {
+    max-width: 68.125em;
   }
 }
 .home-bucket-module .hbm-item {
