@@ -3486,19 +3486,24 @@ figure {
 }
 
 .breadcrumb-menu a {
-  color: #333;
+  color: #484848;
   text-decoration: none;
-  font-size: 0.75em;
+  font-size: 1em;
   font-weight: 600;
-  line-height: 1.65em;
-  text-transform: uppercase;
+  line-height: 1.5em;
+  margin-right: 0.3125em;
 }
 .breadcrumb-menu a:hover, .breadcrumb-menu a:focus {
   color: #0A4492;
   text-decoration: none;
 }
 .breadcrumb-menu .breadcrumb_last {
-  font-size: 0.75em;
+  font-size: 1em;
+  color: #484848;
+  font-size: 1em;
+  line-height: 1.5em;
+  font-weight: 400;
+  margin-left: 0.3125em;
 }
 
 .page-id-9 .breadcrumb-menu {
@@ -7139,6 +7144,11 @@ body.active {
   .play-finder-module .pfm-heading span {
     display: inline;
   }
+}
+.play-finder-module .pfm-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
 }
 .play-finder-module .pfm-text {
   margin-top: 0.8125em;

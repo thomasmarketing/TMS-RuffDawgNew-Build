@@ -1135,19 +1135,24 @@ figure {
 
 .breadcrumb-menu{
   a{
-    color: $dark-gray;
-      text-decoration: none;
-      font-size: em(12);
-      font-weight: 600;
-      line-height: em(19.8, 12);
-      text-transform: uppercase;
+    color: #484848;
+    text-decoration: none;
+    font-size: em(16);
+    font-weight: 600;
+    line-height: em(24, 16);
+    margin-right: em(5, 16);
       &:hover, &:focus{
         color: $blue;
         text-decoration: none;
       }
   }
   .breadcrumb_last{
-    font-size: em(12);
+    font-size: em(16);
+    color: #484848;
+    font-size: em(16);
+    line-height: em(24, 16);
+    font-weight: 400;
+    margin-left: em(5, 16);
   }
 }
 

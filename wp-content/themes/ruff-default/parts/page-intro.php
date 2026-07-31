@@ -48,3 +48,9 @@ endif; ?>
 
 	</div>
 </div>
+
+<?php
+if ( function_exists('yoast_breadcrumb') ) {
+  yoast_breadcrumb( '<div id="breadcrumbs" class="breadcrumb-menu"><div class="inner-wrap">','</div></div>' );
+}
+?>

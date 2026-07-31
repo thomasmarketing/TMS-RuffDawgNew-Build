@@ -575,7 +575,7 @@ endif;
             <?php if ( $product['title'] ) : ?>
               <h3 class="pfm-title"><?php echo esc_html( $product['title'] ); ?></h3>
             <?php endif; ?>
-            <span class="pfm-cta">Read More <span aria-hidden="true">&rarr;</span></span>
+            <span class="pfm-cta">Read More <span class="pfm-icon"><img src="<?php bloginfo('url'); ?>/wp-content/themes/ruff-default/img/arrow-fwd.svg" alt="Icon"></span></span>
           </div>
         </a>
         <?php endforeach; ?>

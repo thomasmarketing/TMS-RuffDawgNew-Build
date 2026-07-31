@@ -42,11 +42,7 @@
     </div>
 
     <div class="product-info">
-        <?php
-            if ( function_exists('yoast_breadcrumb') ) {
-            yoast_breadcrumb( '<div id="breadcrumbs" class="breadcrumb-menu"><div class="inner-wrap">','</div></div>' );
-            }
-            ?>
+  
         <span class="product-title-top"><?php the_title(); ?></span>
          
         <?php if (get_field('imgwt_top_content')): ?><div class="pi-top-content"><?php echo get_field('imgwt_top_content') ?></div><?php endif ?>
