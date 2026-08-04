@@ -2549,11 +2549,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: em(54);
-    height: em(54);
-
+    margin-top: em(5);
     + .pfm-badge {
-      margin-left: em(-6);
+      margin-left: em(-4);
     }
 
     img {
@@ -3453,7 +3451,7 @@ body{
   .hbm-icon{
     min-height: em(40);
     margin-bottom: em(5);
-    width: em(40);
+    // width: em(40);
   }
   .hbm-text{
     color: $accent2;

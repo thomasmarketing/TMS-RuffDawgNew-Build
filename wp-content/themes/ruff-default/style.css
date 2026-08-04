@@ -6854,11 +6854,10 @@ body.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.375em;
-  height: 3.375em;
+  margin-top: 0.3125em;
 }
 .product-favorites-module .pfm-badge + .pfm-badge {
-  margin-left: -0.375em;
+  margin-left: -0.25em;
 }
 .product-favorites-module .pfm-badge img {
   display: block;
@@ -7536,7 +7535,6 @@ body.active {
 .home-bucket-module .hbm-icon {
   min-height: 2.5em;
   margin-bottom: 0.3125em;
-  width: 2.5em;
 }
 .home-bucket-module .hbm-text {
   color: #051C3B;
