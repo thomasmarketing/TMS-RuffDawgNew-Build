@@ -45,6 +45,7 @@
     color: $nav-text-color-mobile;
     text-decoration: none;
     padding: 0 $nav-spacing-mobile;
+    font-weight: 700;
     &:visited {
       color: $nav-text-color;
     }
@@ -108,7 +109,7 @@
       font-weight: 700;
     }
     > a {
-      padding: 0 $nav-spacing;
+      padding: 0 em(12);
       color: $nav-text-color;
       height: $nav-height;
       line-height: $nav-height;
@@ -160,7 +161,7 @@
 
 .sn-level-2,
 .hs-menu-children-wrapper {
-  padding: 0;
+  padding: em(24) 0;
   margin: 0;
   display: none;
   position: relative;
@@ -191,8 +192,9 @@
   position: relative;
   > a {
     //background-color:pink;
-    padding: 0 $nav-spacing-mobile*2;
+    padding: em(8) $nav-spacing-mobile*2;
     color: $nav-text-color;
+    font-weight: 700;
     border-top: $nav-subnav-border-mobile;
     display: block;
     text-decoration: none;
@@ -311,6 +313,17 @@
   overflow-y: scroll;
   &.active {
     right: 0;
+    .sh-search-form {
+        position: fixed;
+        bottom: em(24);
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        pointer-events: none;
+    }
   }
   @include mq(large) {
     width: auto;
@@ -341,34 +354,17 @@
 }
 
 .close-menu {
-  display: inline-block;
-  clear: both;
-  //width:5em;
   position: relative;
-  text-align: center;
-  color: $blue !important;
-  font-family: $header-font-family;
-  padding: $baseline*.5 $baseline*2;
-  padding-right: em(25);
-  margin: 0 auto;
-  font-size: em(14);
-  background-color: $white;
-  border-radius: em(3);
-  &:visited {
-    color: $white;
-  }
-  &:hover {
-    color: $white;
-  }
   &:after {
     content: '';
     background-color: transparent;
-    background-image: url(img/ico-exit-black.svg);
-    background-size: em(18) em(18);
+    background-image: url(img/nav-close.svg);
+    background-size: em(48) em(48);
     background-position: center center;
     background-repeat: no-repeat;
     display: block;
-    width: em(25);
+    width: em(48);
+    height: em(48);
     top: 0;
     bottom: 0;
     right: 0;
@@ -380,11 +376,12 @@
 }
 
 .snc-header {
-  background-color: $nav-background-mobile;
+  background-color: $dark-background;
   text-align: center;
-  padding: 1em;
-  border-bottom: 2px solid $dark-background;
+  padding: em(6) em(16);
   margin-bottom: em(10);
+  display: flex;
+  justify-content: space-between;
   @include mq(large) {
     padding: 0;
     display: none;
@@ -394,7 +391,6 @@
 .snc-footer {}
 
 // Mega menu override — only applies to the "Shop" item
- @include mq(large) {
 .sn-li-l1.mega-menu {
   @include mq(large) {
     position: relative;
@@ -429,6 +425,7 @@
   &:not(:first-child) {
     position: relative;
     &:before{
+      @include mq(large){
       content: "";
       position: absolute;
       left: em(-24);
@@ -436,6 +433,7 @@
       height: 100%;
       background-color: $primary;
       top: 0;
+      }
     }
   }
 
@@ -461,9 +459,13 @@
     display: block !important;
     position: static !important;
     margin: 0;
-    padding: 0;
+    padding: 0 em(32);
+    @include mq(large){
+      padding: 0;
+    }
   }
 }
+
 
 .mega-menu .sn-li-l3 {
   border: 0 !important;
@@ -543,4 +545,4 @@
     }
   }
 }
-}
+

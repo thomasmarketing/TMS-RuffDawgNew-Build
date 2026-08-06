@@ -158,7 +158,8 @@
 
 
 		//Style.css - header
-		wp_register_style( 'screen', get_stylesheet_directory_uri().'/style.css', '', '1.2.684599', 'screen' );
+		wp_register_style( 'screen', get_stylesheet_directory_uri().'/style.css', '', '1.2.12859', 'screen' );
+		
         wp_enqueue_style( 'screen' );
 	}	
 

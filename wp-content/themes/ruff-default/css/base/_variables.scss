@@ -117,7 +117,7 @@ $nav-subnav-border-medium:$nav-subnav-border;
 $nav-subnav-hover-medium:$nav-subnav-hover;
 
 // Navigation Small/Mobile
-$nav-font-size-mobile:$nav-font-size;
+$nav-font-size-mobile: em(20);
 $nav-height-mobile: em(40); 
 $nav-width-mobile:100%;
 $nav-background-mobile:$white;
@@ -126,8 +126,8 @@ $nav-text-color-hover-mobile:$nav-text-color-hover;
 $nav-hover-mobile:$nav-hover;
 $nav-border-mobile:$nav-border;
 $nav-spacing-mobile:$baseline*2;
-$nav-subnav-font-size-mobile:$nav-subnav-font-size;
-$nav-subnav-height-mobile:$nav-subnav-height;
+$nav-subnav-font-size-mobile: em(16);
+$nav-subnav-height-mobile: em(20);
 $nav-subnav-background-mobile:$nav-subnav-background;
 $nav-subnav-border-mobile:$nav-subnav-border;
 $nav-subnav-hover-mobile:$nav-subnav-hover;

@@ -34,8 +34,15 @@
                 <!--Site Nav-->
                 <div class="site-nav-container">
                   <div class="snc-header">
-                    <a href="" class="close-menu menu-link">Close</a>
+                    <a href="<?php bloginfo('url'); ?>" class="site-logo site-logmobile">
+                    <?php $logo = get_field('global_company_logo','option');
+                    if( !empty($logo) ): ?>
+                      <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
+                    <?php endif;?>
+                  </a>
+                    <a href="" class="close-menu menu-link"></a>
                   </div>
+
                   <?php wp_nav_menu(array(
                     'menu'            => 'Primary Nav',
                     'container'       => 'nav',
@@ -43,13 +50,22 @@
                     'menu_class'      => 'sn-level-1',
                     'walker'          => new themeslug_walker_nav_menu
                   )); ?>
+
+
+               <form role="search" method="get" class="sh-search-form search-form sh-search-form-mobile" action="<?php bloginfo('url'); ?>/">
+                <input type="text" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
+                <button type="submit" class="sh-search-submit" aria-label="Submit Search">
+                  <span class="sh-search-submit-icon"></span>
+                </button>
+              </form>
+
                 </div>
                 <!--Site Nav END-->
 
                 <a class="sh-ico-search search-link" href="#" aria-label="Search Icon"></a>
 
                 <!--Inline Search Form (overlays nav + icon)-->
-                <form role="search" method="get" class="sh-search-form search-form" action="<?php bloginfo('url'); ?>/">
+                <form role="search" method="get" class="sh-search-form search-form sh-search-form-desk" action="<?php bloginfo('url'); ?>/">
                 <input type="text" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
                 <button type="submit" class="sh-search-submit" aria-label="Submit Search">
                   <span class="sh-search-submit-icon"></span>

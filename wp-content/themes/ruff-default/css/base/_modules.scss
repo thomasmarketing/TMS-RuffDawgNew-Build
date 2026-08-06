@@ -176,7 +176,6 @@ a[class*="sh-ico-"],
     position: static; // desktop already handles its own sticky via .sh-sticky-wrap.stuck
     height: em(138);
     background-color: $white;
-    border-bottom: 2px solid $primary;
   }
   &.search-active{
     .sh-search-submit-icon{
@@ -202,7 +201,7 @@ a[class*="sh-ico-"],
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: em(8) em(16);
+    padding: em(6) em(16);
   }
 }
 .sh-top-banner{
@@ -259,6 +258,7 @@ a[class*="sh-ico-"],
 .sh-sticky-wrap {
   @include mq(large) {
     background-color: $nav-background;
+        border-bottom: 2px solid $primary;
     &.stuck {      
       position: fixed;
       left: 0;
@@ -395,6 +395,8 @@ a[class*="sh-ico-"],
   @extend %sh-ico;
   @media (min-width: 1080px){
     display: inline-block;
+    margin-left: em(12);
+    margin-right: em(12);
   }
   &:hover, &:focus{
     background-image: url(img/search-icon-hover.svg);
@@ -684,7 +686,7 @@ img[name=pphLoggerImage] {
 .sh-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
   @include mq(large){
     margin-left: auto;
   }
@@ -696,27 +698,23 @@ img[name=pphLoggerImage] {
     position: relative;
     flex: 1 1 auto;
     align-items: center;
-    gap: 20px;
+    // gap: 20px;
     min-width: 0;
   }
 }
 
-
 .sh-search-form {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  width: 100%;
-  max-width: em(394);
-  display: flex;
-  align-items: center;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.25s ease, visibility 0.25s ease;
-  @include mq(xlarge){
+  @include mq(large){
      left: em(36);
+     position: absolute;
+     top: 50%;
+     bottom: auto;
+     transform: translateY(-50%);
+     max-width: em(394);
+     opacity: 0;
+     visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    width: 100%;
   }
   input{
     border-radius: 19px;
@@ -728,6 +726,18 @@ img[name=pphLoggerImage] {
     &:hover, &:focus{
       border: 1px solid #0A4492;
     }
+  }
+  &.sh-search-form-desk{
+     display: none;
+     @include mq(large){
+       display: block;
+     }
+  }
+   &.sh-search-form-mobile{
+     display: block;
+     @include mq(large){
+       display: none;
+     }
   }
 }
 
@@ -3265,12 +3275,13 @@ body{
   position: relative;
   .inner-wrap {
     padding-top: em(90);
-    padding-bottom: em(90);
+    padding-bottom: em(300);
     @include mq(large){
       display: grid;
       grid-template-columns: em(520) minmax(0, 1fr);
       align-items: center;
       gap: em(10);
+      padding-bottom: em(90);
     }
   }
 
@@ -3287,14 +3298,19 @@ body{
 }
   .rcm-img {
     display: block;
-    height: em(200);
+    position: absolute;
+    left: em(58);
+    height: em(394);
+    transform: rotate(90deg);
+    top: auto;
+    bottom: -8px;
+    width: auto;
+    aspect-ratio: 131 / 197;
     @include mq(large){
-      position: absolute;
-      left: em(118);
+      left: em(112);
       height: em(667);
-      transform: rotate(90deg);
       top: em(-74);
-      width: auto;
+      bottom: auto;
     }
   }
 
@@ -3704,7 +3720,8 @@ body{
     }
     .stage-photo{ display:flex; justify-content:center; margin-bottom:14px; }
     // .stage-photo .polaroid{ width:190px; }
-    .stage-text{ text-align:center; padding:0 24px; }
+    .stage-text{ text-align:left; padding:0 10px; }
+    .stage-text:before{margin-top: -23px;}
     .reviews-heading{ font-size:1.9rem; }
   }
 
