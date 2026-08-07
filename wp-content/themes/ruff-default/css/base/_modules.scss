@@ -277,6 +277,16 @@ a[class*="sh-ico-"],
     justify-content: space-between;
     }
   }
+    &.active{
+        background-color: $white;
+        padding: em(8) 0;
+        @include mq(large){
+          padding: initial;
+        }
+        .d-none-link{
+          display: inline-block;
+        }
+      }
 }
 .d-none-link{
   display: none;
@@ -328,7 +338,7 @@ a[class*="sh-ico-"],
   @include mq(large) {
     display: inline-block;
     margin: 0;
-    max-width: em(200);
+    max-width: em(168);
   }
   @include mq(xlarge) {
      max-width: em(302);
@@ -389,7 +399,7 @@ a[class*="sh-ico-"],
   display: inline-block;
   width: em(32);
   height: em(32);
-  background-size: contain;
+  background-size: em(25);
   vertical-align: middle;
   display: none;
   @extend %sh-ico;
@@ -402,7 +412,7 @@ a[class*="sh-ico-"],
     background-image: url(img/search-icon-hover.svg);
     width: em(32);
     height: em(32);
-    background-size: contain;
+    background-size: em(25);
   }
 }
 
@@ -705,7 +715,7 @@ img[name=pphLoggerImage] {
 
 .sh-search-form {
   @include mq(large){
-     left: em(36);
+     left: em(34);
      position: absolute;
      top: 50%;
      bottom: auto;
@@ -735,8 +745,13 @@ img[name=pphLoggerImage] {
   }
    &.sh-search-form-mobile{
      display: block;
+     margin-bottom: em(8);
      @include mq(large){
        display: none;
+     }
+     .sh-search-submit-icon{
+        background-image: url(img/search-icon-hover.svg);
+        margin-right: em(10);
      }
   }
 }
@@ -780,7 +795,7 @@ img[name=pphLoggerImage] {
   width: em(32);
   height: em(32);
   background-image: url(img/search-icon.svg);
-  background-size: contain;
+  background-size: em(25);
   background-repeat: no-repeat;
   background-position: center;
 }

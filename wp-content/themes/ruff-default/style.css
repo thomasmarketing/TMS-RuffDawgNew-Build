@@ -1811,7 +1811,7 @@ p .btn-alt-download {
 }
 .sn-li-l1 > a,
 .hs-menu-depth-1 > a {
-  display: block;
+  display: inline;
   height: 2.5em;
   line-height: 2.5em;
   color: #051C3B;
@@ -1836,12 +1836,12 @@ p .btn-alt-download {
   background-image: url(img/ico-arrow-down.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 0.75em;
+  background-size: contain;
   display: block;
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  background-color: #f7f7f7;
+  width: 10px;
+  height: 15px;
+  background-color: transparent;
+  display: inline-block;
   right: 0;
   top: 0;
   bottom: 0;
@@ -1851,17 +1851,6 @@ p .btn-alt-download {
 .hs-menu-depth-1.menu-item-has-children .m-subnav-arrow.active,
 .hs-menu-depth-1.hs-item-has-children .m-subnav-arrow.active {
   transform: rotate(180deg);
-}
-.sn-li-l1.has-subnav > a span, .sn-li-l1.menu-item-has-children > a span, .sn-li-l1.hs-item-has-children > a span,
-.hs-menu-depth-1.has-subnav > a span,
-.hs-menu-depth-1.menu-item-has-children > a span,
-.hs-menu-depth-1.hs-item-has-children > a span {
-  padding-right: 0em;
-  background-image: url(img/ico-arrow-down.svg);
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 0.75em;
-  display: block;
 }
 .sn-li-l1.has-subnav > a.active span, .sn-li-l1.menu-item-has-children > a.active span, .sn-li-l1.hs-item-has-children > a.active span,
 .hs-menu-depth-1.has-subnav > a.active span,
@@ -1893,7 +1882,7 @@ p .btn-alt-download {
   }
   .sn-li-l1 > a,
 .hs-menu-depth-1 > a {
-    padding: 0 0.75em;
+    padding: 0 0.5em;
     color: #051C3B;
     height: 8.5em;
     line-height: 8.5em;
@@ -1925,8 +1914,11 @@ p .btn-alt-download {
 .hs-menu-depth-1.menu-item-has-children > a span,
 .hs-menu-depth-1.hs-item-has-children > a span {
     padding-right: 1em;
-    background-size: 0.625em;
     display: inline;
+    background-image: url(img/ico-arrow-down.svg);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 0.75em;
   }
   .sn-li-l1.has-subnav > a.active span, .sn-li-l1.menu-item-has-children > a.active span, .sn-li-l1.hs-item-has-children > a.active span,
 .hs-menu-depth-1.has-subnav > a.active span,
@@ -1944,6 +1936,10 @@ p .btn-alt-download {
 .hs-menu-depth-1 span {
     font-size: 1.25em;
     font-weight: 700;
+  }
+  .sn-li-l1 > a,
+.hs-menu-depth-1 > a {
+    padding: 0 0.75em;
   }
 }
 
@@ -2111,15 +2107,11 @@ p .btn-alt-download {
   right: 0;
 }
 .site-nav-container.active .sh-search-form {
-  position: fixed;
-  bottom: 1.5em;
-  left: 0;
-  width: 100%;
-  max-width: 100%;
-  z-index: 9999;
+  position: relative;
   display: flex;
   align-items: center;
-  pointer-events: none;
+  padding: 1em;
+  margin-top: 0.5em;
 }
 @media (min-width: 60em) {
   .site-nav-container {
@@ -2224,6 +2216,12 @@ p .btn-alt-download {
   flex: 1;
   background: none;
   border: 0;
+  margin: 0 1em;
+}
+@media (min-width: 60em) {
+  .mega-menu .sn-li-l2, .mega-menu .sn-li-l3, .mega-menu .sn-li-l4 {
+    margin: 0;
+  }
 }
 .mega-menu .sn-li-l2:not(:first-child), .mega-menu .sn-li-l3:not(:first-child), .mega-menu .sn-li-l4:not(:first-child) {
   position: relative;
@@ -2245,7 +2243,12 @@ p .btn-alt-download {
   color: #0A4492;
   padding: 0 0 0.625em;
   border-bottom: 2px solid #0A4492;
-  margin-bottom: 0.625em;
+  margin: 0 1em 1.25em;
+}
+@media (min-width: 60em) {
+  .mega-menu .sn-li-l2 > a, .mega-menu .sn-li-l3 > a, .mega-menu .sn-li-l4 > a {
+    margin: 0 0 0.625em;
+  }
 }
 .mega-menu .sn-li-l2 > a > span, .mega-menu .sn-li-l3 > a > span, .mega-menu .sn-li-l4 > a > span {
   font-weight: 900;
@@ -2257,12 +2260,15 @@ p .btn-alt-download {
   display: block !important;
   position: static !important;
   margin: 0;
-  padding: 0 2em;
+  padding: 0 1em;
 }
 @media (min-width: 60em) {
   .mega-menu .sn-li-l2 .sn-level-3, .mega-menu .sn-li-l3 .sn-level-3, .mega-menu .sn-li-l4 .sn-level-3 {
     padding: 0;
   }
+}
+.mega-menu .sn-li-l2 .m-subnav-arrow, .mega-menu .sn-li-l3 .m-subnav-arrow, .mega-menu .sn-li-l4 .m-subnav-arrow {
+  display: none;
 }
 
 .mega-menu .sn-li-l3, .mega-menu .sn-li-l4 {
@@ -2336,6 +2342,15 @@ p .btn-alt-download {
 }
 .mega-menu .sn-li-l3.mega-cta > a > span, .mega-menu .mega-cta.sn-li-l4 > a > span {
   padding-right: 0.7142857143em;
+}
+
+.by-line-menu {
+  margin-top: 1.875em !important;
+}
+@media (min-width: 60em) {
+  .by-line-menu {
+    margin-top: 0 !important;
+  }
 }
 
 /*
@@ -4605,6 +4620,18 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
     justify-content: space-between;
   }
 }
+.sh-sticky-wrap.active {
+  background-color: #ffffff;
+  padding: 0.5em 0;
+}
+@media (min-width: 60em) {
+  .sh-sticky-wrap.active {
+    padding: initial;
+  }
+}
+.sh-sticky-wrap.active .d-none-link {
+  display: inline-block;
+}
 
 .d-none-link {
   display: none;
@@ -4663,7 +4690,7 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   .site-logo {
     display: inline-block;
     margin: 0;
-    max-width: 12.5em;
+    max-width: 10.5em;
   }
 }
 @media (min-width: 80em) {
@@ -4723,7 +4750,7 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   display: inline-block;
   width: 2em;
   height: 2em;
-  background-size: contain;
+  background-size: 1.5625em;
   vertical-align: middle;
   display: none;
 }
@@ -4738,7 +4765,7 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   background-image: url(img/search-icon-hover.svg);
   width: 2em;
   height: 2em;
-  background-size: contain;
+  background-size: 1.5625em;
 }
 
 .sh-ico-menu {
@@ -5063,7 +5090,7 @@ img[name=pphLoggerImage] {
 
 @media (min-width: 60em) {
   .sh-search-form {
-    left: 2.25em;
+    left: 2.125em;
     position: absolute;
     top: 50%;
     bottom: auto;
@@ -5096,11 +5123,16 @@ img[name=pphLoggerImage] {
 }
 .sh-search-form.sh-search-form-mobile {
   display: block;
+  margin-bottom: 0.5em;
 }
 @media (min-width: 60em) {
   .sh-search-form.sh-search-form-mobile {
     display: none;
   }
+}
+.sh-search-form.sh-search-form-mobile .sh-search-submit-icon {
+  background-image: url(img/search-icon-hover.svg);
+  margin-right: 0.625em;
 }
 
 /* Active state: only the nav fades out, .search-link is untouched */
@@ -5143,7 +5175,7 @@ img[name=pphLoggerImage] {
   width: 2em;
   height: 2em;
   background-image: url(img/search-icon.svg);
-  background-size: contain;
+  background-size: 1.5625em;
   background-repeat: no-repeat;
   background-position: center;
 }

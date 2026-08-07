@@ -53,7 +53,7 @@
 
 
                <form role="search" method="get" class="sh-search-form search-form sh-search-form-mobile" action="<?php bloginfo('url'); ?>/">
-                <input type="text" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
+                <input type="text" class="sh-search-input" name="s" placeholder="Search Our Website..." value="<?php echo get_search_query(); ?>" />
                 <button type="submit" class="sh-search-submit" aria-label="Submit Search">
                   <span class="sh-search-submit-icon"></span>
                 </button>

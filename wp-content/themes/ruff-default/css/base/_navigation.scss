@@ -39,7 +39,7 @@
     font-size: $nav-font-size-mobile;
   }
   > a {
-    display: block;
+    display: inline;
     height: $nav-height-mobile;
     line-height: $nav-height-mobile;
     color: $nav-text-color-mobile;
@@ -65,12 +65,13 @@
         background-image: url(img/ico-arrow-down.svg);
         background-repeat: no-repeat;
         background-position: center;
-        background-size: em(12);
+        background-size: contain;
         display: block;
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        background-color: darken($nav-background-mobile, 3%);
+        width: 10px;
+        height: 15px;
+        // position: absolute;
+        background-color: transparent;
+        display: inline-block;
         right: 0;
         top: 0;
         bottom: 0;
@@ -80,12 +81,12 @@
     }
     > a {
       span {
-        padding-right: 0em;
-        background-image: url(img/ico-arrow-down.svg);
-        background-repeat: no-repeat;
-        background-position: right center;
-        background-size: em(12);
-        display: block;
+        // padding-right: 0em;
+        // background-image: url(img/ico-arrow-down.svg);
+        // background-repeat: no-repeat;
+        // background-position: right center;
+        // background-size: em(12);
+        // display: block;
       }
       &.active {
         span {
@@ -109,12 +110,20 @@
       font-weight: 700;
     }
     > a {
-      padding: 0 em(12);
+      padding: 0 em(8);
       color: $nav-text-color;
       height: $nav-height;
       line-height: $nav-height;
       &:hover {
         color: $nav-text-color-hover;
+      }
+      span{
+        // padding-right: 0em;
+        // background-image: url(img/ico-arrow-down.svg);
+        // background-repeat: no-repeat;
+        // background-position: right center;
+        // background-size: em(12);
+        // display: block;
       }
     }
     &.current-page-parent,
@@ -137,8 +146,12 @@
       > a {
         span {
           padding-right: 1em;
-          background-size: em(10);
           display: inline;
+          background-image: url(img/ico-arrow-down.svg);
+          background-repeat: no-repeat;
+          background-position: right center;
+          background-size: em(12);
+
         }
         &.active {
           span {
@@ -156,6 +169,9 @@
       font-size: $nav-font-size;
       font-weight: 700;
     }
+     > a {
+      padding: 0 em(12);
+     }
   }
 }
 
@@ -314,15 +330,11 @@
   &.active {
     right: 0;
     .sh-search-form {
-        position: fixed;
-        bottom: em(24);
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        pointer-events: none;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: em(16);
+      margin-top: em(8);
     }
   }
   @include mq(large) {
@@ -415,6 +427,7 @@
       display: flex !important;
     }
   }
+ 
 }
 
 // each "By Play Style" / "By Line" li becomes a column
@@ -422,6 +435,10 @@
   flex: 1;
   background: none;
   border: 0;
+  margin: 0 em(16);
+  @include mq(large){
+    margin: 0;
+  }
   &:not(:first-child) {
     position: relative;
     &:before{
@@ -443,7 +460,10 @@
     color: $primary;
     padding: 0 0 em(10);
     border-bottom: 2px solid $dark-background;
-    margin-bottom: em(10);
+    margin: 0 em(16) em(20);
+    @include mq(large){
+      margin: 0 0 em(10);
+    }
     > span{
       font-weight: 900;
     }
@@ -459,13 +479,15 @@
     display: block !important;
     position: static !important;
     margin: 0;
-    padding: 0 em(32);
+    padding: 0 em(16);
     @include mq(large){
       padding: 0;
     }
   }
+  .m-subnav-arrow{
+    display: none;
+  }
 }
-
 
 .mega-menu .sn-li-l3 {
   border: 0 !important;
@@ -546,3 +568,9 @@
   }
 }
 
+.by-line-menu{
+  margin-top: em(30) !important;
+  @include mq(large){
+    margin-top: 0 !important;
+  }
+}
