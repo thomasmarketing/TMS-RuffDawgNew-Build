@@ -466,6 +466,7 @@
     }
     > span{
       font-weight: 900;
+      
     }
   }
 
@@ -506,6 +507,12 @@
     margin-bottom: 0;
     &:hover {
       color: $primary;
+    }
+    span{
+      font-weight: 700;
+      @include mq(large){
+        font-weight: 900;
+      }
     }
   }
 

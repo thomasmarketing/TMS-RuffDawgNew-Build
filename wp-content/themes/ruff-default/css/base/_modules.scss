@@ -256,6 +256,10 @@ a[class*="sh-ico-"],
 }
 
 .sh-sticky-wrap {
+  transition: background-color 0.3s ease, padding 0.3s ease;
+  @include mq(large) {
+    transition: none;
+  }
   @include mq(large) {
     background-color: $nav-background;
         border-bottom: 2px solid $primary;
@@ -271,10 +275,14 @@ a[class*="sh-ico-"],
   > .inner-wrap{
     padding-top: 0;
     padding-bottom: 0;
+    padding-left: em(3);
+    padding-right: em(3);
     @include mq(large){
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: em(16);
+    padding-right: em(16);
     }
   }
     &.active{
@@ -696,13 +704,17 @@ img[name=pphLoggerImage] {
 .sh-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 5px;
   @include mq(large){
     margin-left: auto;
+    gap: 16px;
+    justify-content: initial;
   }
 }
 
 .sh-nav-search-wrap {
+  position: absolute;
   @include mq(large){
     display: flex;
     position: relative;
@@ -3304,7 +3316,7 @@ body{
   //   margin-left: em(-120);
   // }
 .rcm-img-wrap {
-  max-width: em(330);
+  max-width: 100%;
   margin: 0 auto;
   @include mq(large){
     max-width: initial;
@@ -3314,7 +3326,7 @@ body{
   .rcm-img {
     display: block;
     position: absolute;
-    left: em(58);
+    left: 0;
     height: em(394);
     transform: rotate(90deg);
     top: auto;

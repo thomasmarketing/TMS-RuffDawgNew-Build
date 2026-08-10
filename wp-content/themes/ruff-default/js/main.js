@@ -1260,26 +1260,29 @@ $(function () {
 
 // Toggle .active on .sh-sticky-wrap based on .site-intro visibility
 (function () {
-  const siteIntro = document.querySelector('.site-intro');
+  // Only one of these will exist on any given page
+  const introEl = document.querySelector('.site-intro, .page-intro');
   const stickyWrap = document.querySelector('.sh-sticky-wrap');
+  const siteHeader = document.querySelector('.site-header');
 
-  if (!siteIntro || !stickyWrap) return;
+  if (!introEl || !stickyWrap || !siteHeader) return;
 
   const observer = new IntersectionObserver(
     ([entry]) => {
-      // entry.isIntersecting = site-intro still (at least partly) visible
-      // When it's NOT intersecting, user has scrolled past it → add active
+      // When the intro section is no longer intersecting, user has
+      // scrolled past it → add active (works for either .site-intro
+      // or .page-intro, whichever is present on this page)
       stickyWrap.classList.toggle('active', !entry.isIntersecting);
     },
     {
       root: null,
       threshold: 0,
-      rootMargin: `-${document.querySelector('.site-header').offsetHeight}px 0px 0px 0px`,
+      rootMargin: `-${siteHeader.offsetHeight}px 0px 0px 0px`,
       // offsets the trigger point by the fixed header's height so "active"
-      // fires exactly when site-intro passes under the sticky header,
+      // fires exactly when the intro passes under the sticky header,
       // not when it's merely off the bottom of the viewport
     }
   );
 
-  observer.observe(siteIntro);
+  observer.observe(introEl);
 })();

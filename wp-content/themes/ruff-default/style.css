@@ -2291,6 +2291,14 @@ p .btn-alt-download {
 .mega-menu .sn-li-l3 > a:hover, .mega-menu .sn-li-l4 > a:hover {
   color: #0A4492;
 }
+.mega-menu .sn-li-l3 > a span, .mega-menu .sn-li-l4 > a span {
+  font-weight: 700;
+}
+@media (min-width: 60em) {
+  .mega-menu .sn-li-l3 > a span, .mega-menu .sn-li-l4 > a span {
+    font-weight: 900;
+  }
+}
 .mega-menu .sn-li-l3.mega-highlight > a, .mega-menu .mega-highlight.sn-li-l4 > a {
   color: #ED1B30;
 }
@@ -4595,6 +4603,14 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   fill: #ED1B30;
 }
 
+.sh-sticky-wrap {
+  transition: background-color 0.3s ease, padding 0.3s ease;
+}
+@media (min-width: 60em) {
+  .sh-sticky-wrap {
+    transition: none;
+  }
+}
 @media (min-width: 60em) {
   .sh-sticky-wrap {
     background-color: transparent;
@@ -4612,12 +4628,16 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
 .sh-sticky-wrap > .inner-wrap, .sh-sticky-wrap > .inner-wrap-narrow, .sh-sticky-wrap > .inner-wrap-wide, .sh-sticky-wrap > .inner-wrap-fullwidth {
   padding-top: 0;
   padding-bottom: 0;
+  padding-left: 0.1875em;
+  padding-right: 0.1875em;
 }
 @media (min-width: 60em) {
   .sh-sticky-wrap > .inner-wrap, .sh-sticky-wrap > .inner-wrap-narrow, .sh-sticky-wrap > .inner-wrap-wide, .sh-sticky-wrap > .inner-wrap-fullwidth {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 1em;
+    padding-right: 1em;
   }
 }
 .sh-sticky-wrap.active {
@@ -5070,14 +5090,20 @@ img[name=pphLoggerImage] {
 .sh-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 5px;
 }
 @media (min-width: 60em) {
   .sh-right {
     margin-left: auto;
+    gap: 16px;
+    justify-content: initial;
   }
 }
 
+.sh-nav-search-wrap {
+  position: absolute;
+}
 @media (min-width: 60em) {
   .sh-nav-search-wrap {
     display: flex;
@@ -7433,7 +7459,7 @@ body.active {
   }
 }
 .retailer-cta-module .rcm-img-wrap {
-  max-width: 20.625em;
+  max-width: 100%;
   margin: 0 auto;
 }
 @media (min-width: 60em) {
@@ -7445,7 +7471,7 @@ body.active {
 .retailer-cta-module .rcm-img {
   display: block;
   position: absolute;
-  left: 3.625em;
+  left: 0;
   height: 24.625em;
   transform: rotate(90deg);
   top: auto;
