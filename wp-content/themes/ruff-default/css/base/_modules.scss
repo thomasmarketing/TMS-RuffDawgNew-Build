@@ -3118,6 +3118,26 @@ body{
 
   .pfm-slider-wrap {
     position: relative;
+    .slick-dots{
+      bottom: -50px;
+      li{
+        button{
+          width: 16px;
+          height: 16px;
+          background: $primary;
+          border-radius: 50%;
+          &:before{
+            content: none;
+          }
+        }
+        &.slick-active{
+           button{
+            background: $secondary;
+           }
+        }
+      }
+    }
+
   }
 
   .pfm-product-wrap {
@@ -3161,13 +3181,22 @@ body{
     background: $white;
     text-align: center;
     text-decoration: none;
+    // @media (max-width: 460px) {
+    // min-height: em(247);
+    // }
+    // @media (max-width: 398px) {
+    //   min-height: em(220);
+    // }
   }
 
   .pfm-card-text {
     position: relative;
     display: grid;
     margin: em(18, 16) 0 0;
-    min-height: em(20);
+    min-height: em(60, 16);
+      @include mq(medium){
+      min-height: auto;
+     }
   }
 
   .pfm-title,
@@ -3180,6 +3209,7 @@ body{
     line-height: 1.1;
     transition: opacity .2s ease;
     font-family: $header-font-family;
+
   }
 
   .pfm-cta {
@@ -3279,7 +3309,7 @@ body{
   @media (max-width: 767px) {
     .inner-wrap {
       padding-top: em(32);
-      padding-bottom: em(34);
+      padding-bottom: em(80);
     }
 
     .pfm-heading {

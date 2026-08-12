@@ -1204,11 +1204,12 @@ $(function () {
       slidesToScroll: 1,
       infinite: false,
       arrows: true,
+      dots: false,
       prevArrow: $('.pfm-arrow-prev'),
       nextArrow: $('.pfm-arrow-next'),
       responsive: [
-        { breakpoint: 1024, settings: { slidesToShow: 3 } },
-        { breakpoint: 768, settings: { slidesToShow: 2, arrows: false } }
+        { breakpoint: 1024, settings: { slidesToShow: 3, dots: false } },
+        { breakpoint: 768, settings: { slidesToShow: 2, arrows: false, dots: true,   adaptiveHeight: true } }
       ]
     });
   }

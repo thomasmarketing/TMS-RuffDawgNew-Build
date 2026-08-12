@@ -153,12 +153,12 @@
 		wp_enqueue_script('jquery');
 
 		//Both main.js and plugins.js minified - footer
-		wp_register_script( 'plugins', get_template_directory_uri().'/js/production.min.js', array( 'jquery' ), '1.2.523', true);
+		wp_register_script( 'plugins', get_template_directory_uri().'/js/production.min.js', array( 'jquery' ), '1.2.523993', true);
 		wp_enqueue_script( 'plugins' );
 
 
 		//Style.css - header
-		wp_register_style( 'screen', get_stylesheet_directory_uri().'/style.css', '', '1.2.366789', 'screen' );
+		wp_register_style( 'screen', get_stylesheet_directory_uri().'/style.css', '', '1.2.0399717', 'screen' );
 		
         wp_enqueue_style( 'screen' );
 	}	

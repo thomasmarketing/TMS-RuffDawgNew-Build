@@ -7284,6 +7284,21 @@ body.active {
 .play-finder-module .pfm-slider-wrap {
   position: relative;
 }
+.play-finder-module .pfm-slider-wrap .slick-dots {
+  bottom: -50px;
+}
+.play-finder-module .pfm-slider-wrap .slick-dots li button {
+  width: 16px;
+  height: 16px;
+  background: #0A4492;
+  border-radius: 50%;
+}
+.play-finder-module .pfm-slider-wrap .slick-dots li button:before {
+  content: none;
+}
+.play-finder-module .pfm-slider-wrap .slick-dots li.slick-active button {
+  background: #ED1B30;
+}
 .play-finder-module .pfm-product-wrap {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -7319,7 +7334,12 @@ body.active {
   position: relative;
   display: grid;
   margin: 1.125em 0 0;
-  min-height: 1.25em;
+  min-height: 3.75em;
+}
+@media (min-width: 40em) {
+  .play-finder-module .pfm-card-text {
+    min-height: auto;
+  }
 }
 .play-finder-module .pfm-title,
 .play-finder-module .pfm-cta {
@@ -7426,7 +7446,7 @@ body.active {
 @media (max-width: 767px) {
   .play-finder-module .inner-wrap, .play-finder-module .inner-wrap-narrow, .play-finder-module .inner-wrap-wide, .play-finder-module .inner-wrap-fullwidth {
     padding-top: 2em;
-    padding-bottom: 2.125em;
+    padding-bottom: 5em;
   }
   .play-finder-module .pfm-heading {
     font-size: 1.5em;
