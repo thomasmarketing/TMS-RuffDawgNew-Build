@@ -4425,10 +4425,18 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
   outline: none !important;
 }
 
-.mfp-zoom-out-cur .sh-sticky-wrap.stuck, .mfp-zoom-out-cur .anchor-links-nav.stuck, .mfp-zoom-out-cur .inline-btns.stuck, .mfp-zoom-out-cur .internal-links-nav.stuck, .mfp-helper .sh-sticky-wrap.stuck, .mfp-helper .anchor-links-nav.stuck, .mfp-helper .inline-btns.stuck, .mfp-helper .internal-links-nav.stuck {
+.mfp-zoom-out-cur .sh-sticky-wrap.stuck,
+.mfp-zoom-out-cur .anchor-links-nav.stuck,
+.mfp-zoom-out-cur .inline-btns.stuck,
+.mfp-zoom-out-cur .internal-links-nav.stuck,
+.mfp-helper .sh-sticky-wrap.stuck,
+.mfp-helper .anchor-links-nav.stuck,
+.mfp-helper .inline-btns.stuck,
+.mfp-helper .internal-links-nav.stuck {
   width: calc(100% - 17px);
 }
-.mfp-zoom-out-cur #back-to-top, .mfp-helper #back-to-top {
+.mfp-zoom-out-cur #back-to-top,
+.mfp-helper #back-to-top {
   right: 3.35em;
 }
 
@@ -5069,7 +5077,9 @@ img[name=pphLoggerImage] {
   display: none;
 }
 
-.sf-two .sf-link-list li:first-child > a, .sf-three .sf-link-list li:first-child > a, .sf-four .sf-link-list li:first-child > a {
+.sf-two .sf-link-list li:first-child > a,
+.sf-three .sf-link-list li:first-child > a,
+.sf-four .sf-link-list li:first-child > a {
   font-weight: 700;
 }
 
@@ -5738,10 +5748,13 @@ body.active {
   margin-bottom: 1.25em;
 }
 
-.pi-top-content a, .pi-bottom-content a {
+.pi-top-content a,
+.pi-bottom-content a {
   text-decoration: none;
 }
-.pi-top-content a:hover, .pi-top-content a:focus, .pi-bottom-content a:hover, .pi-bottom-content a:focus {
+.pi-top-content a:hover, .pi-top-content a:focus,
+.pi-bottom-content a:hover,
+.pi-bottom-content a:focus {
   text-decoration: none;
 }
 
@@ -7649,9 +7662,9 @@ body.active {
 
 /*=============== Reviews Module ===============*/
 :root {
-  --img-w:190px;
-  --gap:40px;
-  --move-dur:.6s;
+  --img-w: 190px;
+  --gap: 40px;
+  --move-dur: .6s;
 }
 
 .reviews-module {
@@ -7849,7 +7862,7 @@ body.active {
 }
 
 /* content fade applied briefly right as the new testimonial swaps in,
-   AFTER the photo/text have finished moving to their new side */
+     AFTER the photo/text have finished moving to their new side */
 .content-fade img,
 .content-fade .review-text,
 .content-fade .review-name,
@@ -7929,7 +7942,8 @@ body.active {
     padding: 26px 0;
   }
 
-  .stage-photo, .stage-text {
+  .stage-photo,
+.stage-text {
     position: static !important;
     transform: none !important;
     width: 100% !important;
@@ -8066,6 +8080,29 @@ body.active {
 }
 .home-social-media-module .hsmm-hashtags span {
   margin: 0 0.5em;
+}
+
+.page-intros {
+  background-color: #0A4492;
+  padding: 16px 20px;
+}
+.page-intros:before {
+  content: none;
+}
+.page-intros .inner-wrap, .page-intros .inner-wrap-narrow, .page-intros .inner-wrap-wide, .page-intros .inner-wrap-fullwidth {
+  padding: 0;
+}
+.page-intros .inner-wrap .pi-wrap, .page-intros .inner-wrap-narrow .pi-wrap, .page-intros .inner-wrap-wide .pi-wrap, .page-intros .inner-wrap-fullwidth .pi-wrap {
+  padding: 0 80px;
+}
+.page-intros .inner-wrap .pi-wrap h1, .page-intros .inner-wrap-narrow .pi-wrap h1, .page-intros .inner-wrap-wide .pi-wrap h1, .page-intros .inner-wrap-fullwidth .pi-wrap h1 {
+  color: #FFF;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  margin-bottom: 0;
 }
 
 .clearfix:before,
