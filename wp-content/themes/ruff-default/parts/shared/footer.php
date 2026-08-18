@@ -34,9 +34,18 @@
               <a href="mailto:<?php echo get_field('global_email','option');?>"><span><?php echo get_field('global_email','option');?></span></a>
 		    </span>
         <?php endif; ?>
-         
-		<a href="/privacy-policy/" class="sf-privacy-link">Privacy Policy</a>
 
+            <div class="sf-menu">
+                <ul class="sf-menu__list">
+                    <li>
+                        <a href="/privacy-policy/" class="sf-privacy-link">Privacy Policy</a>
+                    </li>
+
+                    <li class="sf-mail">
+                        <a href="/terms-of-service/" class="sf-privacy-link">Terms of Service</a>
+                    </li>
+                </ul>
+            </div>
 		</div>
 		<div class="sf-two">
 			<?php wp_nav_menu(array(
@@ -77,7 +86,7 @@
    </div>
    <div class="sf-bottom">
 	<div class="inner-wrap">
-	<p class="sf-copy"><?php bloginfo( 'name' ); ?>© <?php echo date("Y"); ?>, All Rights Reserved | <?php bloginfo( 'name' ); ?>© is a division of <a href="https://jeffersonrubber.com/" target="_blank">Jefferson Rubber Works, Inc.</a> | Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
+	<p class="sf-copy"><a href="<?php echo esc_url(home_url()) ?>"><?php bloginfo( 'name' ); ?></a>© <?php echo date("Y"); ?>, All Rights Reserved | <?php bloginfo( 'name' ); ?>© is a division of<a href="https://jeffersonrubber.com/" target="_blank">Jefferson Rubber Works, Inc.</a> | Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
 	</div>
    </div>
 </footer>

@@ -40,7 +40,7 @@
                       <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
                     <?php endif;?>
                   </a>
-                    <a href="" class="close-menu menu-link"></a>
+                    <a href="" class="close-menu menu-link" aria-label="Close Menu"></a>
                   </div>
 
                   <?php wp_nav_menu(array(
