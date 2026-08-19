@@ -162,6 +162,9 @@
 		
         wp_enqueue_style( 'screen' );
 
+        // site-behaviors
+        wp_enqueue_style( 'site-behaviors', get_template_directory_uri() . '/css/site-behaviors.css', array(), '1.2.0399717' );
+
         // site-behaviors.js
         wp_enqueue_script(
                 'site-behaviors',

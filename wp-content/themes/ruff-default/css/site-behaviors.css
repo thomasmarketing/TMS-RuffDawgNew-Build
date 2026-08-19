@@ -1,0 +1,10 @@
+/* Shop */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product-card .pc-categories {
+    flex: 1;
+}
