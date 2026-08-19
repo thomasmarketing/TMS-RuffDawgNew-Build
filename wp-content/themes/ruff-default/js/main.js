@@ -397,6 +397,36 @@ $(document).ready(function () {
   });
 });
 
+// Wholesale Tab Section Content - Tab Switching
+$(document).ready(function () {
+  $('.wholesale-tab-section-content').each(function() {
+    var $section = $(this);
+    var $tabs = $section.find('.wtsc-tabs');
+    var $contents = $section.find('.wtsc-tab-content-wrapper');
+
+    $tabs.on('click', '.wtsc-tab-btn', function(e) {
+      e.preventDefault();
+      
+      // Only switch tabs on desktop (992px+)
+      if ($(window).width() < 992) return;
+      
+      var $btn = $(this);
+      var targetTab = $btn.data('tab');
+
+      // Skip if already active
+      if ($btn.hasClass('active')) return;
+
+      // Update tab buttons
+      $tabs.find('.wtsc-tab-btn').removeClass('active');
+      $btn.addClass('active');
+
+      // Update content with fade transition
+      $contents.find('.wtsc-tab-content').removeClass('active');
+      $contents.find('.wtsc-tab-content[data-content="' + targetTab + '"]').addClass('active');
+    });
+  });
+});
+
 
 //destination page slider    
 $(document).ready(function(){

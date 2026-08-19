@@ -89,7 +89,10 @@ $on_background = get_field('on_background', $id);
 	</div>
 <?php endif; ?>
 <?php
-if (function_exists('yoast_breadcrumb')) {
-	yoast_breadcrumb('<div id="breadcrumbs" class="breadcrumb-menu"><div class="inner-wrap">', '</div></div>');
-}
+$breadcrumbs = get_field('on_breadcrumb', $id);
+if ($breadcrumbs == true):
+    if (function_exists('yoast_breadcrumb')) {
+        yoast_breadcrumb('<div id="breadcrumbs" class="breadcrumb-menu"><div class="inner-wrap">', '</div></div>');
+    }
+endif;
 ?>
