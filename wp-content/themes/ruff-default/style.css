@@ -9809,6 +9809,10 @@ body.active {
   border: none;
 }
 
+#class-schema-hidden {
+  display: none;
+}
+
 .clearfix:before,
 .clearfix:after {
   content: " ";
