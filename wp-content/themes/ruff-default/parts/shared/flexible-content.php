@@ -1175,6 +1175,7 @@
 
 		<?php elseif (get_row_layout() == 'wholesale_guide_module'): ?>
 			<section class="wholesale-guide-module">
+				<div class="container">
 				<div class="inner-wrap">
 					<?php if (get_sub_field('wgm_heading')): ?>
 						<h2 class="wgm-heading"><?php echo get_sub_field('wgm_heading'); ?></h2>
@@ -1206,7 +1207,7 @@
 			</section>
 		<?php elseif (get_row_layout() == 'wholesale_nav_buttons_module'): ?>
 			<section class="wholesale-nav-module">
-				<div class="inner-wrap">
+				<div class="container">
 					<div class="wnm-buttons">
 						<?php if (have_rows('wnm_items')): while (have_rows('wnm_items')) : the_row(); ?>
 								<?php
@@ -1243,7 +1244,7 @@
 			$id = get_sub_field('id');
 			?>
 			<section class="wholesale-tab-section-content" data-section="wholesale-tab-section-content" id="<?php echo esc_attr($id); ?>">
-				<div class="inner-wrap">
+				<div class="container">
 					<div class="wtsc-header">
 						<h2 class="wtsc-title">
 							<?php
@@ -1325,7 +1326,7 @@
 			$wrs_button_2 = get_sub_field('wrs_button_2');
 			?>
 			<section class="wholesale-requirements-section" data-section="wholesale-requirements-section">
-				<div class="inner-wrap">
+				<div class="container">
 					<div class="wrs-header">
 						<h2 class="wrs-title">
 							<?php
@@ -1374,7 +1375,6 @@
 							</a>
 						<?php endif; ?>
 					</div>
-				</div>
 			</section>
 
 		<?php elseif (get_row_layout() == 'wholesale_options_section'): ?>
@@ -1386,7 +1386,7 @@
 			$wos_button = get_sub_field('wos_button');
 			?>
 			<section class="wholesale-options-section" data-section="wholesale-options-section">
-				<div class="inner-wrap">
+				<div class="container">
 					<div class="wos-header">
 						<h2 class="wos-title">
 							<?php echo $wos_section_title; ?>

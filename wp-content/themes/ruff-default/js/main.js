@@ -399,6 +399,22 @@ $(document).ready(function () {
 
 // Wholesale Tab Section Content - Tab Switching
 $(document).ready(function () {
+  function syncWtscImageHeight() {
+    $('.wholesale-tab-section-content').each(function() {
+      var $section = $(this);
+      var $activeContent = $section.find('.wtsc-tab-content.active');
+      if ($activeContent.length) {
+        var $leftContent = $activeContent.find('.wtsc-content-left');
+        var $rightImage = $activeContent.find('.wtsc-content-right');
+        var leftHeight = $leftContent.outerHeight();
+        $rightImage.css('height', leftHeight + 'px');
+      }
+    });
+  }
+
+  // Sync on load and resize
+  $(window).on('load resize', syncWtscImageHeight);
+
   $('.wholesale-tab-section-content').each(function() {
     var $section = $(this);
     var $tabs = $section.find('.wtsc-tabs');
@@ -423,6 +439,9 @@ $(document).ready(function () {
       // Update content with fade transition
       $contents.find('.wtsc-tab-content').removeClass('active');
       $contents.find('.wtsc-tab-content[data-content="' + targetTab + '"]').addClass('active');
+
+      // Sync image height after tab switch
+      setTimeout(syncWtscImageHeight, 100);
     });
   });
 });
