@@ -4713,6 +4713,7 @@ a[class*=sh-ico-].tse-remove-border:focus:not(:hover):not(:active),
 .site-logo {
   max-width: 12.125em;
   line-height: 0;
+  flex-shrink: 0;
 }
 @media (min-width: 60em) {
   .site-logo {

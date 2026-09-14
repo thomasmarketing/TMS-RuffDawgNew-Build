@@ -399,6 +399,7 @@ a[class*="sh-ico-"],
 .site-logo {
   max-width: em(194);
   line-height: 0;
+  flex-shrink: 0;
 
   @include mq(large) {
     display: inline-block;
