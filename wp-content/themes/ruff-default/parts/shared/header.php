@@ -44,11 +44,11 @@
                   </div>
 
                   <?php wp_nav_menu(array(
-                      'theme_location'  => 'primary-navigation', // Use the registered location slug
-                      'container'       => 'nav',
-                      'container_class' => 'site-nav',
-                      'menu_class'      => 'sn-level-1',
-                      'walker'          => new themeslug_walker_nav_menu()
+                    'menu'            => 'Primary Nav 2026',
+                    'container'       => 'nav',
+                    'container_class' => 'site-nav',
+                    'menu_class'      => 'sn-level-1',
+                    'walker'          => new themeslug_walker_nav_menu
                   )); ?>
 
 
