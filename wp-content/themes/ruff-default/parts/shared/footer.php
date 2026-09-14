@@ -86,7 +86,7 @@
    </div>
    <div class="sf-bottom">
 	<div class="inner-wrap">
-	<p class="sf-copy"><a href="<?php echo esc_url(home_url()) ?>"><?php bloginfo( 'name' ); ?></a>© <?php echo date("Y"); ?>, All Rights Reserved | <?php bloginfo( 'name' ); ?>© is a division of<a href="https://jeffersonrubber.com/" target="_blank">Jefferson Rubber Works, Inc.</a> | Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
+	<p class="sf-copy"><a href="<?php echo esc_url(home_url()) ?>"><?php bloginfo( 'name' ); ?></a>© <?php echo date("Y"); ?>, All Rights Reserved | <?php bloginfo( 'name' ); ?>© is a division of <a href="https://jeffersonrubber.com/" target="_blank">Jefferson Rubber Works, Inc.</a> | Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
 	</div>
    </div>
 </footer>
