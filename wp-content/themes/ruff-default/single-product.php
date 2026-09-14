@@ -42,7 +42,7 @@
     </div>
 
     <div class="product-info">
-  
+
         <span class="product-title-top"><?php the_title(); ?></span>
          
         <?php if (get_field('imgwt_top_content')): ?><div class="pi-top-content"><?php echo get_field('imgwt_top_content') ?></div><?php endif ?>
