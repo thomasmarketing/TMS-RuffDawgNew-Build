@@ -6291,3 +6291,87 @@ body {
 #class-schema-hidden {
   display: none;
 }
+
+/* ============================================
+   SECTION: Product By Category Section
+   Mô tả: Display products grouped by selected categories
+   ============================================ */
+.product-by-category-section {
+  background: $white;
+
+  .inner-wrap {
+    padding: 80px 80px;
+
+    @media (max-width: 1190px) {
+      padding: 80px 40px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 60px 20px;
+    }
+  }
+
+  .pbc-category-block {
+    margin-bottom: 60px;
+    margin-top: 60px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .pbc-category-title {
+    margin: 0 0 16px 0;
+    color: $blue;
+    font-family: $header-font-family;
+    font-size: em(32);
+    font-weight: 900;
+    line-height: normal;
+
+    @media (max-width: 1024px) {
+      font-size: em(28);
+    }
+
+    @media (max-width: 768px) {
+      font-size: em(24);
+    }
+  }
+
+  .pbc-divider {
+    width: 60px;
+    height: 4px;
+    background: $pink;
+    margin-bottom: 32px;
+    border-radius: 2px;
+  }
+
+  .pbc-no-products,
+  .pbc-no-categories {
+    color: $dark-gray;
+    font-size: em(16);
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  // Product grid - uses existing .product-grid styles from Products CSS section
+  .product-grid {
+    // Existing product-grid styles will apply
+  }
+
+  // Category block spacing for mobile
+  @media (max-width: 768px) {
+    .pbc-category-block {
+      margin-bottom: 40px;
+    }
+
+    .pbc-category-title {
+      margin-bottom: 12px;
+    }
+
+    .pbc-divider {
+      margin-bottom: 24px;
+    }
+  }
+}

@@ -1176,34 +1176,34 @@
 		<?php elseif (get_row_layout() == 'wholesale_guide_module'): ?>
 			<section class="wholesale-guide-module">
 				<div class="container">
-				<div class="inner-wrap">
-					<?php if (get_sub_field('wgm_heading')): ?>
-						<h2 class="wgm-heading"><?php echo get_sub_field('wgm_heading'); ?></h2>
-					<?php endif; ?>
+					<div class="inner-wrap">
+						<?php if (get_sub_field('wgm_heading')): ?>
+							<h2 class="wgm-heading"><?php echo get_sub_field('wgm_heading'); ?></h2>
+						<?php endif; ?>
 
-					<?php if (get_sub_field('wgm_description')): ?>
-						<p class="wgm-description"><?php echo get_sub_field('wgm_description'); ?></p>
-					<?php endif; ?>
+						<?php if (get_sub_field('wgm_description')): ?>
+							<p class="wgm-description"><?php echo get_sub_field('wgm_description'); ?></p>
+						<?php endif; ?>
 
-					<div class="wgm-content-row">
-						<div class="wgm-text-col">
-							<div class="wgm-text-content">
-								<?php if (get_sub_field('wgm_left_content')): ?>
-									<div class="wgm-left-content"><?php echo get_sub_field('wgm_left_content'); ?></div>
+						<div class="wgm-content-row">
+							<div class="wgm-text-col">
+								<div class="wgm-text-content">
+									<?php if (get_sub_field('wgm_left_content')): ?>
+										<div class="wgm-left-content"><?php echo get_sub_field('wgm_left_content'); ?></div>
+									<?php endif; ?>
+								</div>
+							</div>
+
+							<div class="wgm-media-col">
+								<?php $wgm_image = get_sub_field('wgm_image');
+								if (!empty($wgm_image)): ?>
+									<div class="wgm-image-wrap">
+										<img src="<?php echo esc_url($wgm_image['url']); ?>" alt="<?php echo esc_attr($wgm_image['alt']); ?>" title="<?php echo esc_attr($wgm_image['title']); ?>" class="wgm-image" />
+									</div>
 								<?php endif; ?>
 							</div>
 						</div>
-
-						<div class="wgm-media-col">
-							<?php $wgm_image = get_sub_field('wgm_image');
-							if (!empty($wgm_image)): ?>
-								<div class="wgm-image-wrap">
-									<img src="<?php echo esc_url($wgm_image['url']); ?>" alt="<?php echo esc_attr($wgm_image['alt']); ?>" title="<?php echo esc_attr($wgm_image['title']); ?>" class="wgm-image" />
-								</div>
-							<?php endif; ?>
-						</div>
 					</div>
-				</div>
 			</section>
 		<?php elseif (get_row_layout() == 'wholesale_nav_buttons_module'): ?>
 			<section class="wholesale-nav-module">
@@ -1248,7 +1248,7 @@
 					<div class="wtsc-header">
 						<h2 class="wtsc-title">
 							<?php
-								echo $wtsc_section_title;
+							echo $wtsc_section_title;
 							?>
 						</h2>
 						<?php if ($wtsc_section_subtitle): ?>
@@ -1256,7 +1256,7 @@
 								<?php if ($wtsc_section_subtitle): ?>
 									<p class="wtsc-subtitle"><?php echo esc_html($wtsc_section_subtitle); ?></p>
 								<?php endif; ?>
-								<?php if ($section_subtitle_2): ?>	
+								<?php if ($section_subtitle_2): ?>
 									<p class="wtsc-subtitle"><?php echo esc_html($section_subtitle_2); ?></p>
 								<?php endif; ?>
 							</div>
@@ -1431,7 +1431,7 @@
 				</div>
 			</section>
 
-		<?php elseif( get_row_layout() == 'contact_cta_section' ): ?>
+		<?php elseif (get_row_layout() == 'contact_cta_section'): ?>
 			<?php
 			$cta_title = get_sub_field('cta_title');
 			$cta_description_1 = get_sub_field('description_1');
@@ -1476,7 +1476,56 @@
 					</div>
 				</div>
 			</section>
+		<?php elseif (get_row_layout() == 'product_category_section_new'): ?>
+			<section class="product-by-category-section">
+				<div class="inner-wrap">
+					<?php
+					// Get selected categories from custom field
+					$selected_categories = get_sub_field('select_categories_new');
 
+					if ($selected_categories) :
+						foreach ($selected_categories as $category) :
+							$term = get_term($category, 'product_category');
+							if ($term && !is_wp_error($term)) :
+								// Query products for this category
+								$args = array(
+									'post_type'      => 'product',
+									'posts_per_page' => -1,
+									'tax_query'      => array(
+										array(
+											'taxonomy'         => 'product_category',
+											'field'            => 'term_id',
+											'terms'            => $term->term_id,
+											'include_children' => true
+										)
+									)
+								);
+								$products = new WP_Query($args);
+					?>
+								<div class="pbc-category-block">
+									<h2 class="pbc-category-title"><?php echo esc_html($term->name); ?></h2>
+									<div class="pbc-divider"></div>
+
+									<?php if ($products->have_posts()) : ?>
+										<div class="product-grid">
+											<?php while ($products->have_posts()) : $products->the_post(); ?>
+												<?php get_template_part('parts/product-card'); ?>
+											<?php endwhile; ?>
+										</div>
+									<?php else : ?>
+										<p class="pbc-no-products">No products found in this category.</p>
+									<?php endif; ?>
+								</div>
+							<?php
+							endif;
+							wp_reset_postdata();
+						endforeach;
+					else :
+					?>
+						<p class="pbc-no-categories">No categories selected.</p>
+					<?php endif; ?>
+				</div>
+			</section>
 		<?php endif; ?>
 	<?php endwhile;
 	echo '</section>'; ?>

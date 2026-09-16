@@ -9814,6 +9814,80 @@ body.active {
   display: none;
 }
 
+/* ============================================
+   SECTION: Product By Category Section
+   Mô tả: Display products grouped by selected categories
+   ============================================ */
+.product-by-category-section {
+  background: #ffffff;
+}
+.product-by-category-section .inner-wrap, .product-by-category-section .inner-wrap-narrow, .product-by-category-section .inner-wrap-wide, .product-by-category-section .inner-wrap-fullwidth {
+  padding: 80px 80px;
+}
+@media (max-width: 1190px) {
+  .product-by-category-section .inner-wrap, .product-by-category-section .inner-wrap-narrow, .product-by-category-section .inner-wrap-wide, .product-by-category-section .inner-wrap-fullwidth {
+    padding: 80px 40px;
+  }
+}
+@media (max-width: 768px) {
+  .product-by-category-section .inner-wrap, .product-by-category-section .inner-wrap-narrow, .product-by-category-section .inner-wrap-wide, .product-by-category-section .inner-wrap-fullwidth {
+    padding: 60px 20px;
+  }
+}
+.product-by-category-section .pbc-category-block {
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+.product-by-category-section .pbc-category-block:last-child {
+  margin-bottom: 0;
+}
+.product-by-category-section .pbc-category-block:first-child {
+  margin-top: 0;
+}
+.product-by-category-section .pbc-category-title {
+  margin: 0 0 16px 0;
+  color: #0A4492;
+  font-family: "mokoko", serif;
+  font-size: 2em;
+  font-weight: 900;
+  line-height: normal;
+}
+@media (max-width: 1024px) {
+  .product-by-category-section .pbc-category-title {
+    font-size: 1.75em;
+  }
+}
+@media (max-width: 768px) {
+  .product-by-category-section .pbc-category-title {
+    font-size: 1.5em;
+  }
+}
+.product-by-category-section .pbc-divider {
+  width: 60px;
+  height: 4px;
+  background: #ED1B30;
+  margin-bottom: 32px;
+  border-radius: 2px;
+}
+.product-by-category-section .pbc-no-products,
+.product-by-category-section .pbc-no-categories {
+  color: #333;
+  font-size: 1em;
+  text-align: center;
+  padding: 40px 0;
+}
+@media (max-width: 768px) {
+  .product-by-category-section .pbc-category-block {
+    margin-bottom: 40px;
+  }
+  .product-by-category-section .pbc-category-title {
+    margin-bottom: 12px;
+  }
+  .product-by-category-section .pbc-divider {
+    margin-bottom: 24px;
+  }
+}
+
 .clearfix:before,
 .clearfix:after {
   content: " ";
