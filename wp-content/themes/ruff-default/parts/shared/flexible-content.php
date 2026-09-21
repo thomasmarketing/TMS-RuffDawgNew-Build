@@ -1507,9 +1507,30 @@
 									<div class="pbc-divider"></div>
 
 									<?php if ($products->have_posts()) : ?>
-										<div class="product-grid">
+										<div class="pbc-product-wrap">
 											<?php while ($products->have_posts()) : $products->the_post(); ?>
-												<?php get_template_part('parts/product-card'); ?>
+												<?php
+												$product_link = get_the_permalink();
+												$product_title = get_the_title();
+												$product_thumbnail = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+												$product_description = get_the_excerpt();
+												?>
+												<div class="pbc-product-card">
+													<a href="<?php echo esc_url($product_link); ?>" class="pbc-img-link">
+														<div class="pbc-img-wrap">
+															<?php if ($product_thumbnail) : ?>
+																<img src="<?php echo esc_url($product_thumbnail); ?>" alt="<?php echo esc_attr($product_title); ?>" title="<?php echo esc_attr($product_title); ?>" class="pbc-img" />
+															<?php endif; ?>
+														</div>
+													</a>
+													<div class="pbc-card-content">
+														<h3 class="pbc-title"><?php echo esc_html($product_title); ?></h3>
+														<?php if ($product_description) : ?>
+															<p class="pbc-description"><?php echo esc_html(wp_trim_words($product_description, 15, '...')); ?></p>
+														<?php endif; ?>
+														<a href="<?php echo esc_url($product_link); ?>" class="pbc-btn">Read More</a>
+													</div>
+												</div>
 											<?php endwhile; ?>
 										</div>
 									<?php else : ?>
