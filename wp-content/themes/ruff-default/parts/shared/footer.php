@@ -1,93 +1,61 @@
 <!--Site Footer -->
 <footer class="site-footer" role="contentinfo">
-   <div class="sf-top">
-	<div class="inner-wrap">
-		<div class="sf-one">
-            <a href="<?php bloginfo('url'); ?>" class="sf-logo">
-		      <?php $logo = get_field('global_company_logo','option');
-		      if( !empty($logo) ): ?>
-		        <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
-		      <?php endif;?>
-		    </a>
-		<div class="sf-social-wrap">
-			<?php if( have_rows('social_profiles','option') ): while ( have_rows('social_profiles','option') ) : the_row(); ?>
-
-                <?php if(get_sub_field('sp_social_link')):?>
-   					<a href="<?php echo get_sub_field('sp_social_link');?>" target="_blank" title="<?php echo get_sub_field('sp_social_profile','option'); ?>">
-               			<?php if(get_sub_field('sp_social_icon','option')) : ?>
-       					<?php $sp_social_icon = get_sub_field('sp_social_icon','option'); ?>
-
-       					<img src="<?php echo $sp_social_icon['url']; ?>" alt="<?php echo get_sub_field('sp_social_profile','option'); ?>" title="<?php echo get_sub_field('sp_social_profile','option'); ?>">
-
-       					<?php endif; ?>
-       				</a>
-       			<?php endif; ?>		
-
-			<?php endwhile; ?>	
-		    <?php endif; ?>	
+	<div class="sf-top">
+      	<div class="inner-wrap">
+		<div class="sf-left">
+			 <?php if( have_rows('footer_left_links','option') ): while ( have_rows('footer_left_links','option') ) : the_row(); ?>
+			 <?php $link = get_sub_field('sfl_link','option');
+						if( $link ): 
+						    $link_url = $link['url'];
+						    $link_title = $link['title'];
+						    $link_target = $link['target'] ? $link['target'] : '_self';
+						    ?>
+            <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="sfl-link"><?php echo get_sub_field('sfl_link_text','option'); ?></a><?php endif; ?>	
+			<?php endwhile; ?>
+			<?php endif; ?>	
 		</div>
-		<?php if( get_field('global_address','option')): ?>
-			<span class="sf-address"><?php echo get_field('global_address','option'); ?></span>
-			<?php endif; ?>
-		<?php if(get_field('global_email','option')):?>
-			<span class="sf-mail">	
-              <a href="mailto:<?php echo get_field('global_email','option');?>"><span><?php echo get_field('global_email','option');?></span></a>
-		    </span>
-        <?php endif; ?>
+		<div class="sf-right">
+           <?php if( get_field('sf_footer_text','option')): ?><div class="sfr-text"><?php echo get_field('sf_footer_text','option'); ?></div><?php endif; ?>
+            <?php if( have_rows('footer_right_links','option') ): while ( have_rows('footer_right_links','option') ) : the_row(); ?>   
+		   <?php $link = get_sub_field('sfr_link','option');
+						if( $link ): 
+						    $link_url = $link['url'];
+						    $link_title = $link['title'];
+						    $link_target = $link['target'] ? $link['target'] : '_self';
+						    ?>
+            <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>" class="sfl-link"><?php echo get_sub_field('sfr_link_text','option'); ?></a><?php endif; ?>
+             <?php endwhile; ?>
+			<?php endif; ?>	
 
-            <div class="sf-menu">
-                <ul class="sf-menu__list">
-                    <li>
-                        <a href="/privacy-policy/" class="sf-privacy-link">Privacy Policy</a>
-                    </li>
+			<div class="sf-social-links">
+            <ul class="sf-social-link">
+					<?php if( have_rows('social_profiles','option') ): while ( have_rows('social_profiles','option') ) : the_row(); ?>
+						<li>
+							<?php if( get_sub_field('sp_social_link','option')): ?>
+							<a href="<?php echo get_sub_field('sp_social_link','option'); ?>" target="_blank" class="<?php echo get_sub_field('sp_social_profile','option'); ?>" title="<?php echo get_sub_field('sp_social_profile','option'); ?>" aria-label="<?php echo get_sub_field('sp_social_profile','option'); ?>">	
+							<?php 
+							$image = get_sub_field('sp_social_icon','option');
+							if( !empty( $image ) ): ?>
+							    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"  title="<?php echo esc_attr($image['alt']); ?>" class="style-svg" />
+							<?php endif; ?>
 
-                    <li class="sf-mail">
-                        <a href="/terms-of-service/" class="sf-privacy-link">Terms of Service</a>
-                    </li>
-                </ul>
-            </div>
-		</div>
-		<div class="sf-two">
-			<?php wp_nav_menu(array(
-		      'menu'            => 'Footer Menu One',
-		      'container'       => 'ul',
-		      'menu_class'      => 'sf-link-list',
-		    )); ?>
+							<?php endif; ?>
+							</a>
+						</li>
+
+					<?php endwhile; ?>
+					<?php endif; ?>	
+				</ul>
+         </div>
 
 		</div>
-		<div class="sf-three">
-			<?php wp_nav_menu(array(
-		      'menu'            => 'Footer Menu Two',
-		      'container'       => 'ul',
-		      'menu_class'      => 'sf-link-list',
-		    )); ?>
-
-		</div>
-		<div class="sf-four">
-			<?php wp_nav_menu(array(
-		      'menu'            => 'Footer Menu Three',
-		      'container'       => 'ul',
-		      'menu_class'      => 'sf-link-list',
-		    )); ?>
-
-		<!-- Thomas Supplier Badge -->
-		<a href="https://www.thomasnet.com/profile/31010381?src=tnbadge" target="_blank" class="tn-badge__link">
-		<img 
-		src="https://img.thomascdn.com/badges/shield-tier-v-md.png?cid=31010381"
-		srcset="https://img.thomascdn.com/badges/shield-tier-v-md-2x.png?cid=31010381 2x" 
-		alt="Thomas Supplier" width="100px"
-		class="tn-badge__img" />
-		</a>
-		<!-- End Thomas Supplier Badge -->
-
-
+	  </div>
+	</div>
+	<div class="sf-small-footer">
+		<div class="inner-wrap">
+			<?php if( get_field('footer_bottom_text','option')): ?><p><?php echo get_field('footer_bottom_text','option'); ?></p><?php endif; ?>
+			<p class="sf-copy">© <?php echo date("Y"); ?> <a class="sf-comp-copy" href="<?php bloginfo('url'); ?>"><?php bloginfo( 'name' ); ?></a>, All Rights Reserved <span>|</span> Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
 		</div>
 	</div>
-   </div>
-   <div class="sf-bottom">
-	<div class="inner-wrap">
-	<p class="sf-copy"><a href="<?php echo esc_url(home_url()) ?>"><?php bloginfo( 'name' ); ?></a>© <?php echo date("Y"); ?>, All Rights Reserved | <?php bloginfo( 'name' ); ?>© is a division of <a href="https://jeffersonrubber.com/" target="_blank">Jefferson Rubber Works, Inc.</a> | Site created by <a href="https://business.thomasnet.com/marketing-services" target="_blank" rel="noreferrer noopener">Thomas Marketing Services</a></p>
-	</div>
-   </div>
 </footer>
 

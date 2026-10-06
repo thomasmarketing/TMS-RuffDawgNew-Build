@@ -1476,12 +1476,12 @@
 					</div>
 				</div>
 			</section>
-		<?php elseif (get_row_layout() == 'product_category_section_new'): ?>
+		<?php elseif (get_row_layout() == 'product_category_section'): ?>
 			<section class="product-by-category-section">
 				<div class="inner-wrap">
 					<?php
 					// Get selected categories from custom field
-					$selected_categories = get_sub_field('select_categories_new');
+					$selected_categories = get_sub_field('select_categories');
 
 					if ($selected_categories) :
 						foreach ($selected_categories as $category) :

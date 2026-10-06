@@ -1336,3 +1336,38 @@ $(function () {
 
   observer.observe(introEl);
 })();
+
+
+$(function () {
+  const closeBtn = document.querySelector('.search-exit');
+  const searchModule = document.querySelector('.search-module');
+  const searchResults = document.getElementById('live-search-results');
+  const searchInput = document.getElementById('search-site');
+
+  closeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      searchModule.classList.remove('active');
+
+      searchResults.classList.remove('active');
+      searchResults.innerHTML = '';
+
+      searchInput.value = '';
+  });
+
+  $(document).on('click', '.search-form', function(e){
+      e.stopPropagation();
+  });
+
+  $(document).on('click', '.search-module', function(){
+
+      $(this).removeClass('active');
+
+      $('#live-search-results')
+          .removeClass('active')
+          .html('');
+
+      $('#search-site').val('');
+
+  });
+});

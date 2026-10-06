@@ -1,18 +1,47 @@
 <!--Site Header-->
+<?php Starkers_Utilities::get_template_parts( array( 'parts/shared/search-module' ) ); ?>
 <!-- Site header wrap start-->
 <div class="site-header-wrap"> 
   <header class="site-header" role="banner">
     <!--Top Nav Header-->
+    <div class="sh-top-banner">
+      <div class="inner-wrap">
+          <?php if( get_field('banner_text','option')): ?><div class="stp-text"><?php echo get_field('banner_text','option'); ?></div><?php endif; ?>	
+         <div class="stb-social-links">
+            <ul class="stb-social-link">
+					<?php if( have_rows('social_profiles','option') ): while ( have_rows('social_profiles','option') ) : the_row(); ?>
+						<li>
+							<?php if( get_sub_field('sp_social_link','option')): ?>
+							<a href="<?php echo get_sub_field('sp_social_link','option'); ?>" target="_blank" title="<?php echo get_sub_field('sp_social_profile','option'); ?>" aria-label="<?php echo get_sub_field('sp_social_profile','option'); ?>">	
+							<?php 
+							$image = get_sub_field('sp_social_icon','option');
+							if( !empty( $image ) ): ?>
+							    <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>"  title="<?php echo esc_attr($image['alt']); ?>" class="style-svg" />
+							<?php endif; ?>
+
+							<?php endif; ?>
+							</a>
+						</li>
+
+					<?php endwhile; ?>
+					<?php endif; ?>	
+				</ul>
+
+         </div>
+      </div>
+    </div>
       <div class="sh-top-nav">
         <div class="inner-wrap">
-          <a href="<?php bloginfo('url'); ?>" class="site-logo site-logmobile">
+          <a href="<?php bloginfo('url'); ?>" class="site-logo site-logo-mobile">
             <?php $logo = get_field('global_company_logo','option');
             if( !empty($logo) ): ?>
               <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
             <?php endif;?>
           </a>
+
           <div class="sh-utility-nav">
-              <a href="#menu" class="sh-ico-menu menu-link" aria-label="Menu Icon"></a>
+                <a class="sh-ico-search search-link" target="_blank" href="#" aria-label="Search Icon"></a>
+                <a href="#menu" class="sh-ico-menu menu-link" aria-label="Menu Icon"></a> 
           </div>     
         </div>  
       </div>
@@ -28,81 +57,32 @@
             <?php endif;?>
           </a>
 
-          <div class="sh-right">
-
-              <div class="sh-nav-search-wrap">
-                <!--Site Nav-->
-                <div class="site-nav-container">
-                  <div class="snc-header">
-                    <a href="<?php bloginfo('url'); ?>" class="site-logo site-logmobile">
-                    <?php $logo = get_field('global_company_logo','option');
-                    if( !empty($logo) ): ?>
-                      <img src="<?php echo $logo['url']; ?>" alt="<?php echo $logo['alt']; ?>" title="<?php echo $logo['alt']; ?>">
-                    <?php endif;?>
-                  </a>
-                    <a href="" class="close-menu menu-link" aria-label="Close Menu"></a>
-                  </div>
-
-                  <?php wp_nav_menu(array(
-                    'menu'            => 'Primary Nav 2026',
-                    'container'       => 'nav',
-                    'container_class' => 'site-nav',
-                    'menu_class'      => 'sn-level-1',
-                    'walker'          => new themeslug_walker_nav_menu
-                  )); ?>
-
-
-               <form role="search" method="get" class="sh-search-form search-form sh-search-form-mobile" action="<?php bloginfo('url'); ?>/">
-                <input type="text" class="sh-search-input" name="s" placeholder="Search Our Website..." value="<?php echo get_search_query(); ?>" />
-                <button type="submit" class="sh-search-submit" aria-label="Submit Search">
-                  <span class="sh-search-submit-icon"></span>
-                </button>
-              </form>
-
-                </div>
-                <!--Site Nav END-->
-
-                <a class="sh-ico-search search-link" href="#" aria-label="Search Icon"></a>
-
-                <!--Inline Search Form (overlays nav + icon)-->
-                <form role="search" method="get" class="sh-search-form search-form sh-search-form-desk" action="<?php bloginfo('url'); ?>/">
-                <input type="text" class="sh-search-input" name="s" placeholder="Search..." value="<?php echo get_search_query(); ?>" />
-                <button type="submit" class="sh-search-submit" aria-label="Submit Search">
-                  <span class="sh-search-submit-icon"></span>
-                </button>
-              </form>
-                <!--Inline Search Form END-->
+          <div class="sh-right-sec">
+            <!--Site Nav-->
+            <div class="site-nav-container">
+              <div class="snc-header">
+                <a href="" class="close-menu menu-link"  aria-label="Mobile Menu Close Button"></a>
               </div>
-              <?php 
-            $link = get_field('cta_one','option');
-            if( $link ): 
-                $link_url = $link['url'];
-                $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
-                ?>
-                <a class="btn-alt d-none-link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
-            <?php endif; ?>
-             <?php 
-            $link = get_field('cta_two','option');
-            if( $link ): 
-                $link_url = $link['url'];
-                $link_title = $link['title'];
-                $link_target = $link['target'] ? $link['target'] : '_self';
-                ?>
-                <a class="btn d-none-link btn-arrow" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><span><?php echo esc_html( $link_title ); ?></span></a>
-            <?php endif; ?>
-              <?php /* cta_one / cta_two buttons unchanged, still siblings of .sh-nav-search-wrap */ ?>
-            </div>          
-             
+              <?php wp_nav_menu(array(
+              'menu'            => 'Primary Nav',
+              'container'       => 'nav',
+              'container_class' => 'site-nav',
+              'menu_class'      => 'sn-level-1',
+              'walker'        => new themeslug_walker_nav_menu
+              )); ?>
+            </div>
+            <!--Site Nav END-->
 
+             <a class="sh-ico-search search-link sh-ico-search-desk" target="_blank" href="#" aria-label="Search Icon"></a>
           </div>
 
+
+        </div>
         <a href="" class="site-nav-container-screen menu-link">&nbsp;</a>
     </div>
     <!--Sticky Nav-->
   </header>
-
-  <?php if ( is_front_page() ) : ?>
+  <?php if ( is_front_page() || is_page_template('front-page.php') ) : ?>
 
     <?php Starkers_Utilities::get_template_parts( array( 'parts/site-intro' ) ); ?>
 
